@@ -1,0 +1,100 @@
+<div class="container">
+
+    <!-- Body Content -->
+    <div id="page-content">
+        <!--Page Title-->
+        <div class="page section-header text-center">
+            <div class="page-title">
+                <div class="wrapper">
+                    <h1 class="page-width">Wish List</h1>
+                </div>
+            </div>
+        </div>
+        <!--End Page Title-->
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 main-col">
+                    {{#if wishListItems}}
+                    <form action="#">
+                        <div class="wishlist-table table-content table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th class="product-name text-center alt-font">Remove</th>
+                                        <th class="product-price text-center alt-font">Images</th>
+                                        <th class="product-name alt-font">Product</th>
+                                        <th class="product-price text-center alt-font">Unit Price</th>
+                                        <th class="stock-status text-center alt-font">Stock Status</th>
+                                        <th class="product-subtotal text-center alt-font">Add to Cart</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each wishListItems}}
+                                    <tr>
+                                        {{!-- <td class="product-remove text-center"><a href="#"><i
+                                                    class="icon an an-times" data-bs-toggle="tooltip"
+                                                    data-bs-placement="top" title="Remove"></i></a></td> --}}
+                                        <td><a class="rounded btn btn-danger" type="button" data-bs-toggle="tooltip"
+                                                data-bs-placement="top" title="Romove item "
+                                                onclick="romoveWishlist('{{this.product._id}}','{{this._id}}')">
+                                                <i class="icon an an-times"></i></a></td>
+                                        <td class="product-thumbnail text-center">
+                                            <a href="/productdetail/{{this.product._id}}"><img
+                                                    src="/product-image/{{this.product._id}}_1.png" alt="" title=""
+                                                    style="height: 6rem;" /></a>
+                                        </td>
+                                        <td class="product-name">
+                                            <h4 class="no-margin"><a
+                                                    href="/productdetail/{{this.product._id}}">{{this.product.Name}}</a>
+                                            </h4>
+                                        </td>
+                                        <td class="product-price text-center"><span
+                                                class="amount">{{this.product.Prize}}</span></td>
+                                        <td class="stock text-center">
+                                            <span class="in-stock">in stock</span>
+                                        </td>
+                                        <td class="product-subtotal text-center"><button
+                                                onclick="addToCart('{{this.product._id}}')"
+                                                class="btn-warning btn-sm">Add To Cart</button></td>
+                                    </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                    {{else}}
+                    <div class="container">
+                        <h2 style="text-align: center;">Your wishlist is Empty</h2>
+                    </div>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Body Content -->
+</div>
+
+<script>
+    function itemRemove2(productId, wishlistId) {
+        console.log("very First")
+        $.ajax({
+            url: '/removeItem2',
+            data: {
+                wishlistId: wishlist
+            productId: productId
+
+            },
+            method: "post",
+            success: (response) => {
+                console.log("ajax result camed")
+                if (response.removeProduct) {
+                    alert("product removed from cart")
+                    location.reload()
+                }
+
+            }
+        })
+
+    }
+</script>

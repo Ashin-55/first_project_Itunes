@@ -1,0 +1,152 @@
+<section>
+
+    <div class="container-fluid page-body-wrapper">
+        {{>adminSidebar}}
+
+        <div class="content-wrapper">
+            <div class="row">
+                <div class="col-md-8 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title mb-0">Banner</h3>
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+
+                                            <th>Title</th>
+                                            <th>Banner Image</th>
+                                            <th>Discription</th>
+                                            <th>Options</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#each banner }}
+                                        <tr>
+
+
+                                            <td>{{this.Name}}</td>
+                                            <td> <img src="/admin/banner-image/{{this._id}}_1.jpg"
+                                                    style="width: 10em; height: auto; border-radius: 0px;"></td>
+                                            <td> {{this.Discription}}</td>
+                                            <td> {{this.Option}}</td>
+
+                                            <td><a href="/admin/edit-banner/{{this._id}}" style="color: green;"><i
+                                                        style="height: 30px;" class="bi bi-pencil-fill"></i></a>
+                                                &nbsp; &nbsp;&nbsp; <a style="color: red; height: 2em;"
+                                                    onclick=" deleteBanner('{{this._id}}')"><i
+                                                        class="bi bi-trash-fill"></i></a>
+                                            </td>
+
+                                        </tr>
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class=" col-md-4">
+                    <div class="container bg-light p-4 rounded">
+                        <form method="post" action="/admin/banner" enctype="multipart/form-data"
+                            onsubmit="return validation()">
+                            <label>Banner Name</label>
+                            <input type="text" name="Name" class="form-control mt-2 mb-3" id="Name">
+                            <label>Banner Discription</label>
+                            <input type="text" name="Discription" class="form-control mt-2 mb-3" id="Discription">
+                            <label>Banner Option</label>
+                            <input type="text" name="Option" class="form-control mt-2 mb-3" id="Option">
+
+
+                            <div class="row">
+                                <div class=" col-12 mt-4">
+                                    <label for="">Banner Image</label>
+                                    <input type="file" class="form-control mt-2 mb-3" name="bannerImage"
+                                        style=" width: 15em; " id="banner-image"
+                                        accept="image/jpeg, image/jpg, image/png">
+                                </div>
+                            </div>
+                            <p id="error" style="color: red; font-family: 'Times New Roman', Times, serif;"></p>
+                            <input type="submit" value="Add Banner" class="btn btn-success btn-sm mt-4 mb-4">
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function validation() {
+            let bName = document.getElementById("Name").value
+            let dBanner = document.getElementById('Discription').value
+            let oBanner = document.getElementById('Option').value
+            let bannerimg = document.getElementById('banner-image').value
+
+            if (bName == '' || dBanner == '' || oBanner == "" || bannerimg == "") {
+                document.getElementById('error').innerHTML = "**all field must be filled"
+                return false
+            }
+
+        }
+    </script>
+    <!-- plugins:js -->
+    <script src="vendors/base/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page-->
+    <script src="vendors/chart.js/Chart.min.js"></script>
+    <!-- End plugin js for this page-->
+    <!-- inject:js -->
+    <script src="js/off-canvas.js"></script>
+    <script src="js/hoverable-collapse.js"></script>
+    <script src="js/template.js"></script>
+    <script src="js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="js/dashboard.js"></script>
+    <!-- End custom js for this page-->
+
+</section>
+<script src="sweetalert2.all.min.js"></script>
+
+
+<script>
+    function deleteBanner(bannerId) {
+
+
+        Swal.fire({
+            title: 'Are you sure to delete this banner?',
+            showDenyButton: true,
+            showCancelButton: false,
+            confirmButtonText: 'Delete',
+            denyButtonText: `Cancel`,
+        }).then((result) => {
+
+            if (result.isConfirmed) {
+
+                $.ajax({
+                    url: "/admin//delete-banner",
+                    data: {
+                        bannerId: bannerId
+                    },
+                    method: "post",
+                    success: (res) => {
+                        console.log("come to success part")
+                        console.log(res)
+                        if (res.removeBanner) {
+                            Swal.fire('banner deleted!', '', 'success')
+                            location.reload()
+                        } else {
+                            Swal.fire('Somthing went to wrong banner not deleted!', '', 'error')
+                        }
+                    }
+                })
+            } else if (result.isDenied) {
+                Swal.fire('banner is not deleted', '', 'success')
+            }
+        })
+
+    }
+</script>

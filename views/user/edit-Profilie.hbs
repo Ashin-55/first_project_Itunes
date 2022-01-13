@@ -1,0 +1,173 @@
+<style>
+    body {
+        background: white
+    }
+
+    .form-control:focus {
+        box-shadow: none;
+        border-color: #BA68C8
+    }
+
+    .profile-button {
+        background: rgb(99, 39, 120);
+        box-shadow: none;
+        border: none
+    }
+
+    .profile-button:hover {
+        background: #682773
+    }
+
+    .profile-button:focus {
+        background: #682773;
+        box-shadow: none
+    }
+
+    .profile-button:active {
+        background: #682773;
+        box-shadow: none
+    }
+
+    .back:hover {
+        color: #682773;
+        cursor: pointer
+    }
+
+    .labels {
+        font-size: 11px
+    }
+
+    .add-experience:hover {
+        background: #BA68C8;
+        color: #fff;
+        cursor: pointer;
+        border: solid 1px #BA68C8
+    }
+</style>
+
+
+<div class="container rounded bg-white mt-5 mb-5">
+    <form action="/editProfile/{{userData._id}}" method="post" enctype="multipart/form-data">
+
+
+        <div class="row">
+            <div class="col-12">
+                <div id="image-box1" style="width: 250px;height: 250px; display:none"></div>
+                <button class="btn btn-primary mt-3" type="button" style="display: none;" id="crop-btn1">Crop</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 border-right">
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                    {{!-- <img class="rounded-circle mt-5" width="150px"
+                        src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+                    --}}
+
+                    <img class="rounded-circle mt-5" width="150px;" height="150px"
+                        src="/profile-image/{{userData._id}}_1.png" alt="" id="imgview1">
+
+                    <input type="file" style="width: 12rem;" id="file1" name="profileImages"
+                        onchange="return fileValidation()">
+
+                    <span
+                        class="font-weight-bold text-dark">{{userData.firstName}}&nbsp;{{userData.lastName}}</span><span
+                        class="text-black-50">{{userData.email}}</span><span> </span>
+                </div>
+            </div>
+            <div class="col-md-5 border-right">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="text-right">Profile Settings</h4>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control"
+                                placeholder="first name" value="{{userData.firstName}}" name="firstName"></div>
+                        <div class="col-md-6"><label class="labels">Surname</label><input type="text"
+                                class="form-control" value="{{userData.lastName}}" placeholder="surname"
+                                name="lastName"></div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12"><label class="labels">Email ID</label><input type="text"
+                                class="form-control" placeholder="enter email id" value="{{userData.email}}"
+                                name="email"></div>
+                    </div>
+                    <div class="row mt-3">
+                        {{!-- <div class="col-md-6"><label class="labels">Country</label><input type="text"
+                                class="form-control" placeholder="country" value=""></div> --}}
+                        {{!-- <div class="col-md-6"><label class="labels">State/Region</label><input type="text"
+                                class="form-control" value="" placeholder="state"></div> --}}
+                    </div>
+                    <div class="mt-5 text-center">
+                        <input type="submit" class="btn btn-success mt-1 mb-1" value="save profile" id="confirm-btn1">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </form>
+
+</div>
+</div>
+</div>
+
+
+<script>
+    function fileValidation() {
+        console.log("filevalidation function called")
+        const imagebox = document.getElementById("image-box1")
+        const crop_btn = document.getElementById("crop-btn1")
+        var fileInput = document.getElementById("file1")
+
+        var filepath = fileInput.value;
+        var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+        if (!allowedExtensions.exec(filepath)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'error...',
+                text: 'only image file can uplode !',
+            })
+            fileInput.value = '';
+            return false;
+        } else {
+            const img_data = fileInput.files[0]
+            const url = URL.createObjectURL(img_data)
+            imagebox.innerHTML = `<img src="${url}" id="image" style="width:100%;">`
+            const image = document.getElementById("image")
+            document.getElementById("image-box1").style.display = "block"
+            document.getElementById("crop-btn1").style.display = "block"
+            document.getElementById("confirm-btn1").style.display = "none"
+
+            const cropper = new Cropper(image, {
+                autoCropArea: 1,
+                viewMode: 1,
+                scalable: false,
+                zoomable: false,
+                movable: false,
+                aspectRatio: 1,
+                  preview: '.preview',
+                minCropBoxWidth: 500,
+                minCropBoxHeight: 500,
+
+            })
+            crop_btn.addEventListener('click', () => {
+
+                cropper.getCroppedCanvas().toBlob((blob) => {
+                    let fileInputElement = document.getElementById("file1");
+                    let file = new File([blob], img_data.name, { type: "image/*", lastModified: new Date().getTime() });
+                    let container = new DataTransfer();
+
+                    container.items.add(file);
+                    const img = container.files[0]
+                    var url = URL.createObjectURL(img)
+                    fileInputElement.files = container.files;
+                    document.getElementById("imgview1").style.display = "block"
+                    document.getElementById("imgview1").src = url
+                    document.getElementById("image-box1").style.display = "none"
+                    document.getElementById("crop-btn1").style.display = "none"
+                    document.getElementById("confirm-btn1").style.display = "block"
+                }, "image/webp", 0.5);
+            })
+        }
+    }
+</script>

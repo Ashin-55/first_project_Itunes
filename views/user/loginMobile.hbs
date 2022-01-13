@@ -1,0 +1,101 @@
+<section class="page-template diva">
+    {{!--
+    <!-- Page Loader -->
+    <div id="pre-loader"><img src="assets/images/loader.gif" alt="Loading..." /></div>
+    <!-- End Page Loader --> --}}
+    <div class="pageWrapper">
+        <!-- Search Form Drawer -->
+        <div class="search">
+            <div class="search__form">
+                <form class="search-bar__form" action="#">
+                    <button class="go-btn search__button" type="submit"><i class="icon an an-search"></i></button>
+                    <input class="search__input" type="search" name="q" value=""
+                        placeholder="Search for products, brands..." aria-label="Search" autocomplete="off" />
+                </form>
+                <button type="button" class="search-trigger close-btn" data-bs-toggle="tooltip" data-bs-placement="left"
+                    title="Close"><i class="icon an an-times"></i></button>
+            </div>
+        </div>
+        <!-- End Search Form Drawer -->
+        <!-- Body Content -->
+        <div id="page-content">
+            <!-- Page Title -->
+            <div class="page section-header text-center mb-0">
+                <div class="page-title">
+                    <div class="wrapper">
+                        <h1 class="page-width">Login</h1>
+                    </div>
+                </div>
+            </div>
+            <!-- End Page Title -->
+            <!-- Breadcrumbs -->
+            <div class="bredcrumbWrap bredcrumbWrapPage bredcrumb-style2 text-center">
+                <div class="container breadcrumbs">
+                    <a href="/" title="Back to the home page">Home</a><span aria-hidden="true">|</span><span
+                        class="title-bold">Login</span>
+                </div>
+            </div>
+            <!-- End Breadcrumbs -->
+            <div class="container">
+                <div class="row">
+                    <!-- Main Content -->
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 box mb-4 mb-md-0">
+                        <h3>New Customers</h3>
+                        <p>By creating an account with our store, you will be able to move through the checkout process
+                            faster, store multiple shipping addresses, view and track your orders in your account and
+                            more.</p>
+                        <a href="/signup" class="btn">Create an account</a>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 box">
+                        <div class="mb-4">
+                            <form method="post" action="/loginWithMobile" id="CustomerRegisterForm"
+                                accept-charset="UTF-8" class="customer-form">
+                                <h3>Registered Customers</h3>
+                                <p>If you have an account with us, please log in.</p>
+                                <div class="row">
+                                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                        <div class="form-group">
+                                            {{#if userLogginError}}
+                                            <p style="color: red;">{{userLogginError}}</p>
+                                            {{/if}}
+                                            {{#if userMobileLoginErr}}
+                                            <p style="color: red; font-family: 'Times New Roman', Times, serif;">
+                                                {{userMobileLoginErr}}</p>
+                                            {{/if}}
+                                            <label for="CustomerEmail">Mobile Number <span
+                                                    class="required">*</span></label>
+                                            <input type="number" name="mobilePhone" placeholder="" id="mobilePhone"
+                                                autofocus />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="text-left col-12 col-sm-12 col-md-12 col-lg-12">
+                                        <input type="submit" class="btn mb-3" value="Sent OTP">
+                                        <p class="mb-4">
+                                            <a href="/forgot-password">Forgot your password?</a> &nbsp; | &nbsp;
+                                            <a href="/signup" id="customer_register_link">Create account</a>
+                                            &nbsp; | &nbsp;
+                                            {{!-- <a href="/loginWithMobile" id="customer_register_link">Create account
+                                                using mobile number</a> --}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- End Main Content -->
+                </div>
+            </div>
+        </div>
+        <!-- End Body Content -->
+        <!-- Scoll Top -->
+        <div id="site-scroll"><i class="icon an an-angle-up"></i></div>
+        <!-- End Scoll Top -->
+        <!-- Including Javascript -->
+        <!-- Plugins JS -->
+        <script src="../../user/assets/js/plugins.js"></script>
+        <!-- Main JS -->
+        <script src="../../user/assets/js/main.js"></script>
+    </div>
+</section>

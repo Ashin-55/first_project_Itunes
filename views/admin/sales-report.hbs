@@ -1,0 +1,185 @@
+<section>
+    <div class="container-fluid page-body-wrapper">
+        {{>adminSidebar}}
+
+        <div class="content-wrapper">
+            <div class="row">
+                <div class="col-md-12 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class=" mb-0">Sales Report</h3>
+                            {{#if report}}
+                            <div class="text-right">
+                                <button class="btn btn-primary btn-icon-text btn-rounded mt-3 "
+                                    onclick="return print()">
+                                    <i class="ti-clipboard btn-icon-prepend"></i>Report pdf
+                                </button>
+                            </div>
+                            <div class="text-right">
+                                <button class="btn btn-primary btn-icon-text btn-rounded mt-1" id="exlButton"
+                                    onclick="excelPrint('xlsx');">
+                                    <i class="ti-clipboard btn-icon-prepend"></i>Report xlsx
+                                </button>
+                            </div>
+                            {{/if}}
+
+                            <div class="form-group  border-0">
+                                <form action="/admin/getDateSale" method="post">
+                                    <div class="row d-flex ms-2">
+                                        <div class="col-md-3">
+                                            <label for="">Start date</label>
+                                            <input type="date" class="border form-control" name="startDate"
+                                                id="startDate">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="">End date</label>
+                                            <input type="date" class="border form-control" name="endDate" id="endDate">
+                                        </div>
+                                        <div class="col-md-3 d-flex align-items-end">
+
+                                            <button class="btn btn-success btn-sm" type="submit">Get Data</button>
+
+                                        </div>
+
+                                    </div>
+                                    <div>
+                                        {{#if emptyErr}}
+                                        <p style="color :red" id="dateErr">{{emptyErr}}</p>
+                                        {{/if}}
+                                    </div>
+                                </form>
+
+                            </div>
+                            <div class="table-responsive mt-5" id="element-to-print">
+                                {{#if report}}
+                                <div class="mt-1">
+
+                                    <p><b>from :</b>{{from}}&nbsp;&nbsp;<b>to :</b>{{to}}</p>
+
+
+                                </div>
+                                <table class="table table-success table-striped" id="myTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Product</th>
+                                            <th>Prize</th>
+                                            <th>product sold</th>
+                                            <th>Revenue</th>
+                                            <th>profit</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#each sales}}
+                                        <tr>
+                                            <td>
+                                                <div class="ms-3">
+                                                    <img src="/product-image/{{this.productId}}_1.png"
+                                                        style="height: 4em;width: 4em;border-radius: 0px;">
+                                                </div>
+                                                <div class="mt-3 mb-1">
+                                                    <b> {{this._id}}</b>
+                                                </div>
+                                            </td>
+                                            <td>{{this.singlePrize}}</td>
+                                            <td> {{this.totalCount}}</td>
+                                            <td>{{this.totalPrize}}</td>
+                                            <td><span style="color: green;">{{this.profit}}</span></td>
+
+                                        </tr>
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+                                {{else}}
+                                <div class="mt-1">
+                                    <p><b>from :</b>{{from}}&nbsp;&nbsp;<b>to :</b>{{to}}</p>
+                                </div>
+                                <h2 class="text-center mt-4"><b>No data Avalable</b></h2>
+                                {{/if}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- plugins:js -->
+<script src="vendors/base/vendor.bundle.base.js"></script>
+<!-- endinject -->
+<!-- Plugin js for this page-->
+<script src="vendors/chart.js/Chart.min.js"></script>
+<!-- End plugin js for this page-->
+<!-- inject:js -->
+<script src="js/off-canvas.js"></script>
+<script src="js/hoverable-collapse.js"></script>
+<script src="js/template.js"></script>
+<script src="js/todolist.js"></script>
+<!-- endinject -->
+<!-- Custom js for this page-->
+<script src="js/dashboard.js"></script>
+<!-- End custom js for this page-->
+
+{{!-- cdn of print the page --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+    integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</section>
+
+<script>
+
+    function print() {
+        var element = document.getElementById('element-to-print');
+        var opt = {
+            margin: 1,
+            filename: 'itunsProduct-report.pdf',
+            image: { type: 'jpeg', quality: 1 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: 'in', format: 'b4', orientation: 'Portrait' }
+        };
+        var worker = html2pdf().set(opt).from(element).save();
+
+    }
+</script>
+<script>
+
+    function excelPrint(type, fn, dl) {
+        console.log("function Called")
+        var elt = document.getElementById('myTable');
+        var wb = XLSX.utils.table_to_book(elt, { sheet: "Sheet JS" });
+        return dl ?
+            XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }) :
+            XLSX.writeFile(wb, fn || ('itunes.' + (type || 'xlsx')));
+    }
+
+</script>
+
+
+<script>
+    document.getElementById("startDate").onchange = function () {
+        document.getElementById("endDate").setAttribute("min", this.value);
+    }
+
+    $(function () {
+        var dtToday = new Date()
+
+        var month = dtToday.getMonth() + 1;
+        var day = dtToday.getDate();
+        var year = dtToday.getFullYear();
+        if (month < 10)
+            month = '0' + month.toString()
+        if (day < 10)
+            day = '0' + day.toString()
+
+        var maxDate = year + '-' + month + '-' + day
+        $("#startDate").attr('max', maxDate);
+        $('#endDate').attr('max', maxDate)
+    })
+</script>
+
+
+<script>
+    $(document).ready(function () {
+        $('#myTable').DataTable();
+    });
+
+</script>

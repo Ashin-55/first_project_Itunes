@@ -1,0 +1,62 @@
+<div class="container">
+
+    <!-- Body Content -->
+    <div id="page-content">
+        <!--Page Title-->
+        <div class="page section-header text-center">
+            <div class="page-title">
+                <div class="wrapper">
+                    <h1 class="page-width">Order History</h1>
+                </div>
+            </div>
+        </div>
+        <!--End Page Title-->
+        <div class="row">
+            <div class="col-12 main-col">
+                <div class="container mr-5  ">
+                    <form action="#">
+                        <div class="wishlist-table table-content ">
+                            <table class="table table-success table-striped" id="myTable">
+                                <thead>
+                                    <tr>
+                                        {{!-- <th class="product-name text-center alt-font">Order Id</th> --}}
+                                        <th class="product-price text-center alt-font">Date</th>
+                                        <th class="product-price text-center alt-font"> Price</th>
+                                        <th class="product-name alt-font">Status</th>
+                                        <th class="product-price text-center alt-font"> Payment Method</th>
+                                        <th class="stock-status text-center alt-font">Actions</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each orderDetails}}
+                                    <tr>
+                                        <td class="product-price text-center"><span class="amount">{{this.Date}}</span>
+                                        </td>
+                                        <td class="product-price text-center"><span class="amount">{{this.Prize}}</span>
+                                        </td>
+                                        <td class="product-price text-center"><span
+                                                class="amount">{{this.Status}}</span></td>
+                                        <td class="product-price text-center"><span
+                                                class="amount">{{this.Paymentmethod}}</span></td>
+                                        <td class="product-subtotal text-center">
+                                            <a href="/orderDetails/{{this._id}}"
+                                                class="btn btn-warning btn-sm">Details</a>
+                                        </td>
+                                    </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Body Content -->
+</div>
+<script>
+    $(document).ready(function () {
+        $('#myTable').DataTable();
+    });
+</script>

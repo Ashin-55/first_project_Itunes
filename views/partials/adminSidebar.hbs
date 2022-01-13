@@ -1,0 +1,119 @@
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link" href="/admin">
+                <i class="ti-shield menu-icon"></i>
+                <span class="menu-title">Dashboard</span>
+            </a>
+        </li>
+        {{!-- product management start --}}
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                <i class="ti-control-record menu-icon"></i>
+                <span class="menu-title">Product Mangement</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="/admin/view-allProduct">View All
+                            Products</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/admin/add-product">Add Products</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/admin/category">Manage Category</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        {{!-- product management end --}}
+
+        {{!-- Brand management start --}}
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic2" aria-expanded="false" aria-controls="ui-basic">
+                <i class="ti-control-record menu-icon"></i>
+                <span class="menu-title">Brand Mangement</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic2">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="/admin/brand">View All
+                            Brand</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/admin/addBrand">Add New Brand</a>
+                    </li>
+                    {{!-- <li class="nav-item"> <a class="nav-link" href="/admin/category">Manage
+                            brands</a></li> --}}
+                </ul>
+            </div>
+        </li>
+        {{!-- Brand management end --}}
+
+        {{!-- user mangement start --}}
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic3" aria-expanded="false" aria-controls="ui-basic">
+                <i class="ti-control-record menu-icon"></i>
+                <span class="menu-title">User Mangement</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic3">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="/admin/view-allUser">All User</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/admin/view-blockedUser">All Blocked
+                            User</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/admin/orderHistory">All orders from User</a></li>
+
+                </ul>
+            </div>
+        </li>
+        {{!-- user management ends --}}
+
+        {{!-- offer mangement start --}}
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic4" aria-expanded="false" aria-controls="ui-basic">
+                <i class="ti-control-record menu-icon"></i>
+                <span class="menu-title">Offer Mangement</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic4">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="/admin/coupon">Coupon</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/admin/productOffer">Product Offer</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/admin/categoryOffer">Category Offer</a></li>
+                </ul>
+            </div>
+        </li>
+        {{!-- offer management ends --}}
+
+        {{!-- banner mangement start --}}
+        <li class="nav-item">
+            <a class="nav-link" href="/admin/banner">
+                <i class="ti-layout-list-post menu-icon"></i>
+                <span class="menu-title">Banner Mangement</span>
+            </a>
+        </li>
+        {{!-- banner mangement ends --}}
+
+        {{!-- reports starts --}}
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+                <i class="ti-trello menu-icon"></i>
+                <span class="menu-title">Reports</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="auth">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="/admin/salesReport"> Sales Report </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/admin/productReport"> Product Report </a></li>
+
+                </ul>
+            </div>
+        </li>
+        {{!-- reports ends --}}
+
+        {{!-- LOGOUT START --}}
+        <li class="nav-item">
+            <a class="nav-link" href="/admin/logout">
+                <i class=" menu-icon"></i>
+                <span class="menu-title">LOGOUT</span>
+            </a>
+        </li>
+        {{!-- LOGOUT ENDS --}}
+    </ul>
+</nav>

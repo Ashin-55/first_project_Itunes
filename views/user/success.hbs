@@ -1,0 +1,152 @@
+<div class="container">
+    <!-- Body Content -->
+    <div id="page-content">
+        <!-- Page Title -->
+        <div class="page section-header text-center mb-0">
+            <div class="page-title">
+                <div class="wrapper">
+                    <h1 class="page-title">Checkout Success</h1>
+                </div>
+            </div>
+        </div>
+        <!-- End Page Title -->
+        <!-- Breadcrumbs -->
+        <div class="bredcrumbWrap bredcrumb-style2">
+            <div class="container breadcrumbs">
+                <a href="/" title="Back to the home page">Home</a><span aria-hidden="true">|</span><span
+                    class="title-bold">Checkout Success</span>
+            </div>
+        </div>
+        <!-- End Breadcrumbs -->
+
+        <div class="container checkout-success-content">
+            <div class="row">
+                <div class="carousel-item active">
+                    <img src="../admin/banner-image/{{allBanner.[0]._id}}_1.jpg" class="d-block w-100" alt="..."
+                        style="width: 10%;">
+                    <div class="carousel-caption d-none d-md-block">
+                        {{!-- <h5>fghjk</h5>
+                        <p>fghjk</p> --}}
+                    </div>
+                </div>
+                {{#each allBanner}}
+                <div class="carousel-item">
+                    <img src="../admin/banner-image/{{this._id}}_1.jpg" alt="Chicago" class="d-block w-100">
+                    <div class="carousel-caption mb-5 d-none d-md-block ">
+                        {{!-- <h5>{{this.Name}}</h5>
+                        <p>{{this.Option}}</p> --}}
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+
+            <div class="row mt-1">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+                    <div class="card border-0 rounded-0">
+                        <div class="card-body text-center">
+                            <p class="checkout-success-icon"><i class="icon an an-check-square"></i></p>
+                            <h4 class="card-title">Thank you for your purchase!</h4>
+                            <p class="card-text mb-1">Your order # is: <b>10000123</b>.</p>
+                            <p class="card-text mb-1">You will receive an order confirmation email with details of your
+                                order and a link to track its progress.</p>
+                            <p class="card-text mb-1">All necessary information about the delivery, we sent to your
+                                email
+                            </p>
+                            <a href="/shop" class="btn btn-primary mt-3">Continue Shopping</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+                    <div class="checkout-item-ordered">
+                        <h2>Item Ordered</h2>
+                        <div class="table-content table-responsive checkout-review mb-4">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center fw-bold"></th>
+                                        <th class="text-start fw-bold">Product Name</th>
+                                        <th class="text-center fw-bold">Qty</th>
+                                        <th class="text-center fw-bold">Product Prize</th>
+                                        <th class="text-center fw-bold">Subtotal</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each orderDetails}}
+                                    <tr>
+                                        <td class="pro-img text-center"><a
+                                                href=" /productdetail/{{this.orderProduct._id}}"><img
+                                                    class="primary blur-up lazyload"
+                                                    data-src="/product-image/{{this.orderProduct._id}}_1.png"
+                                                    src="/product-image/{{this.orderProduct._id}}_1.png" alt="image"
+                                                    title="product" width="" style="height: 2rem;width: 1em;" /></a>
+                                        </td>
+                                        <td class="pro-name text-center text-sm-start">
+                                            <p class="mb-1"><a
+                                                    href="/productdetail/{{this.orderProduct._id}}">{{this.orderProduct.Name}}</a>
+                                            </p>
+                                        </td>
+                                        <td class="pro-price text-center">{{this.Products.quantity}}</td>
+                                        <td class="pro-price text-center">₹{{this.orderProduct.Prize}}</td>
+                                        <td class="pro-price text-center">₹{{this.orderProduct.subtotal}}</td>
+
+                                    </tr>
+                                    {{/each}}
+                                </tbody>
+                                <tfoot class="text-right">
+                                    <tr>
+                                        <td colspan="4" class="item discount fw-bold">Grand Total:</td>
+                                        <td class="last text-danger ">₹{{grandTotal}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" class="item total fw-bold">Amount you pay(includes discount):
+                                        </td>
+                                        <td class="last text-success ">₹{{orderAmount}}</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <div class="ship-info-details shipping-method-details">
+                            <div class="row">
+                                <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+                                    <div class="shipping-details mb-4 mb-sm-0 clearfix">
+                                        <h3>Shipping Address</h3>
+
+                                        <p>{{userDetail.firstName}}&nbsp;{{userDetail.lastName}}</p>
+                                        <p>{{userDetail.email}}</p>
+                                        <p>{{userDetail.mobilePhone}}</p>
+
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+                                    <div class="billing-details clearfix">
+                                        <h3>Shipping Method</h3>
+                                        <p>Flat Rate - Fixed</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{!-- {{#each orderDetails}} --}}
+                        <div class="delivery-date"><strong>Delivery Date:</strong> 3days after {{orderDate}}</div>
+                        {{!-- {{/each}} --}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row my-4 my-lg-5">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="checkout-static-block">
+                        <h3>No Cost EMI</h3>
+                        <p>In an attempt to make high-end products accessible to all, our No Cost EMI plan enables you
+                            to shop with us under EMI, without shelling out any processing fee. Applicable on select
+                            mobiles, laptops, large and small appliances, furniture, electronics and watches, you can
+                            now shop without burning a hole in your pocket. If you've been eyeing a product for a long
+                            time, chances are it may be up for a no cost EMI. Take a look ASAP! Terms and conditions
+                            apply..</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Body Content -->
+</div>

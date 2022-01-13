@@ -1,0 +1,334 @@
+<!-- Body Content -->
+<div id="page-content">
+    <!-- Page Title -->
+    <div class="page section-header text-center">
+        <div class="page-title">
+            <div class="wrapper">
+                <h1 class="page-title">Checkout</h1>
+            </div>
+        </div>
+    </div>
+    <!-- End Page Title -->
+
+    <div class="container">
+        <!-- Main Content -->
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-3">
+                <div class="customer-box customer-coupon">
+                    <h3 class="font-15 xs-font-13"><i class="icon an an-gift"></i> Have a coupon? <a href="#have-coupon"
+                            class="text-white" data-bs-toggle="collapse">Click here to enter your code</a></h3>
+                    <div id="have-coupon" class="collapse coupon-checkout-content">
+                        <div class="discount-coupon">
+                            <div id="coupon" class="coupon-dec tab-pane active">
+                                <p class="mb-1">Enter your coupon code if you have one.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <form method="post" id="checkout-form">
+            <div class="container">
+                <div class="row">
+                    <div class="mt-2"></div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="row">
+                            <div class="card card--grey">
+                                <div class="card-body">
+
+                                    <a class="btn btn-class" href="/addNewAddress">ADD NEW ADDRESS</a>
+                                    <p></p>
+                                </div>
+                            </div>
+
+                            <div class="card card--grey">
+                                <div class="card-body">
+                                    {{#if savedAdd}}
+                                    <h2 class="pb-1">SAVED ADDRESS</h2>
+                                    {{else}}
+                                    <h4 class="pb-1 text-danger">no saved Address</h4>
+                                    {{/if}}
+                                    <div class=" clearfix">
+                                        <div class="row">
+                                            {{#each savedAddress}}
+                                            <div>
+                                                <input id="formcheckoutcheckbox" value="{{this.Contact._id}}"
+                                                    name="checkbox" type="radio" class="checkbox" checked="checked">
+                                                <label>Choose Address</label>
+                                            </div>
+
+                                            <div class="col-6">
+                                                <div class="mb-2">
+                                                    <p> <b>Name:</b>{{this.Contact.firstName}} <br>
+                                                        <b>Phone:</b> {{this.Contact.mobilePhone}}<br>
+                                                        <b>City:</b> {{this.Contact.city}} <br>
+                                                        <b>State :</b> {{this.Contact.state}}<br>
+                                                        <b>Pincode:</b> {{this.Contact.pinCode}}
+                                                    </p>
+                                                    <hr>
+                                                </div>
+                                            </div>
+                                            {{/each}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 mt-2 mt-md-0">
+                        <div class="mt-2"></div>
+                        <div class="card card--grey">
+                            <div class="card-body">
+                                <h2>PAYMENT METHOD</h2>
+                                <div class="row">
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="customRadio clearfix">
+                                            <input id="formcheckoutRadio4" value="COD" name="payment-method"
+                                                type="radio" class="radio" checked="checked">
+                                            <label for="formcheckoutRadio4">Cash On Delivery</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="customRadio clearfix">
+                                            <input id="formcheckoutRadio5" value="RazorPay" name="payment-method"
+                                                type="radio" class="radio" checked="checked">
+                                            <label for="formcheckoutRadio5">Razor Pay</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-4">
+                                        <div class="customRadio clearfix">
+                                            <input id="formcheckoutRadio6" value="Paypal" name="payment-method"
+                                                type="radio" class="radio">
+                                            <label for="formcheckoutRadio6">Paypal</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-2"></div>
+                    </div>
+                    <div class="col-md-12 col-lg-4 mt-2 mt-md-0">
+                        <h2 class="title">ORDER SUMMARY</h2>
+                        <div class="table-responsive-sm order-table">
+                            <table class="bg-white table table-bordered table-hover text-center">
+                                <thead>
+                                    <tr>
+                                        <th class="text-start"></th>
+                                        <th class="text-start">Product Name</th>
+                                        <th>Price</th>
+                                        <th>Qty</th>
+                                        <th>Subtotal</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each product}}
+                                    <tr>
+                                        <td><a href="#;" class="thumb"><img class="cart__image"
+                                                    src="/product-image/{{this.product._id}}_1.png" alt="product image"
+                                                    style="height: 4rem;"></a></td>
+                                        <td class="text-start">{{this.product.Name}}</td>
+                                        <td>₹{{this.product.Prize}}</td>
+                                        <td>{{this.quantity}}</td>
+                                        <td>₹{{this.total}}</td>
+                                    </tr>
+                                    {{/each}}
+
+
+
+                                </tbody>
+                                <tfoot class="font-weight-600">
+                                    {{!-- {{#each totalAmmount}} --}}
+                                    <tr>
+                                        <td colspan="4" class="text-end" style="font-weight: bold;">Amount need to pay
+                                        </td>
+                                        <td style="font-weight: bold;">{{totalAmmount}}</td>
+                                    </tr>
+                                    {{!-- {{/each}} --}}
+
+                                </tfoot>
+                            </table>
+                        </div>
+                        <div class="mt-2"></div>
+                        <div class="mt-2"></div>
+                        <div class="clearfix"> <button type="submit" onsubmit="" class="btn btn--lg w-100">Place
+                                Order</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <!-- End Main Content -->
+    </div>
+</div>
+<!-- End Body Content -->
+
+<script>
+    $('#checkout-form').submit((e) => {
+
+
+        e.preventDefault()
+
+
+        $.ajax({
+
+            url: "/checkout",
+            method: 'post',
+            data: $('#checkout-form').serialize(),
+
+
+            success: (response) => {
+                console.log("below response")
+                console.log(response)
+                if (response.addressEmptyErr) {
+
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'centre',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+
+                    })
+
+                    Toast.fire({
+                        icon: 'error',
+                        title: 'Add new Address for continue with oayiment'
+                    })
+                } else {
+                    if (response.codSuccess) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: ' order Placed...',
+                            showConfirmButton: false,
+                            footer: '<a href="/success " class="btn btn-success">continue</a>'
+                        })
+                    } else if (response.RazorpaySuccess) {
+                        console.log("console.log razor pay")
+                        razorpayPayment(response.response)
+                    }
+                    //else if (response.PaypalSuccess) {
+                    //paypalPayment(response.response)
+                    // verifyPaypalPayment(response.response)
+                    //location.href = response.response.url
+                    //}
+                    else {
+                        console.log("error come")
+                        console.log(response.err)
+                        location.href = response.url
+                    }
+                }
+
+
+            }
+        })
+    })
+
+    function razorpayPayment(order) {
+        console.log("razorpaypayment function called in ajx")
+        console.log(order.orderId)
+        var options = {
+            "key": "rzp_test_l4MnWhgG3tqOLv", // Enter the Key ID generated from the Dashboard
+            "amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            "currency": "INR",
+            "name": "iTunes Shopping Cart",
+            "description": "itunes pri. limited",
+            "image": "https://thumbs.dreamstime.com/b/apple-itunes-logo-apple-itunes-logo-vector-format-available-illustrator-ai-cloud-136964439.jpg",
+            "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+            "handler": function (response) {
+                // alert(response.razorpay_payment_id);
+                //alert(response.razorpay_order_id);
+                //alert(response.razorpay_signature)
+                verifyPayment(response, order)
+            },
+            "prefill": {
+                "name": order.firstName,
+                "email": order.email,
+                "contact": order.mobileNumber
+            },
+            "notes": {
+                "address": "Razorpay Corporate Office"
+            },
+            "theme": {
+                "color": "#3399cc"
+            }
+        };
+        var rzp1 = new Razorpay(options);
+        rzp1.open();
+    }
+
+    function verifyPayment(payment, order) {
+        console.log(order.receipt)
+        $.ajax({
+            url: '/verify-payment',
+            data: {
+                payment, order
+            },
+            method: "post",
+            success: (response) => {
+                if (response.status) {
+
+                    Swal.fire({
+                        icon: 'success',
+                        title: ' payment success...',
+                        showConfirmButton: false,
+                        footer: '<a href="/success " class="btn btn-success">continue</a>'
+                    })
+
+                } else {
+
+                    alert("payment failed")
+                    location.href = '/home'
+                }
+            }
+        })
+    }
+</script>
+
+
+<script>
+    function validation() {
+        console.log("hai")
+        let fName = document.getElementById("firstName").value
+        let lastName = document.getElementById('lastName').value
+        let country = document.getElementById("Country").value
+        let state = document.getElementById("state").value
+        let pincode = document.getElementById('pinCode').value
+        let address1 = document.getElementById('address1').value
+
+
+        if (fName == "") {
+            document.getElementById("formErr").innerHTML = "**Enter the first name";
+            return false;
+        } else if (lastName == "") {
+            document.getElementById("formErr").innerHTML = "**Enter the second name";
+            return false
+        } else if (country == "") {
+            document.getElementById('formErr').innerHTML = "**Enter the Country Name"
+            return false;
+        } else if (state == "") {
+            document.getElementById("formErr").innerHTML = "**Enter your state"
+            return false
+        } else if (pincode == "") {
+            document.getElementById("formErr").innerHTML = "**Enter your pincode"
+            return false
+        } else if (pincode.length > 6) {
+            document.getElementById('formErr').innerHTML = "**invalid pincode"
+            return false
+        } else if (pincode == NaN) {
+            document.getElementById('formErr').innerHTML = "**invalid pincode"
+            return false
+        } else if (address1 == "") {
+            document.getElementById('formErr').innerHTML = "**Enter your address"
+            return false
+        }
+    }
+</script>
+<script src="sweetalert2.all.min.js"></script>

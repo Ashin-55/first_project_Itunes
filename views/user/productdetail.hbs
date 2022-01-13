@@ -1,0 +1,334 @@
+<div class="container">
+    <!-- Main Content -->
+    <div id="ProductSection-product-template" class="product-template__container prstyle2">
+        <!-- #ProductSection product template -->
+        <div class="product-single m-5">
+            <div class="row">
+
+                <div class="col-lg-5 col-md-5 col-sm-12 col-12">
+                    <div class="product-details-img">
+                        <!-- Product Images -->
+                        <div class="product-thumb">
+                            <div id="gallery" class="product-dec-slider-2 product-tab-left">
+                                <a data-image="/product-image/{{singleProduct._id}}_1.png"
+                                    data-zoom-image="/product-image/{{singleProduct._id}}_1.png"
+                                    class="slick-slide slick-cloned active" data-slick-index="-4" aria-hidden="true"
+                                    tabindex="-1">
+                                    <img class="blur-up lazyload" src="/product-image/{{singleProduct._id}}_1.png"
+                                        alt="" style="width: 6em;height:auto" />
+                                </a>
+                                <a data-image="/product-image/{{singleProduct._id}}_2.png"
+                                    data-zoom-image="/product-image/{{singleProduct._id}}_2.png"
+                                    class="slick-slide slick-cloned" data-slick-index="-3" aria-hidden="true"
+                                    tabindex="-1">
+                                    <img class="blur-up lazyload" src="/product-image/{{singleProduct._id}}_2.png"
+                                        alt="" style="width: 6em;height:auto" />
+                                </a>
+                                <a data-image="/product-image/{{singleProduct._id}}_3.png"
+                                    data-zoom-image="/product-image/{{singleProduct._id}}_3.png"
+                                    class="slick-slide slick-cloned" data-slick-index="-2" aria-hidden="true"
+                                    tabindex="-1">
+                                    <img class="blur-up lazyload" src="/product-image/{{singleProduct._id}}_3.png"
+                                        alt="" style="width: 6em;height:auto" />
+                                </a>
+                                <a data-image="/product-image/{{singleProduct._id}}_4.png"
+                                    data-zoom-image="/product-image/{{singleProduct._id}}_4.png"
+                                    class="slick-slide slick-cloned" data-slick-index="-1" aria-hidden="true"
+                                    tabindex="-1">
+                                    <img class="blur-up lazyload" src="/product-image/{{singleProduct._id}}_4.png"
+                                        alt="" style="width: 7em;height:auto" />
+                                </a>
+                            </div>
+                        </div>
+                        <div class="zoompro-wrap product-zoom-right pl-20">
+                            <div class="zoompro-span">
+                                <img class="blur-up lazyload zoompro"
+                                    data-zoom-image="/product-image/{{singleProduct._id}}_1.png" alt=""
+                                    src="/product-image/{{singleProduct._id}}_1.png" />
+                            </div>
+
+                            <div class="product-buttons">
+                                <a href="#" class="btn " onclick="addToWishlist(event,'{{singleProduct._id}}')"
+                                    data-bs-toggle="tooltip" data-bs-placement="left" title="add to wish list">
+                                    <i id="{{singleProduct._id}}" class="icon an an-heart " aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                        <div class="lightboximages">
+                            <a href="/product-image/{{singleProduct._id}}_1.png" data-size="1462x2048"></a>
+                            <a href="/product-image/{{singleProduct._id}}_2.png" data-size="1462x2048"></a>
+                            <a href="/product-image/{{singleProduct._id}}_3.png" data-size="1462x2048"></a>
+                            <a href="/product-image/{{singleProduct._id}}_4.png" data-size="1462x2048"></a>
+                            <a href="/product-image/{{singleProduct._id}}_1.png" data-size="1462x2048"></a>
+
+                        </div>
+                        <!-- End Product Images -->
+                        <!-- Wishlist - Share -->
+                        <div class="display-table shareRow pt-4 pb-0 d-table">
+                            <div class="display-table-cell text-center align-top">
+                                <div class="social-sharing">
+                                    <a target="_blank" href="#"
+                                        class="btn btn--small btn--secondary btn--share share-facebook"
+                                        data-bs-toggle="tooltip" data-bs-placement="top" title="Share on Facebook">
+                                        <i class="icon an an-facebook" aria-hidden="true"></i><span class="share-title"
+                                            aria-hidden="true">Facebook</span>
+                                    </a>
+                                    <a target="_blank" href="#"
+                                        class="btn btn--small btn--secondary btn--share share-twitter"
+                                        data-bs-toggle="tooltip" data-bs-placement="top" title="Tweet on Twitter">
+                                        <i class="icon an an-twitter" aria-hidden="true"></i><span class="share-title"
+                                            aria-hidden="true">Tweet</span>
+                                    </a>
+                                    <a target="_blank" href="#"
+                                        class="btn btn--small btn--secondary btn--share share-google"
+                                        data-bs-toggle="tooltip" data-bs-placement="top" title="Share on google+">
+                                        <i class="icon an an-google-plus" aria-hidden="true"></i><span
+                                            class="share-title" aria-hidden="true">Google+</span>
+                                    </a>
+
+                                    <a target="_blank" href="#"
+                                        class="btn btn--small btn--secondary btn--share share-email"
+                                        data-bs-toggle="tooltip" data-bs-placement="top" title="Share by Email">
+                                        <i class="icon an an-envelope" aria-hidden="true"></i><span class="share-title"
+                                            aria-hidden="true">Email</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Wishlist - Share -->
+                        <!-- Product Feature -->
+                        <div class="safecheckout row mt-3 mb-4 pb-2">
+                            <div class="item col-lg-3 mb-1 mb-sm-0">
+                                <div class="icon"><i class="icon an an-truck"></i></div>
+                                <div class="content">Free & fast shipping</div>
+                            </div>
+                            <div class="item col-lg-3 mb-1 mb-sm-0">
+                                <div class="icon"><i class="icon an an-certificate"></i></div>
+                                <div class="content">Secure checkout</div>
+                            </div>
+                            <div class="item col-lg-3">
+                                <div class="icon"><i class="icon an an-thumbs-up"></i></div>
+                                <div class="content">Satisfaction guarantee</div>
+                            </div>
+                            <div class="item col-lg-3">
+                                <div class="icon"><i class="icon an an-lock"></i></div>
+                                <div class="content">Privacy protected</div>
+                            </div>
+                        </div>
+                        <!-- End Product Feature -->
+                    </div>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-12 col-12">
+                    <!-- Product Info -->
+                    <div class="product-single__meta">
+                        <h1 class="product-single__title">{{singleProduct.Name}}</h1>
+
+                        <!-- Product Reviews -->
+                        <div class="prInfoRow d-flex flex-wrap">
+                            <div class="product-review">
+                                <a class="reviewLink d-flex flex-wrap align-items-center" href="#tab2">
+                                    <i class="an an-star"></i><i class="an an-star"></i><i class="an an-star"></i><i
+                                        class="an an-star"></i><i class="an an-star-half-alt"></i>
+                                    <span class="spr-badge-caption">6 reviews</span>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- End Product Reviews -->
+                        <!-- Product Price -->
+                        <div class="product-single__price product-single__price-product-template">
+                            <span class="visually-hidden">Regular price</span>
+                            {{#if singleProduct.offer}}
+                            <s id="ComparePrice-product-template"><span
+                                    class="money">₹{{singleProduct.oldPrize}}</span></s>
+                            {{/if}}
+                            <span
+                                class="product-price__price product-price__price-product-template product-price__sale product-price__sale--single">
+                                <span id="ProductPrice-product-template"><span
+                                        class="money">₹{{singleProduct.Prize}}</span></span>
+                            </span>
+                            {{#if singleProduct.offer}}
+                            <p class="text-success">{{singleProduct.value}}%Off</p>
+                            {{/if}}
+                            <div class="product__policies rte" data-product-policies="">Tax included.</div>
+                        </div>
+                        <!-- End Product Price -->
+
+                        <!-- Product Description -->
+                        <div class="product-single__description rte">
+                            <p class="mb-2">{{singleProduct.Discription}}</p>
+                            <ul class="checkmark">
+                                <li>{{singleProduct.subDiscription}}</li>
+                            </ul>
+                        </div>
+                        <!-- End Product Description -->
+
+                        <!-- Form -->
+                        <form method="post" action="https://template.annimexweb.com/cart/add"
+                            id="product_form_10508262282" accept-charset="UTF-8"
+                            class="product-form product-form-product-template product-form-border hidedropdown pb-3"
+                            enctype="multipart/form-data">
+
+                            <!-- Image Swatch -->
+                            <div class="swatch clearfix swatch-0 option2 col-4" data-option-index="0">
+                                <div class="product-form__item">
+                                    <label class="header">Color: <span
+                                            class="slVariant">{{singleProduct.Color}}</span></label>
+
+                                </div>
+                            </div>
+                            <!-- End Image Swatch -->
+                            <!-- Product Intro -->
+                            <div class="product-info col-12">
+                                <p class="product-stock">Availability: <span class="instock">In Stock</span><span
+                                        class="outstock hide">Unavailable</span></p>
+                                <p class="product-type">Product Type: <span>{{singleProduct.Category}}</span></p>
+                                <p class="product-type">Memory storage: <span>{{singleProduct.Rom}}</span></p>
+                                <p class="product-type">Landing Cost <span>{{singleProduct.LandingCost}}</span></p>
+
+                            </div>
+                            <!-- End Product Intro -->
+
+                            <!-- Product Action -->
+                            <div class="product-action clearfix">
+                                <div class="product-form__item--quantity">
+                                    <div class="wrapQtyBtn">
+                                        <div class="qtyField">
+                                            {{!-- <a class="qtyBtn minus" href="javascript:void(0);"><i
+                                                    class="icon an an-minus" aria-hidden="true"></i></a>
+                                            <input type="text" name="quantity" value="1"
+                                                class="product-form__input qty" />
+                                            <a class="qtyBtn plus" href="javascript:void(0);"><i class="icon an an-plus"
+                                                    aria-hidden="true"></i></a> --}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product-form__item--submit">
+                                    <button type="button" name="add" class="btn product-form__cart-submit"
+                                        onclick="addToCart('{{singleProduct._id}}')"><span>Add to cart</span></button>
+                                </div>
+                                <div class="payment-button" data-shopify="payment-button">
+                                    <button type="button"
+                                        class="payment-button__button payment-button__button--unbranded"
+                                        onclick="buyNow('{{singleProduct._id}}')">Buy it
+                                        now</button>
+                                </div>
+                            </div>
+                            <!-- End Product Action -->
+                            <!-- Wishlist - Compare -->
+                            <div class="infolinks d-flex flex-wrap align-items-center px-0 mb-0">
+                                <a class="wishlist emaillink d-flex align-items-center" href="#"><i
+                                        class="icon an an-envelope me-1" style="margin-top:-1px;"></i>
+                                    <span>Enquiry</span></a>
+                                <a class="wishlist shippingInfo d-flex align-items-center" href="#"><i
+                                        class="icon an an-telegram-plane me-1"></i> <span>Delivery &amp;
+                                        Returns</span></a>
+                            </div>
+                            <!-- End Wishlist - Compare -->
+                        </form>
+                        <!-- End Form -->
+
+                        <div id="freeShipMsg" class="freeShipMsg rte mb-1" data-price="199"><i class="icon an an-truck"
+                                aria-hidden="true"></i> GETTING CLOSER! ONLY <b class="freeShip">FREE
+                                SHIPPING!</b></div>
+                        <div class="shippingMsg rte mb-1"><i class="icon an an-clock-o an-2x" aria-hidden="true"></i>
+                            ESTIMATED DELIVERY AFTER THREE DAYS WHEN ORDER </div>
+                    </div>
+                    <!-- End Product Info -->
+                </div>
+            </div>
+            <!-- End Product single -->
+            <!-- Related Product Slider -->
+            <div class="related-product grid-products">
+                <header class="section-header">
+                    <h2 class="section-header__title text-center h2"><span>Related Products</span></h2>
+                    <p class="sub-heading">EXPLORE ALL PRODUCTS WHAT YOU NEEDS</p>
+                </header>
+                <div class="productPageSlider">
+                    {{#each allProduct}}
+                    <div class="col-12 item">
+                        <!-- Product Image -->
+                        <div class="product-image">
+                            <!-- Product Image -->
+                            <a href="/productdetail/{{this._id}}">
+                                <!-- Image -->
+                                <img class="primary blur-up lazyload" data-src="/product-image/{{this._id}}_1.png"
+                                    src="/product-image/{{this._id}}_1.png" alt="image" style="height: 6em;width: 3em;"
+                                    title="product" />
+                                <!-- End Image -->
+                                <!-- Hover Image -->
+                                <img class="hover blur-up lazyload" data-src="/product-image/{{this._id}}_2.png"
+                                    alt="image" style="height: 6em;width: 3em;" title="product" />
+                                <!-- End Hover Image -->
+                            </a>
+                            <!-- End Product Image -->
+                            <!-- Product Button -->
+                            <div class="button-set">
+                                <div class="variants add" data-bs-toggle="tooltip" data-bs-placement="top"
+                                    title="add to cart">
+                                    <button onclick="addToCart('{{this._id}}')"><i
+                                            class="icon an an-shopping-bag btn-lg"></i></button>
+                                </div>
+                                <div class="variants add" data-bs-toggle="tooltip" data-bs-placement="top"
+                                    title="add to wishlist">
+                                    <button onclick="addToWishlist(event,'{{this._id}}')"><i
+                                            class="icon an an-heart btn-lg bg-secondary" id="{{this._id}}"></i></button>
+                                </div>
+                            </div>
+                            <!-- End product button -->
+                        </div>
+                        <!-- End Product Image -->
+                        <!-- Product Details -->
+                        <div class="product-details text-center">
+                            <!-- Product Name -->
+                            <div class="product-name">
+                                <a href="/productdetail/{{this._id}}">{{this.Name}}</a>
+                            </div>
+                            <!-- End Product Name -->
+                            <!-- Product Price -->
+                            <div class="product-price">
+                                <span class="price">{{this.Prize}}</span>
+                            </div>
+                            <!-- End Product Price -->
+                            <!-- Product Review -->
+                            <div class="product-review">
+                                <i class="an an-star"></i>
+                                <i class="an an-star"></i>
+                                <i class="an an-star"></i>
+                                <i class="an an-star"></i>
+                                <i class="an an-star"></i>
+                            </div>
+                            <!-- End Product Review -->
+                        </div>
+                        <!-- End Product Details -->
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+            <!-- End Related Product Slider -->
+        </div>
+        <!-- #ProductSection product template -->
+    </div>
+    <!-- End Main Content -->
+</div>
+</div>
+<!-- End Body Content -->
+
+
+<script>
+    console.log("getpro called 1")
+    fetch("/find-product-in-wishlist")
+        .then((response) => {
+
+            response.json().then((data) => {
+                if (data) {
+                    for (x of data) {
+                        if (document.getElementById(x)) {
+                            document.getElementById(x).classList.add("icon", "text-danger")
+                        }
+                    }
+                }
+            })
+        })    
+</script>
+<script>
+
+</script>

@@ -1,0 +1,14 @@
+.image-preview{
+    width: 14em;
+    height: 9em; 
+    border: 2px solid gray;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.image-preview__image1{
+    display: none; 
+    width:100%;
+}

@@ -1,0 +1,376 @@
+<div class="container">
+    <!-- Body Content -->
+    <div id="page-content">
+        <!-- Page Title -->
+        <div class="page section-header text-center mb-0">
+            <div class="page-title">
+                <div class="wrapper">
+                    <h1 class="page-width">My Account</h1>
+                </div>
+            </div>
+        </div>
+        <!-- End Page Title -->
+        <div class="bredcrumbWrap bredcrumbWrapPage bredcrumb-style2 text-center">
+            <div class="container breadcrumbs">
+                <a href="/" title="Back to the home page">Home</a><span aria-hidden="true">|</span><span
+                    class="title-bold">My Account</span>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="dashboard-upper-info">
+                <div class="row align-items-center g-0">
+                    <div class="col-xl-2 col-lg-2 col-sm-6">
+                        <div class="d-single-info text-lg-center">
+                            <a class="view-cart" href="/cart"><i class="icon an an-shopping-bag me-1"></i>View Cart</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-4 mb-lg-5 pb-lg-5">
+                <div class="col-xl-2 col-lg-2 col-md-12 md-margin-20px-bottom">
+                    <!-- Nav tabs -->
+                    <ul class="nav flex-column dashboard-list mb-4 mb-lg-0" role="tablist">
+                        <li><a class="nav-link active" data-bs-toggle="tab" href="#dashboard">PROFILE</a></li>
+                        <li><a class="nav-link" data-bs-toggle="tab" href="#orders">Orders</a></li>
+                        <li><a class="nav-link" data-bs-toggle="tab" href="#address">Addresses</a></li>
+
+                        <li><a class="nav-link" data-bs-toggle="tab" href="#wishlist">Wishlist</a></li>
+                        <li><a class="nav-link" href="/logout">logout</a></li>
+                    </ul>
+                    <!-- End Nav tabs -->
+                </div>
+
+
+                <div class="col-xs-10 col-lg-10 col-md-12">
+                    <!-- Tab panes -->
+                    <div class="tab-content dashboard-content padding-30px-all md-padding-15px-all">
+                        <!-- Dashboard -->
+                        <div id="dashboard" class="tab-pane fade active show">
+                            <h3>PROFILE </h3>
+                            <p>From your Profile. you can easily check &amp; view your
+                                <b>recent orders</b> , manage your <b>shipping-addresses</b> and edit your <a
+                                    href="/changePassword/{{userData._id}}"><b>password</b></a> and <b>account
+                                    details</b>.
+                            </p>
+                            <div class="row user-profile mt-4">
+                                <div class="col-12 col-lg-6">
+                                    <div class="profile-img">
+                                        <div class="img">
+
+                                            <img src="/profile-image/{{userData._id}}_1.png" alt="uplode profile page "
+                                                width="65">
+
+                                        </div>
+
+                                        <div class="detail ms-3">
+                                            <h3 class="mb-1">{{userData.firstName}}&nbsp;{{userData.lastName}}</h3>
+                                            <p>Mobile: <strong style="color: indigo;">{{userData.mobilePhone}}</strong>
+                                            </p>
+                                            <div>
+                                                <a href="/editProfile/{{userData._id}}">Edit Profile</a>
+                                            </div>
+                                        </div>
+                                        <div class="lbl ">{{userData.email}}</div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6">
+                                    <ul class="profile-order mt-3 mt-lg-0">
+                                        <li>
+                                            <h3 class="mb-1">{{orderCount}}</h3>
+                                            All Orders
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- End Dashboard -->
+
+                        <!-- Orders -->
+                        <div id="orders" class="product-order tab-pane fade">
+                            <h3>Orders</h3>
+                            <p>last 6 orders</p>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class="alt-font">
+                                        <tr>
+                                            {{!-- <th>Order</th> --}}
+                                            <th>Product</th>
+                                            <th>Date</th>
+                                            <th>Status</th>
+                                            <th>Total</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#each getOrders}}
+                                        <tr>
+                                            {{!-- <td>1</td> --}}
+                                            <td>{{this.userProduct.Name}}</td>
+                                            <td>{{this.Date}}</td>
+                                            <td>{{this.Status}}</td>
+                                            <td>Total:{{this.Prize}} </td>
+                                            <td><a class="view" href="/orderHistory">View</a></td>
+                                        </tr>
+                                        {{/each}}
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- End Orders -->
+
+
+                        <!-- Address -->
+                        <div id="address" class="address tab-pane">
+                            <h3>Addresses</h3>
+                            <p class="xs-fon-13 margin-10px-bottom">The following addresses will be used on the checkout
+                                address by default.</p>
+                            <div class="row">
+                                <div class="col-12 col-sm-6">
+                                    <div class="row">
+                                        <div>
+                                            <h4>Saved Address</h4>
+                                        </div>
+                                        <div class="row">
+                                            {{#each getAddress}}
+                                            <div class="col-12 col-md-4">
+                                                <a class="view text-success"
+                                                    href="/editAddress/{{this._id}}">Edit</a>&nbsp;
+                                                <a class="view text-danger"
+                                                    href="/deleteAddress/{{this._id}}">Delete</a>
+                                                <div>
+                                                    <p>Name:{{this.firstName}} <br>
+                                                        Phone:{{this.mobilePhone}}<br>
+                                                        City : {{this.city}} <br>
+                                                        State : {{this.state}}<br>
+                                                        Pincode: {{this.pinCode}}</p>
+                                                </div>
+                                            </div>
+                                            {{/each}}
+                                        </div>
+                                    </div>
+                                    <div class="accordion add-address mt-3" id="address1">
+
+                                        <button class="collapsed btn btn--small" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#shipping" aria-expanded="false"
+                                            aria-controls="shipping">Add New Address</button>
+
+                                        <div id="shipping" class="accordion-collapse collapse"
+                                            data-bs-parent="#address">
+                                            <form class="address-from mt-3" method="post" action="/profile"
+                                                onsubmit="return addressFormValidation()">
+                                                <fieldset>
+                                                    <h2 class="login-title mb-3">Address details</h2>
+                                                    <div class="row">
+                                                        <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                                            <label for="input-firstname1">First Name <span
+                                                                    class="required-f">*</span></label>
+                                                            <input name="firstName" value="" id="firstName" type="text">
+                                                        </div>
+                                                        <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                                            <label for="input-lastname1">Last Name <span
+                                                                    class="required-f">*</span></label>
+                                                            <input name="lastName" value="" id="lastName" type="text">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                                            <label for="input-email1">E-Mail <span
+                                                                    class="required-f">*</span></label>
+                                                            <input name="email" value="" id="email" type="email">
+                                                        </div>
+                                                        <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                                            <label for="input-telephone1">Mobile <span
+                                                                    class="required-f">*</span></label>
+                                                            <input name="mobilePhone" value="" id="mobilePhone"
+                                                                type="tel">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+
+                                                        <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                                            <label for="input-address-11">Address <span
+                                                                    class="required-f">*</span></label>
+                                                            <input name="address1" value="" id="address1" type="text">
+                                                        </div>
+                                                        <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                                            <label for="input-city1">City <span
+                                                                    class="required-f">*</span></label>
+                                                            <input name="city" value="" id="city" type="text">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                                            <label for="input-postcode1">Post Code <span
+                                                                    class="required-f">*</span></label>
+                                                            <input name="pinCode" value="" id="pinCode" type="text">
+                                                        </div>
+                                                        <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                                            <label for="input-country1">Country <span
+                                                                    class="required-f">*</span></label>
+                                                            <input name="Country" value="" id="Country" type="text">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group col-md-12 col-lg-12 col-xl-12 required">
+                                                            <label for="input-zone1"> State <span
+                                                                    class="required-f">*</span></label>
+                                                            <input name="state" value="" id="state" type="text">
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group col-md-12 col-lg-12 col-xl-12 required">
+
+                                                            <input type="text" id="userid" name="userid"
+                                                                value="{{user._id}}" hidden>
+                                                        </div>
+                                                        <div class="form-group col-md-12 col-lg-12 col-xl-12 required">
+                                                            {{#each getAddress}}
+                                                            <input type="text" id="_id" name="_id" value="{{this._id}}"
+                                                                hidden>
+                                                            {{/each}}
+                                                        </div>
+                                                    </div>
+                                                    <p style="color:red;font-family: 'Times New Roman', Times, serif;"
+                                                        id="error"></p>
+                                                    <button type="submit" class="btn mt-1"><span>Add
+                                                            Address</span></button>
+                                                </fieldset>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Address -->
+                        <!-- Downloads -->
+                        <div id="wishlist" class="product-wishlist tab-pane fade">
+                            <h3>My Wishlist</h3>
+                            <!-- Grid Product -->
+                            <div class="grid-products grid--view-items wishlist-grid mt-4 ">
+                                <div class="row">
+                                    {{#each wishListItem}}
+                                    <div class="col-6 col-sm-4 col-md-3 col-lg-3 item me-2 mt-2"
+                                        style="height: 7rem; width: auto;">
+                                        <!-- Product Image -->
+                                        <div class="product-image">
+                                            <button type="button"
+                                                onclick="romoveWishlist('{{this.product._id}}','{{this._id}}')"
+                                                class="btn close-btn" data-bs-toggle="tooltip" data-bs-placement="top"
+                                                title="Close"><i class="icon an an-times"></i></button>
+                                            <!-- Product Image -->
+                                            <a href="/productdetail/{{this.product._id}}">
+                                                <!-- Image -->
+                                                <img class="primary blur-up lazyload"
+                                                    data-src="/product-image/{{this.product._id}}_1.png"
+                                                    src="/product-image/{{this.product._id}}_1.png" alt="image"
+                                                    title="product" style="height: 6rem; width: auto;" />
+                                                <p class="mt-4"><strong>{{this.product.Name}}</strong></p>
+                                                <!-- End Image -->
+                                                <!-- Hover Image -->
+                                                <img class="hover blur-up lazyload"
+                                                    data-src="/product-image/{{this.product._id}}_2.png"
+                                                    src="/product-image/{{this.product._id}}_2.png" alt="image"
+                                                    title="product" style="height: 6rem; width: auto;" />
+                                                <!-- End Hover Image -->
+                                            </a>
+                                            <!-- End Product Image -->
+                                        </div>
+                                        <!-- End Product Image -->
+                                    </div>
+                                    {{/each}}
+                                </div>
+                            </div>
+                            <!-- End Grid Product-->
+                        </div>
+                        <!-- End Downloads -->
+                    </div>
+                    <!-- End Tab panes -->
+                </div>
+            </div>
+        </div>
+        <!-- End Body Container -->
+    </div>
+    <!-- End Body Content -->
+
+</div>
+
+
+<script>
+    function addressFormValidation() {
+        let fname = document.getElementById("firstName").value;
+        let sname = document.getElementById("lastName").value;
+        let email = document.getElementById("email").value;
+        let mobile = document.getElementById('mobilePhone').value;
+        let address = document.getElementById("address1").value;
+        let city = document.getElementById("city").value;
+        let pincode = document.getElementById("pinCode").value;
+        let country = document.getElementById("Country").value;
+        let state = document.getElementById("state").value;
+
+
+        if (fname == "") {
+
+            document.getElementById("error").innerHTML = "**Enter your First Name ";
+            return false
+
+        } else if (sname == "") {
+
+            document.getElementById("error").innerHTML = "**Enter your Second Name";
+            return false
+
+        } else if (email == "") {
+
+            document.getElementById("error").innerHTML = "**Enter your Email Address";
+            return false;
+
+        } else if (email.indexOf("@") <= 0) {
+
+            document.getElementById("error").innerHTML = "*invalid emailid"
+            return false
+
+        } else if (mobile == "") {
+
+            document.getElementById("error").innerHTML = "**enter your Mobile number";
+            return false
+
+        } else if (mobile == NaN) {
+
+            document.getElementById("error").innerHTML = "**Enter your mobile number in valid format";
+            return false
+
+        } else if (mobile.length > 10) {
+
+            document.getElementById("error").innerHTML = "**Enter an valid mobile number";
+            return false;
+
+        } else if (address == "") {
+
+            document.getElementById("error").innerHTML = "**Enter your address";
+            return false
+
+        } else if (city == "") {
+
+            document.getElementById("error").innerHTML = "**enter your city name";
+            return false
+
+        } else if (pincode == "") {
+
+            document.getElementById("error").innerHTML = "**Enter your Pincode";
+            return false;
+
+        } else if (country == "") {
+
+            document.getElementById("error").innerHTML = "**enter your county Name";
+            return false;
+
+        } else if (state == "") {
+            document.getElementById("error").innerHTML = "**Enter your State name";
+            return false
+        }
+    }
+</script>

@@ -1,0 +1,228 @@
+<!-- Main Header -->
+<div class="header-section clearfix animated hdr-sticky">
+    <!-- Desktop Header -->
+    <div class="header-2">
+        <!-- Top Header -->
+        <div class="top-header d-block d-lg-none">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-10 col-sm-8 col-md-7 col-lg-4">
+
+                        <p class="phone-no float-start"><i class="icon an an-phone me-1"></i><a
+                                href="tel:+918301907278">+91 8301907278</a></p>
+                    </div>
+                    <div class="col-sm-4 col-md-4 col-lg-4 d-none d-md-none d-lg-block">
+                    </div>
+                    <div class="col-2 col-sm-4 col-md-5 col-lg-4 text-end d-block d-sm-none d-md-none d-lg-none">
+                        <!-- Mobile User Links -->
+                        <div class="user-menu-dropdown">
+                            <span class="user-menu"><i class="an an-user-alt"></i></span>
+                            <ul class="customer-links list-inline" style="display:none;">
+                                {{#if user}}
+                                <li class="item"><a href="/profile">Profile</a></li>
+                                <li class="item"><a href="/logout">Logout</a></li>
+                                <li class="item"><a href="/orderHistory">Orders</a></li>
+
+
+                                {{else}}
+                                <li class="item"><a href="/login">Login</a></li>
+                                <li class="item"><a href="/signup">Register</a></li>
+                                {{/if}}
+
+                            </ul>
+                        </div>
+                        <!-- End Mobile User Links -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Top Header -->
+
+        <!-- Header -->
+        <div class="header-wrap d-flex border-bottom">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-4 col-sm-4 col-md-4 col-lg-8 d-block d-lg-none">
+                        <button type="button" class="btn--link site-header__menu js-mobile-nav-toggle mobile-nav--open"
+                            data-bs-toggle="tooltip" data-bs-placement="bottom" title="Menu"><i
+                                class="icon an an-times"></i><i class="icon an an-bars"></i></button>
+                        <!-- Mobile Search -->
+                        <div class="site-header__search d-block d-lg-none mobile-search-icon">
+                            <button type="button" class="search-trigger" data-bs-toggle="tooltip"
+                                data-bs-placement="bottom" title="Search"><i class="icon an an-search"></i></button>
+                        </div>
+                        <!-- End Mobile Search -->
+                    </div>
+
+                    <!-- Desktop Navigation -->
+                    <div class="col-2 col-sm-3 col-md-3 col-lg-5 d-none d-lg-block">
+                        <!-- Desktop Menu -->
+                        <nav class="grid__item" id="AccessibleNav">
+                            <ul id="siteNav" class="d-flex flex-wrap site-nav medium left nolinkbg">
+                                <li class="lvl1 parent dropdown">
+                                    <a href="/">Home </a>
+                                </li>
+
+                                <li class="lvl1 parent dropdown">
+                                    <a href="/shop">Shop </a>
+                                </li>
+
+                                <li class="lvl1 parent dropdown">
+                                    <a href="#">Category <i class="an an-angle-down"></i></a>
+                                    <ul class="dropdown">
+                                        {{#each category}}
+                                        <li>
+                                            <a href="/getCategory/{{this.Name}}" class="site-nav">{{this.Name}}</a>
+                                        </li>
+                                        {{/each}}
+                                    </ul>
+                                </li>
+                                <li class="lvl1 parent dropdown">
+                                    {{#if user}}
+                                    <a href="#">Options <i class="an an-angle-down"></i></a>
+                                    <ul class="dropdown">
+                                        <li>
+                                            <a href="/wishlist" class="site-nav">Wishlist</a>
+                                        </li>
+                                        <li>
+                                            <a href="/orderHistory" class="site-nav">Order </a>
+
+                                        </li>
+                                        <li>
+                                            <a href="/cart" class="site-nav">Cart </a>
+                                        </li>
+
+                                    </ul>
+                                    {{/if}}
+                                </li>
+                            </ul>
+                        </nav>
+                        <!-- End Desktop Menu -->
+                    </div>
+                    <!-- End Desktop Navigation -->
+
+                    <!-- Desktop Logo -->
+                    <div class="logo col-4 col-sm-4 col-md-4 col-lg-2 text-center">
+                        <a href="/">
+                            <h2><span style="color: red;">i</span>Tunes</h2>
+                        </a>
+                    </div>
+                    <!-- End Desktop Logo -->
+
+                    <!-- Right Side -->
+                    <div class="col-4 col-sm-4 col-md-4 col-lg-5">
+                        <div class="right-action d-flex-align-center justify-content-end">
+                            <!-- Search -->
+                            <div class="item site-header__search d-none d-lg-block">
+                                <button type="button" class="search-trigger" data-bs-toggle="tooltip"
+                                    data-bs-placement="bottom" title="Search"><i class="icon an an-search"></i></button>
+                            </div>
+                            <!-- End Search -->
+                            <!-- User Links -->
+                            <div class="item user-menu-dropdown d-none d-sm-block d-md-block d-lg-block">
+                                <span class="user-menu" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                    title="Account"><i class="icon an an-user-alt"></i></span>
+                                <ul class="customer-links list-inline" style="display:none;">
+                                    {{#if user}}
+                                    <li class="item"><a href="/profile">Profile</a></li>
+                                    <li class="item"><a href="/wishlist">Wishlist</a></li>
+                                    <li class="item"><a href="/orderHistory">Orders</a></li>
+                                    <li class="item"><a href="/logout">Logout</a></li>
+                                    {{else}}
+                                    <li class="item"><a href="/login">Login</a></li>
+                                    <li class="item"><a href="/signup">Register</a></li>
+
+                                    {{/if}}
+
+
+                                </ul>
+                            </div>
+                            <!-- End User Links -->
+                            {{#if user}}
+                            <!-- Wishlist -->
+                            <div class="item site-header-wishlist">
+                                <a href="/wishlist" class="wishlist-trigger" data-bs-toggle="tooltip"
+                                    data-bs-placement="bottom" title="Wishlist">
+                                    <i class="icon an an-heart"></i>
+                                </a>
+                            </div>
+                            <!-- End Wishlist -->
+                            <!-- Minicart -->
+                            <div class="item site-cart">
+                                <a href="/cart" class="site-header__cart btn-minicart" data-bs-toggle="tooltip"
+                                    data-bs-placement="bottom" title="Cart">
+                                    <i class="icon an an-shopping-bag"></i><span id="CartCount"
+                                        class="site-header__cart-count text-white">{{cartCount}}</span>
+                                </a>
+                            </div>
+                            <!-- End Minicart -->
+
+                            {{/if}}
+                        </div>
+                    </div>
+                    <!-- End Right Side -->
+                </div>
+            </div>
+        </div>
+        <!-- End Header -->
+    </div>
+    <!-- End Desktop Header -->
+</div>
+<!-- End Main Header -->
+
+<!-- Mobile Menu -->
+<div class="mobile-nav-wrapper" role="navigation">
+    <div class="closemobileMenu"><i class="icon an an-times-circle closemenu"></i> Close Menu</div>
+    <ul id="MobileNav" class="mobile-nav">
+        <li class="lvl1 parent megamenu">
+            <a href="/">HOME <i class="an an-plus"></i></a>
+
+        </li>
+        <li class="lvl1 parent megamenu">
+            <a href="/shop">Shop <i class="an an-plus"></i></a>
+
+        </li>
+        <li class="lvl1 parent megamenu">
+            <a href="#">Category <i class="an an-plus"></i></a>
+            <ul class="dropdown">
+                {{#each category}}
+                <li>
+                    <a href="/getCategory/{{this.Name}}" class="site-nav">{{this.Name}}</a>
+                </li>
+                {{/each}}
+            </ul>
+        </li>
+        <li class="lvl1 parent megamenu">
+            <a href="#">Options <i class="an an-plus"></i></a>
+            <ul>
+                <li>
+                    <a href="#" class="site-nav">My Account <i class="an an-plus"></i></a>
+                    <ul>
+
+                        <li><a href="/login" class="site-nav">Login</a></li>
+                        <li><a href="/profile" class="site-nav">Profile</a></li>
+                        <li><a href="/signup" class="site-nav">Register</a></li>
+                        <li><a href="#" class="site-nav last">Forgot Password</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="/wishlist" class="site-nav"> Wishlist<i class="an an-plus"></i></a>
+
+                </li>
+                <li class="grid__item lvl-1 col">
+                    <a href="/orderHistory" class="site-nav">Orders <i class="an an-plus"></i></a>
+
+                </li>
+                <li>
+                    <a href="/cart" class="site-nav">Cart <i class="an an-plus"></i></a>
+                    <ul>
+                        <li><a href="#" class="site-nav">FAQs 01</a></li>
+                        <li><a href="#" class="site-nav last">FAQs 02</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </li>
+    </ul>
+</div>
+<!-- End Mobile Menu -->

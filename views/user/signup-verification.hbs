@@ -1,0 +1,64 @@
+<section>
+    <!-- Body Content -->
+    <div id="page-content">
+        <!-- Page Title -->
+        <div class="page section-header text-center mb-0">
+            <div class="page-title">
+                <div class="wrapper">
+                    <h1 class="page-width">Sign OTP Verification</h1>
+                </div>
+            </div>
+        </div>
+        <!-- End Page Title -->
+        <!-- Breadcrumbs -->
+        <div class="bredcrumbWrap bredcrumbWrapPage bredcrumb-style2 text-center">
+            <div class="container breadcrumbs">
+                <a href="/" title="Back to the home page">Home</a><span aria-hidden="true">|</span><span
+                    class="title-bold">Enter OTP</span>
+            </div>
+        </div>
+        <!-- End Breadcrumbs -->
+
+        <div class="container">
+            <div class="row">
+                <!-- Main Content -->
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 box offset-md-3">
+                    <div class="mb-4">
+                        <form method="post" action="/signup-verification" accept-charset="UTF-8" class="customer-form">
+                            <h3>OTP Verification</h3>
+                            <p>Please enter the OTP below</p>
+                            <div class="row">
+                                {{#if userWrongOTPErr}}
+                                <p style="color: red;font-family: 'Times New Roman', Times, serif;">{{userWrongOTPErr}}
+                                </p>
+                                {{/if}}
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="form-group">
+                                        <label for="CustomerNumber">Enter OTP <span class="required">*</span></label>
+                                        <div>
+                                            <input type="text" name="otp" placeholder="" id="otpCustomerNumber"
+                                                style=" " maxlength="4" />
+                                        </div>
+                                        <p class="mb-4">
+                                            <a href="#">Resend OTP</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="text-left col-12 col-sm-12 col-md-12 col-lg-12">
+                                    <input type="submit" class="btn mb-3" value="Verify OTP">
+                                    <p class="mb-4">
+                                        <a href="/login">« Back To Login Page</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- End Main Content -->
+            </div>
+        </div>
+    </div>
+    <!-- End Body Content -->
+</section>

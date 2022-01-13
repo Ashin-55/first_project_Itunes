@@ -1,0 +1,430 @@
+<script src="sweetalert2.all.min.js"></script>
+
+<!-- Body Content -->
+<div id="page-content" class="">
+    <!-- Page Title -->
+    <div class="page section-header text-center">
+        <div class="page-title">
+            <div class="wrapper">
+                <h1 class="page-title">CART</h1>
+            </div>
+        </div>
+    </div>
+    <!-- End Page Title -->
+
+    <div class="container">
+        <div class="row">
+            <!-- Main Content -->
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 main-col ">
+                <div class="alert alert-success text-uppercase" role="alert">
+                    <i class="icon an an-truck icon-large"></i> &nbsp;<strong>Congratulations!</strong> You've got free
+                    shipping!
+                </div>
+                <div class="container">
+                    {{#if products}}
+                    <form action="#" method="post" class="cart style2">
+                        <table>
+                            <thead class="cart__row cart__header">
+                                <tr>
+                                    <th colspan="2" class="text-center">Product</th>
+                                    <th class="text-center">Price</th>
+                                    <th class="text-center">Quantity</th>
+                                    <th class="text-center">Total</th>
+                                    <th class="action">&nbsp;</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each products}}
+                                <tr class="cart__row border-bottom line1 cart-flex border-top">
+
+                                    <td class="cart__meta small--text-left cart-flex-item">
+                                        <div class="list-view-item__title">
+                                            <a href="/productdetail/{{this._id}}">{{this.product.Name}} </a>
+                                        </div>
+                                        <div class="cart__meta-text">
+                                            Color: {{this.product.Color}}<br>Memory Storage: {{this.product.Ram}}<br>
+                                        </div>
+                                    </td>
+
+                                    <td class="cart__image-wrapper cart-flex-item">
+                                        <a href="/productdetail/{{this._id}}"><img class="cart__image blur-up lazyload"
+                                                data-src="/product-image/{{this.item}}_1.png"
+                                                src="/product-image/{{this.item}}_1.png" alt=""
+                                                style="height: 8em;" /></a>
+                                    </td>
+                                    <td class="cart__price-wrapper cart-flex-item text-center">
+                                        <span class="money">{{this.product.Prize}}</span>
+                                    </td>
+
+                                    <td class="cart__update-wrapper cart-flex-item text-center">
+                                        <div class="cart__qty text-center">
+                                            <div class="qtyField">
+
+
+
+                                                <button type="button" class="cart-item-count mr-3"
+                                                    onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user._id}}',-1)"><i
+                                                        class="icon an an-minus"></i></button>
+                                                <span id="{{this.product._id}}">{{this.quantity}}</span>
+                                                <button type="button" class="cart-item-count ml-3"
+                                                    onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user._id}}',1)"><i
+                                                        class="icon an an-plus"></i></button>
+
+
+
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td class="small--hide cart-price text-center">
+                                        <span class="money" id="single">{{this.total}}</span>
+                                    </td>
+                                    {{!-- <td class="text-center small--hide"><a href="#"
+                                            class="btn btn--secondary cart__remove" data-bs-toggle="tooltip"
+                                            data-bs-placement="top" title="Remove item"><i
+                                                class="icon an an-times"></i></a></td> --}}
+
+                                    <td class="text-center small--hide">
+                                        <a class="rounded btn btn-danger" type="button" data-bs-toggle="tooltip"
+                                            data-bs-placement="top" title="Romove item "
+                                            onclick="itemRemove('{{this._id}}','{{this.product._id}}')">
+                                            <i class="icon an an-times"></i></a>
+                                    </td>
+
+
+                                </tr>
+                                {{/each}}
+
+                            </tbody>
+                            <tfoot>
+
+                                <tr>
+                                    <td colspan="3" class="text-start"><a href="/shop"
+                                            class="btn btn--link btn--small cart-continue"><i
+                                                class="icon an an-chevron-circle-left"></i> Continue shopping</a></td>
+                                    <td colspan="3" class="text-end">
+                                        <button type="button" name="clear" onclick="clearcart()"
+                                            class="btn btn--link btn--small small--hide"><i
+                                                class="icon an an-times"></i> Clear Shoping Cart</button>
+
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </form>
+                    {{else}}
+                    <div class="container">
+                        <h2 style="text-align: center;">Your Cart is Empty</h2>
+                    </div>
+                    {{/if}}
+                </div>
+            </div>
+            {{#if products}}
+            <div class="container mt-4">
+                <div class="row">
+                    <div class="col-12 col-sm-6 cart-col">
+                        <h5>Discount Codes</h5>
+                        {{!-- <form action="/applyCoupon" method="post" onsubmit="return applyCouponValidatio()"> --}}
+                            <div>
+                                <label for="address_zip">Enter your coupon code if you have one.</label>
+                                <input type="text" name="coupon" id="couponCode" />
+                                <div>
+                                    <p id="codeErr" class=" text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="actionRow">
+                                <div><input type="button" onclick="applyCoupon()" class="btn btn-secondary btn--small"
+                                        value="Apply Coupon" />
+                                </div>
+                            </div>
+                            <div id="custom-target"></div>
+                            {{!--
+                        </form> --}}
+                    </div>
+
+
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-6 cart__footer">
+                        <div class="solid-border">
+                            {{!-- <div class="row border-bottom pb-2">
+                                <span class="col-12 col-sm-6 cart__subtotal-title">Subtotal</span>
+                                <span class="col-12 col-sm-6 text-right"><span class="money">$735.00</span></span>
+                            </div> --}}
+
+                            <div class="row border-bottom pb-2 pt-2">
+                                <span class="col-12 col-sm-6 cart__subtotal-title">Shipping</span>
+                                <span class="col-12 col-sm-6 text-right">Free shipping</span>
+                            </div>
+                            <div class="row border-bottom pb-2 pt-2">
+                                <span class="col-12 col-sm-6 cart__subtotal-title">Sub Total</span>
+                                <span class="col-12 col-sm-6  text-right"><span class="money1"><span id='subtotal'>₹
+                                            {{total}}</span></span></span>
+                            </div>
+                            <div class="row border-bottom pb-2 pt-2">
+                                <span class="col-12 col-sm-6 cart__subtotal-title">Discount Percentage</span>
+                                <span class="col-12 col-sm-6 cart__subtotal-title cart__subtotal text-right"><span
+                                        class="money"><span id='discound' style="color:green">0
+                                            %Off</span></span></span>
+                            </div>
+                            <div class="row border-bottom pb-2 pt-2">
+                                <span class="col-12 col-sm-6 cart__subtotal-title"><strong>Grand Total</strong></span>
+                                <span class="col-12 col-sm-6 cart__subtotal-title cart__subtotal text-right"><span
+                                        class="money"><span id='total'>₹ {{total}}</span></span></span>
+                            </div>
+
+                            <div class="cart__shipping">Shipping &amp; taxes calculated at checkout</div>
+                            <div class="customCheckbox cart_tearm">
+                                <input type="checkbox" value="allen-vela" id="1532947863384-0">
+                                <label for="1532947863384-0">I agree with the terms and conditions</label>
+                            </div>
+                            <a href="/checkout" id="cartCheckout" class="btn btn--small-wide checkout">Proceed To
+                                Checkout</a>
+                            <div class="paymnet-img "><img src="./user/assets/images/payment-img.jpg" alt="Payment" />
+                            </div>
+                            <p class="mt-2"><a href="#">Checkout with Multiple Addresses</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/if}}
+            <!-- End Main Content -->
+        </div>
+    </div>
+</div>
+<!-- End Body Content -->
+
+
+<script>
+    function changeQuantity(cartId, productId, userId, count) {
+        let quantity = parseInt(document.getElementById(productId).innerHTML)
+        count = parseInt(count)
+        console.log(count)
+
+        if (quantity == 1 && count == -1) {
+            console.log("its quantity is 1")
+            Swal.fire({
+                title: 'Do you want to remove last product ?',
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: 'yes',
+                DenyButtonText: "No",
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    //Swal.fire('Saved!', '', 'success')
+                    $.ajax({
+
+                        url: "/change-product-quantity",
+                        data: {
+                            cart: cartId,
+                            product: productId,
+                            count: count,
+                            quantity: quantity,
+                            user: userId
+                        },
+
+                        method: 'post',
+                        success: (response) => {
+                            console.log(response)
+                            if (response.removeProduct) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    text: 'item removed from cart!',
+                                    showConfirmButton: false,
+                                    footer: '<a href="/cart" class="btn btn-primary">ok</a>'
+                                })
+                            } else {
+                                console.log("hai")
+                                document.getElementById(productId).innerHTML = quantity + count
+                                document.getElementById('total').innerHTML = response.total
+
+                            }
+                        }
+                    })
+
+                } else if (result.isDenied) {
+                    Swal.fire('item is not removed from cart', '', 'success')
+                }
+            })
+        } else {
+            $.ajax({
+
+                url: "/change-product-quantity",
+                data: {
+                    cart: cartId,
+                    product: productId,
+                    count: count,
+                    quantity: quantity,
+                    user: userId
+                },
+
+                method: 'post',
+                success: (response) => {
+                    console.log(response)
+                    if (response.removeProduct) {
+                        Swal.fire({
+                            icon: 'success',
+                            text: 'item removed from cart!',
+                            showConfirmButton: false,
+                            footer: '<a href="/cart" class="btn btn-primary">ok</a>'
+                        })
+                    } else {
+                        console.log("hai")
+                        document.getElementById(productId).innerHTML = quantity + count
+                        document.getElementById('total').innerHTML = "₹ " + response.total
+                        document.getElementById('subtotal').innerHTML = "₹ " + response.total
+
+                    }
+                }
+            })
+        }
+
+
+    }
+</script>
+<script>
+    function applyCouponValidation() {
+        let code = document.getElementById("couponCode").value
+        if (code == "") {
+            document.getElementById("codeErr").innerHTML = "**can't apply with empty "
+            return false
+        }
+    }
+</script>
+<script>
+    let count = 0;
+    function applyCoupon() {
+
+        let codeData = document.getElementById("couponCode").value
+
+        if (codeData == "") {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'centre',
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: false,
+            })
+            Toast.fire({
+                icon: 'error',
+                title: " can't apply with empty fields  :("
+            })
+        } else {
+            $.ajax({
+                url: "/applyCoupon",
+                data: {
+                    couponData: codeData,
+                },
+                method: "post",
+                success: (response) => {
+                    console.log(response)
+                    if (response.couponIsValid) {
+                        if (response.usedCoupon) {
+                            //coupon is valid but used allredy
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'centre',
+                                showConfirmButton: false,
+                                timer: 2000,
+                                timerProgressBar: false,
+                            })
+                            Toast.fire({
+                                icon: 'warning',
+                                title: 'oops coupon allready used :('
+                            })
+                        } else {
+                            if (count == 0) {
+                                //coupon is valid and first time use
+                                const Toast = Swal.mixin({
+                                    toast: true,
+                                    position: 'centre',
+                                    showConfirmButton: false,
+                                    timer: 2000,
+                                    timerProgressBar: false,
+                                })
+                                Toast.fire({
+                                    icon: 'success',
+                                    title: 'congratulations you got ' + response.couponValue + '%  offer :)'
+                                })
+                                count++;
+                                document.getElementById('total').innerHTML = "₹ " + response.couponTotal
+                                document.getElementById('discound').innerHTML = response.couponValue + " %OFF"
+                            } else {
+                                //coupon is valid but only one coupon use at a time
+                                const Toast = Swal.mixin({
+                                    toast: true,
+                                    position: 'centre',
+                                    showConfirmButton: false,
+                                    timer: 2000,
+                                    timerProgressBar: false,
+                                })
+                                Toast.fire({
+                                    icon: 'error',
+                                    title: 'only one coupon can at a time :('
+                                })
+                            }
+                        }
+                    } else {
+                        //coupon is invalid
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'centre',
+                            showConfirmButton: false,
+                            timer: 2000,
+                            timerProgressBar: false,
+                        })
+                        Toast.fire({
+                            icon: 'error',
+                            title: 'oops you entered invalid coupon :('
+                        })
+                    }
+                }
+            })
+        }
+    }
+</script>
+<script>
+    function clearcart() {
+        console.log("cart 1")
+        $.ajax({
+            url: "/clearcart",
+
+            method: "get",
+
+            success: (response) => {
+                console.log(response)
+                if (response.status) {
+
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'center',
+                        showConfirmButton: false,
+                        timer: 1000,
+                        timerProgressBar: false,
+
+                    })
+
+                    Toast.fire({
+                        icon: 'success',
+                        title: 'cart cleared'
+                    })
+                    location.reload()
+                } else {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'center',
+                        showConfirmButton: false,
+                        timer: 1000,
+                        timerProgressBar: false,
+
+                    })
+
+                    Toast.fire({
+                        icon: 'error',
+                        title: 'something went wrong'
+                    })
+                    location.reload()
+                }
+            }
+        })
+    }
+</script>

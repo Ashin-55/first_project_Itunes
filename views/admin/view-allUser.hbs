@@ -1,0 +1,88 @@
+<section>
+
+    <div class="container-fluid page-body-wrapper">
+     {{>adminSidebar}}
+
+        <div class="content-wrapper">
+            <div class="row">
+                <div class="col-md-12 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title mb-0">All User</h3>
+                            <div class="table-responsive mt-4">
+                                <table class="table table-hover" id="myTable">
+                                    <thead>
+                                        <tr>
+                                            <th>User Nmae</th>
+                                            <th>Email Id</th>
+                                            <th>Phone Number</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#each allUser}}
+                                        <tr>
+
+                                            <td>{{this.firstName}}&nbsp;{{this.Last-Name}}</td>
+                                            <td>{{this.email}}</td>
+                                            <td> {{this.mobilePhone}}</td>
+                                            <td>
+                                                {{#if this.status}}
+                                                <p style="color: green;">Permission allowed</p>
+                                                {{else}}
+                                                <p style="color: red;">Permission Denied</p>
+                                                {{/if}}
+                                            </td>
+                                            <td>
+                                                {{#if this.status}}
+                                                <a href="/admin/block-user/{{this._id}}">
+                                                    <p class="btn btn-warning btn-sm">
+                                                        Block
+                                                    </p>
+                                                </a>
+                                                {{else}}
+
+                                                <a href="/admin/block-user/{{this._id}}">
+                                                    <p class="btn btn-success btn-sm">
+                                                        unBlock
+                                                    </p>
+                                                </a>
+                                                {{/if}}
+                                                &nbsp; &nbsp;&nbsp;
+                                            </td>
+
+                                        </tr>
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- plugins:js -->
+    <script src="vendors/base/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page-->
+    <script src="vendors/chart.js/Chart.min.js"></script>
+    <!-- End plugin js for this page-->
+    <!-- inject:js -->
+    <script src="js/off-canvas.js"></script>
+    <script src="js/hoverable-collapse.js"></script>
+    <script src="js/template.js"></script>
+    <script src="js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="js/dashboard.js"></script>
+    <!-- End custom js for this page-->
+
+</section>
+<script>
+ $(document).ready(function () {
+        $('#myTable').DataTable();
+    });
+</script>

@@ -1,0 +1,130 @@
+<section>
+
+    <div class="container-fluid page-body-wrapper">
+      {{>adminSidebar}}
+
+        <div class="content-wrapper">
+            <div class="row">
+                <div class="col-md-8 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title mb-0">Category</h3>
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            
+                                            <th>Title</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#each category }}
+                                        <tr>
+
+                                           
+                                            <td>{{this.Name}}</td>
+
+                                            <td>
+                                                <a href="/admin/edit-category/{{this._id}}" style="color: green;"><i
+                                                        style="height: 30px;" class="bi bi-pencil-fill"></i></a>&nbsp;&nbsp;&nbsp; 
+                                                
+                                                <a 
+                                                    style="color: red; height: 2em;"
+                                                    onclick="deleteCategory('{{this._id}}')"><i
+                                                        class="bi bi-trash-fill"></i></a>
+                                            </td>
+
+                                        </tr>
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class=" col-md-4">
+                    <div class="container bg-light p-4 rounded">
+                        <form method="post" action="/admin/category" enctype="multipart/form-data"
+                            onsubmit=" return validation()">
+                            <label>Category Name</label>
+                            <input type="text" name="Name" id="category-id" class="form-control mt-2 mb-3">
+                            <p id="Err" style="color: red;"></p>
+
+                            <input type="submit" value="Add Category" class="btn btn-success btn-sm mt-4 mb-4">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        function validation() {
+            let cName = document.getElementById('category-id').value
+
+            if (cName == "") {
+                document.getElementById("Err").innerHTML = "**please fill this field"
+                return false
+            }
+        }
+    </script>
+    <!-- plugins:js -->
+    <script src="vendors/base/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page-->
+    <script src="vendors/chart.js/Chart.min.js"></script>
+    <!-- End plugin js for this page-->
+    <!-- inject:js -->
+    <script src="js/off-canvas.js"></script>
+    <script src="js/hoverable-collapse.js"></script>
+    <script src="js/template.js"></script>
+    <script src="js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="js/dashboard.js"></script>
+    <!-- End custom js for this page-->
+
+</section>
+ <script src="sweetalert2.all.min.js"></script>
+
+
+<script>
+    function deleteCategory(catId) {
+      
+
+        Swal.fire({
+            title: 'Are you sure to delete this category?',
+            showDenyButton: true,
+            showCancelButton: false,
+            confirmButtonText: 'Delete',
+            denyButtonText: `Cancel`,
+        }).then((result) => {
+            
+            if (result.isConfirmed) {
+                
+                $.ajax({
+                    url: "/admin/delete-category",
+                    data: {
+                        catId: catId
+                    },
+                    method: "post",
+                    success: (res) => {
+                        console.log("come to success part")
+                        console.log(res)
+                        if (res.removeCategory) {
+                             Swal.fire('category  deleted!', '', 'success')
+                             location.reload()
+                        } else {
+                             Swal.fire('Somthing went to wrong category not deleted!', '', 'error')
+                        }
+                    }
+                })
+            } else if (result.isDenied) {
+                Swal.fire('Category is not deleted', '', 'success')
+            }
+        })
+
+    }
+</script>

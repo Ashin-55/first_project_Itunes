@@ -1,0 +1,315 @@
+<section>
+    <div class="container-scroller">
+        <!-- partial:partials/_navbar.html -->
+        <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+                <a class="navbar-brand brand-logo mr-5" href="#"><span style="color: red;">i</span>Tunes</a>
+                <a class="navbar-brand brand-logo-mini" href="#"><span style="color: red;">i</span>Tunes</a>
+            </div>
+            <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+                <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                    <span class="ti-view-list"></span>
+                </button>
+               
+                <ul class="navbar-nav navbar-nav-right">
+                   
+                    <li class="nav-item nav-profile dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+                            {{!-- <img src="images/faces/face28.jpg" alt="profile" /> --}}Profile
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
+                            aria-labelledby="profileDropdown">
+                                <a class="dropdown-item" href="/admin/logout">
+                                <i class="ti-power-off text-primary"></i>
+                                Logout
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+                    data-toggle="offcanvas">
+                    <span class="ti-view-list"></span>
+                </button>
+            </div>
+        </nav>
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+            <!-- partial:partials/_sidebar.html -->
+            <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin">
+                            <i class="ti-shield menu-icon"></i>
+                            <span class="menu-title">Dashboard</span>
+                        </a>
+                    </li>
+                    {{!-- product management start --}}
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false"
+                            aria-controls="ui-basic">
+                            <i class="ti-control-record menu-icon"></i>
+                            <span class="menu-title">Product Mangement</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="ui-basic">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="/admin/view-allProduct">View All
+                                        Products</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="/admin/add-product">Add Products</a>
+                                </li>
+                                <li class="nav-item"> <a class="nav-link" href="/admin/category">Manage
+                                        Category</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    {{!-- product management end --}}
+
+                    {{!-- Brand management start --}}
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false"
+                            aria-controls="ui-basic">
+                            <i class="ti-control-record menu-icon"></i>
+                            <span class="menu-title">Brand Mangement</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="ui-basic">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="#">View All
+                                        Brand</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="#">Add New Brand</a>
+                                </li>
+                                {{!-- <li class="nav-item"> <a class="nav-link" href="/admin/category">Manage
+                                        brands</a></li> --}}
+                            </ul>
+                        </div>
+                    </li>
+                    {{!-- Brand management end --}}
+
+                    {{!-- user mangement start --}}
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#ui-basic2" aria-expanded="false"
+                            aria-controls="ui-basic">
+                            <i class="ti-control-record menu-icon"></i>
+                            <span class="menu-title">User Mangement</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="ui-basic2">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="/admin/view-allUser">All User</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="/admin/view-blockedUser">All Blocked
+                                        User</a></li>
+
+                            </ul>
+                        </div>
+                    </li>
+                    {{!-- user management ends --}}
+
+                    {{!-- offer mangement start --}}
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#ui-basic3" aria-expanded="false"
+                            aria-controls="ui-basic">
+                            <i class="ti-control-record menu-icon"></i>
+                            <span class="menu-title">Offer Mangement</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="ui-basic3">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="/admin/coupon">Coupon</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="/admin/productOffer">Product Offer</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="/admin/categoryOffer">Category Offer</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    {{!-- offer management ends --}}
+
+                    {{!-- banner mangement start --}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/banner">
+                            <i class="ti-layout-list-post menu-icon"></i>
+                            <span class="menu-title">Banner Mangement</span>
+                        </a>
+                    </li>
+                    {{!-- banner mangement ends --}}
+
+                    {{!-- reports starts --}}
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false"
+                            aria-controls="auth">
+                            <i class="ti-trello menu-icon"></i>
+                            <span class="menu-title">Reports</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="auth">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="/admin/salesReport"> Sales Report
+                                    </a></li>
+                                <li class="nav-item"> <a class="nav-link" href="/admin/productReport"> Product Report </a></li>
+
+                            </ul>
+                        </div>
+                    </li>
+                    {{!-- reports ends --}}
+
+                    {{!-- LOGOUT START --}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/logout">
+                            <i class=" menu-icon"></i>
+                            <span class="menu-title">LOGOUT</span>
+                        </a>
+                    </li>
+                    {{!-- LOGOUT ENDS --}}
+                </ul>
+            </nav>
+
+            <!-- partial -->
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    <div class="row">
+                        <div class="col-md-12 grid-margin">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h3 class="font-weight-bold mb-0"> Edit Product</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  
+                    <div class="row">
+                        <div class="col-md-12 grid-margin stretch-card">
+                            <div class="card ">
+                                <div class="card-body">
+                                    <p class="card-title mb-4"> Products Details Edit</p>
+                                   
+                                    <div class="container p-5">
+
+                                        <form method="post" action="/admin/edit-product/{{product._id}}"
+                                            enctype="multipart/form-data">
+                                            <label>Product Name</label>
+                                            <input type="text" name="Name" class="form-control mt-2 mb-3"
+                                                value="{{product.Name}}">
+                                            <label>Product Discription</label>
+                                            <input type="text" name="Discription" class="form-control mt-2 mb-3 "
+                                                value="{{product.Discription}}">
+                                            {{!-- <label>Category</label> --}}
+                                            {{!-- <input type="text" name="Category" class="form-control mt-2 mb-3"
+                                                value="{{product.Category}}"> --}}
+                                                <div class="col-md-6 mb-3 mt-3">
+                                                    <label for="Category">Select the category:</label>
+                                                    <select id="Category" name="Category" value="{{product.Category}}">
+                                                        {{#each category}}
+                                                        <option value="{{this.Name}}">{{this.Name}}</option>
+                                                        {{/each}}
+                                                   </select>
+                                                </div>
+                                            <label>Landing Cost</label>
+                                            <input type="number" name="LandingCost" class="form-control mt-2 mb-3"
+                                                value="{{product.LandingCost}}">
+                                            <label for="">Prize</label>
+                                            <input type="number" name="Prize" class="form-control mt-2 mb-3"
+                                                maxlength="6" value="{{product.Prize}}">
+                                            <label for="">Quantity</label>
+                                            <input type="number" name="Quantity" class="form-control mt-2 mb-3"
+                                                maxlength="3" value="{{product.Quantity}}">
+                                                    <div class="col-md-6 mb-3 mt-3">
+                                                    <label for="brandName">Select the brand:</label>
+                                                    <select id="brandName" name="brandName">
+                                                        {{#each brand}}
+                                                        <option value="{{this.brandName}}">{{this.brandName}}</option>
+                                                        {{/each}}
+                                                    </select>
+                                                </div>
+                                            <label for="">Color</label>
+                                            <input type="text" name="Color" class="form-control mt-2 mb-3"
+                                                value="{{product.Color}}">
+                                            <div class="row">
+                                                <div class="col-12 mb-4 mt-3">
+                                                    <label for="" style="align-items: center;">images</label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class=" col-sm-6 col-md-3">
+                                                    <img src="/product-image/{{product._id}}_1.png"
+                                                        style="width: 6em;height:auto;" id="firstImg">
+                                                    <input type="file" class="form-control mt-2 mb-3" name="Image1"
+                                                        style=" width: 15em;" onchange="imgChange1(event)">
+                                                </div>
+                                                <div class=" col-sm-6 col-md-3">
+                                                    <img src="/product-image/{{product._id}}_2.png"
+                                                        style="width: 6em;height:auto;" id="secondImg">
+                                                    <input type="file" class="form-control mt-2 mb-3" name="Image2"
+                                                        style=" width: 15em;" onchange="imgChange2(event)">
+                                                </div>
+                                                <div class="col-sm-6 col-md-3">
+                                                    <img src="/product-image/{{product._id}}_3.png"
+                                                        style="width: 6em;height:auto;" id="thirdImg">
+                                                    <input type="file" class="form-control mt-2 mb-3" name="Image3"
+                                                        style="width: 15em;" onchange="imgChange3(event)">
+                                                </div>
+                                                <div class="col-sm-6 col-md-3">
+                                                    <img src="/product-image/{{product._id}}_4.png"
+                                                        style="width: 6em;height:auto;" id="fourthImg">
+                                                    <input type="file" class="form-control mt-2 mb-3" name="Image4"
+                                                        style=" width: 15em;" onchange="imgChange4(event)">
+                                                </div>
+                                            </div>
+                                            <input type="submit" value="Submit Edited data"
+                                                class="btn btn-success btn-sm mt-4 mb-4">
+
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       </div>
+                    <div class="row">
+                        <div class="col-md-12 grid-margin stretch-card">
+                            <div class="card position-relative">
+                                <div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- content-wrapper ends -->
+
+            </div>
+            <!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+
+
+
+    <!-- plugins:js -->
+    <script src="../../admin/vendors/base/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page-->
+    <script src="../../admin/vendors/chart.js/Chart.min.js"></script>
+    <!-- End plugin js for this page-->
+    <!-- inject:js -->
+    <script src="../../admin/js/off-canvas.js"></script>
+    <script src="../../admin/js/hoverable-collapse.js"></script>
+    <script src="../../admin/js/template.js"></script>
+    <script src="../../admin/js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="../../admin/js/dashboard.js"></script>
+    <!-- End custom js for this page-->
+</section>
+<script>
+    function imgChange1(event) {
+        document.getElementById("firstImg").src = URL.createObjectURL(event.target.files[0])
+    }
+    function imgChange2(event) {
+        document.getElementById('secondImg').src = URL.createObjectURL(event.target.files[0])
+    }
+    function imgChange3(event) {
+        document.getElementById('thirdImg').src = URL.createObjectURL(event.target.files[0])
+    }
+    function imgChange4(event) {
+        document.getElementById('fourthImg').src = URL.createObjectURL(event.target.files[0])
+    }
+</script>

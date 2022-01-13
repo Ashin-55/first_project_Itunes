@@ -1,0 +1,174 @@
+<section>
+
+    <div class="container-fluid page-body-wrapper">
+        {{>adminSidebar}}
+
+        <div class="content-wrapper">
+            <div class="row">
+                <div class="col-md-8 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title mb-0">Coupon</h3>
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Coupon Name</th>
+                                            <th>Coupon Code</th>
+                                            <th>Expiry Date</th>
+                                            <th>Offer </th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#each coupon }}
+                                        <tr>
+                                            <td>{{this.couponName}}</td>
+                                            <td>{{this.couponCode}}</td>
+                                            <td>{{this.expireAt}}</td>
+                                            <td>{{this.couponOffer}}%</td>
+                                            <td>
+                                                <a style="color: red; height: 2em;"
+                                                    onclick="deleteCoupon('{{this._id}}')"><i
+                                                        class="bi bi-trash-fill"></i></a>
+                                            </td>
+                                        </tr>
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class=" col-md-4">
+                    <div class="container bg-light p-4 rounded">
+                        <form method="post" action="/admin/coupon" enctype="multipart/form-data"
+                            onsubmit=" return validation()">
+
+                            <label>Coupon Name</label>
+                            <input type="text" name="couponName" id="couponName" class="form-control mt-2 mb-3">
+                            <label>Coupon Code</label>
+                            <input type="text" name="couponCode" id="couponCode" class="form-control mt-2 mb-3">
+                            <label>Expire Date</label>
+                            <input type="date" name="expireAt" id="couponDate" class="form-control mt-2 mb-3">
+                            <label>Coupon Offer</label>
+                            <input type="number" name="couponOffer" id="couponOffer" class="form-control mt-2 mb-3">
+                            <p id="Err" style="color: red;"></p>
+
+                            <input type="submit" value="Add Coupon" class="btn btn-success btn-sm mt-4 mb-4">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        function validation() {
+            let cName = document.getElementById('couponName').value
+            let cCode = document.getElementById('couponCode').value
+            let cDate = document.getElementById('couponDate').value
+            let cOffer = document.getElementById('couponOffer').value
+            if (cName == "") {
+                document.getElementById("Err").innerHTML = "**please fill all field"
+                return false
+            } else if (cCode == "") {
+                document.getElementById("Err").innerHTML = "**please fill all field"
+                return false
+            } else if (cDate == "") {
+                document.getElementById("Err").innerHTML = "**please fill all field"
+                return false
+            } else if (cOffer == "") {
+                document.getElementById("Err").innerHTML = "**please fill all field"
+                return false
+            } else if (parseInt(cOffer) < 1 || parseInt(cOffer) > 100) {
+                document.getElementById("Err").innerHTML = "**offer value must beteen 1 to 99"
+                return false
+            }
+
+        }
+    </script>
+
+    <script>
+        $(function () {
+            var dtToday = new Date();
+
+            var month = dtToday.getMonth() + 1;
+            var day = dtToday.getDate();
+            var year = dtToday.getFullYear();
+            if (month < 10)
+                month = '0' + month.toString();
+            if (day < 10)
+                day = '0' + day.toString();
+
+            var maxDate = year + '-' + month + '-' + day;
+
+            // or instead:
+            // var maxDate = dtToday.toISOString().substr(0, 10);
+
+
+            $('#couponDate').attr('min', maxDate);
+        });
+
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <!-- plugins:js -->
+    <script src="vendors/base/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page-->
+    <script src="vendors/chart.js/Chart.min.js"></script>
+    <!-- End plugin js for this page-->
+    <!-- inject:js -->
+    <script src="js/off-canvas.js"></script>
+    <script src="js/hoverable-collapse.js"></script>
+    <script src="js/template.js"></script>
+    <script src="js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="js/dashboard.js"></script>
+    <!-- End custom js for this page-->
+
+</section>
+<script src="sweetalert2.all.min.js"></script>
+
+
+
+<script>
+    function deleteCoupon(couponId) {
+
+
+        Swal.fire({
+            title: 'Are you sure to delete this coupon?',
+            showDenyButton: true,
+            showCancelButton: false,
+            confirmButtonText: 'Delete',
+            denyButtonText: `Cancel`,
+        }).then((result) => {
+
+            if (result.isConfirmed) {
+
+                $.ajax({
+                    url: "/admin//deleteCoupon",
+                    data: {
+                        couponId: couponId
+                    },
+                    method: "post",
+                    success: (res) => {
+                        console.log("come to success part")
+                        console.log(res)
+                        if (res.removeCoupon) {
+                            Swal.fire('coupon  deleted!', '', 'success')
+                            location.reload()
+                        } else {
+                            Swal.fire('Somthing went to wrong coupon not deleted!', '', 'error')
+                        }
+                    }
+                })
+            } else if (result.isDenied) {
+                Swal.fire('Coupon is not deleted', '', 'success')
+            }
+        })
+
+    }
+</script>

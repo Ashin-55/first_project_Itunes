@@ -1,0 +1,120 @@
+<section>
+
+    <div class="container-fluid page-body-wrapper">
+       
+       
+       {{>adminSidebar}}
+
+        <div class="content-wrapper">
+            <div class="row">
+                <div class="col-md-12 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title mb-0">All Brands</h3>
+                            <div class="table-responsive">
+
+                                <table class="table table-hover">
+
+                                    <thead>
+                                        <tr>
+                                            {{!-- <th>no</th> --}}
+                                            <th>Brand Image</th>
+                                            <th>Brand ID</th>
+                                            <th>Brand Name</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        {{#each brand}}
+                                        <tr>
+                                            {{!-- <td></td> --}}
+                                            <td> <img src="/brand-image/{{this._id}}_1.jpg" alt=""
+                                                    style="width: 4rem; height: 4rem; border-radius: 0px;"> </td>
+                                            <td>{{this._id}}</td>
+                                            <td>{{this.brandName}}</td>
+                                    
+                                            <td><a href="/admin/editBrand/{{this._id}}" style="color: green;"><i
+                                                        style="height: 30px;" class="bi bi-pencil-fill"></i></a>
+                                                &nbsp; &nbsp;&nbsp; <a 
+                                                    style="color: red; height: 2em;"
+                                                    onclick=" deleteBrand('{{this._id}}')"><i
+                                                        class="bi bi-trash-fill"></i></a>
+                                            </td>
+
+                                            {{!-- <td>{{this.Brand}}</td> --}}
+
+                                        </tr>
+                                     {{/each}}
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- plugins:js -->
+    <script src="vendors/base/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page-->
+    <script src="vendors/chart.js/Chart.min.js"></script>
+    <!-- End plugin js for this page-->
+    <!-- inject:js -->
+    <script src="js/off-canvas.js"></script>
+    <script src="js/hoverable-collapse.js"></script>
+    <script src="js/template.js"></script>
+    <script src="js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="js/dashboard.js"></script>
+    <!-- End custom js for this page-->
+</section>
+ <script src="sweetalert2.all.min.js"></script>
+
+
+<script>
+    function deleteBrand(brandId) {
+      
+
+        Swal.fire({
+            title: 'Are you sure to delete this brand?',
+            showDenyButton: true,
+            showCancelButton: false,
+            confirmButtonText: 'Delete',
+            denyButtonText: `Cancel`,
+        }).then((result) => {
+            
+            if (result.isConfirmed) {
+                
+                $.ajax({
+                    url:"/admin/deleteBrand",
+                    data: {
+                        brandId: brandId
+                    },
+                    method: "post",
+                    success: (res) => {
+                        console.log("come to success part")
+                        console.log(res)
+                        if (res.removeBrand) {
+                             Swal.fire('Brand  deleted!', '', 'success')
+                             location.reload()
+                        } else {
+                             Swal.fire('Somthing went to wrong brand not deleted!', '', 'error')
+                        }
+                    }
+                })
+            } else if (result.isDenied) {
+                Swal.fire('brand is not deleted', '', 'success')
+            }
+        })
+
+    }
+</script>

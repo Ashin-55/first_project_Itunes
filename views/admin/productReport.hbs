@@ -1,0 +1,117 @@
+<section>
+    <div class="container-fluid page-body-wrapper">
+        {{>adminSidebar}}
+
+        <div class="content-wrapper">
+            <div class="row">
+                <div class="col-md-12 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class=" mb-0">Product Report</h3>
+                            <div class="text-right">
+                                <button class="btn btn-primary btn-icon-text btn-rounded mt-3 "
+                                    onclick="return print()">
+                                    <i class="ti-clipboard btn-icon-prepend"></i>Report pdf
+                                </button>
+                            </div>
+                            <div class="text-right">
+                                <button class="btn btn-primary btn-icon-text btn-rounded mt-1" id="exlButton"
+                                    onclick="excelPrint('xlsx');">
+                                    <i class="ti-clipboard btn-icon-prepend"></i>Report xlsx
+                                </button>
+                            </div>
+                            <div class="table-responsive mt-5" id="element-to-print">
+                                <table class="table table-success table-striped" id="myTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Product</th>
+                                            <th>Prize</th>
+                                            <th>Category</th>
+                                            <th>Available Stocks</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#each product}}
+                                        <tr>
+                                            <td>
+                                                <div class="ms-3">
+                                                    <img src="/product-image/{{this._id}}_1.png"
+                                                        style="height: 4em;width: 4em;border-radius: 0px;">
+                                                </div>
+                                                <div class="mt-1     mb-1">
+                                                    <b> {{this.Name}}</b>
+                                                </div>
+                                            </td>
+                                            <td>{{this.Prize}}</td>
+                                            <td> {{this.Category}}</td>
+                                            <td>{{this.Quantity}}</td>
+
+                                        </tr>
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- plugins:js -->
+<script src="vendors/base/vendor.bundle.base.js"></script>
+<!-- endinject -->
+<!-- Plugin js for this page-->
+<script src="vendors/chart.js/Chart.min.js"></script>
+<!-- End plugin js for this page-->
+<!-- inject:js -->
+<script src="js/off-canvas.js"></script>
+<script src="js/hoverable-collapse.js"></script>
+<script src="js/template.js"></script>
+<script src="js/todolist.js"></script>
+<!-- endinject -->
+<!-- Custom js for this page-->
+<script src="js/dashboard.js"></script>
+<!-- End custom js for this page-->
+
+{{!-- cdn of print the page --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+    integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</section>
+
+<script>
+
+    function print() {
+        var element = document.getElementById('element-to-print');
+        var opt = {
+            margin: 1,
+            filename: 'itunsProduct-report.pdf',
+            image: { type: 'jpeg', quality: 1 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: 'in', format: 'b4', orientation: 'Portrait' }
+        };
+        var worker = html2pdf().set(opt).from(element).save();
+
+    }
+
+</script>
+<script>
+
+    function excelPrint(type, fn, dl) {
+        console.log("function Called")
+        var elt = document.getElementById('myTable');
+        var wb = XLSX.utils.table_to_book(elt, { sheet: "Sheet JS" });
+        return dl ?
+            XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }) :
+            XLSX.writeFile(wb, fn || ('itunes.' + (type || 'xlsx')));
+    }
+
+</script>
+
+
+<script>
+    $(document).ready(function () {
+        $('#myTable').DataTable();
+    });
+</script>

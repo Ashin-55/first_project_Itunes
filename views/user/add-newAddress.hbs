@@ -1,0 +1,152 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <h2 class="d-felx justify-content-centre">Add New Address</h2>
+            <form class="address-from mt-3" method="post" action="/profile" onsubmit="return addressFormValidation()">
+                <fieldset>
+                    <h2 class="login-title mb-3">Address details</h2>
+                    <div class="row">
+                        <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                            <label for="input-firstname1">First Name <span class="required-f">*</span></label>
+                            <input name="firstName" value="" id="firstName" type="text">
+                        </div>
+                        <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                            <label for="input-lastname1">Last Name <span class="required-f">*</span></label>
+                            <input name="lastName" value="" id="lastName" type="text">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                            <label for="input-email1">E-Mail <span class="required-f">*</span></label>
+                            <input name="email" value="" id="email" type="email">
+                        </div>
+                        <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                            <label for="input-telephone1">Mobile <span class="required-f">*</span></label>
+                            <input name="mobilePhone" value="" id="mobilePhone" type="tel">
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                            <label for="input-address-11">Address <span class="required-f">*</span></label>
+                            <input name="address1" value="" id="address1" type="text">
+                        </div>
+                        <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                            <label for="input-city1">City <span class="required-f">*</span></label>
+                            <input name="city" value="" id="city" type="text">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                            <label for="input-postcode1">Post Code <span class="required-f">*</span></label>
+                            <input name="pinCode" value="" id="pinCode" type="text">
+                        </div>
+                        <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                            <label for="input-country1">Country <span class="required-f">*</span></label>
+                            <input name="Country" value="" id="Country" type="text">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12 col-lg-12 col-xl-12 required">
+                            <label for="input-zone1"> State <span class="required-f">*</span></label>
+                            <input name="state" value="" id="state" type="text">
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12 col-lg-12 col-xl-12 required">
+
+                            <input type="text" id="userid" name="userid" value="{{user._id}}" hidden>
+                        </div>
+                        <div class="form-group col-md-12 col-lg-12 col-xl-12 required">
+                            {{#each getAddress}}
+                            <input type="text" id="_id" name="_id" value="{{this._id}}" hidden>
+                            {{/each}}
+                        </div>
+                    </div>
+                    <p style="color:red;font-family: 'Times New Roman', Times, serif;" id="error"></p>
+                    <button type="submit" class="btn mt-1"><span>Add
+                            Address</span></button>
+                </fieldset>
+            </form>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+
+<script>
+    function addressFormValidation() {
+        let fname = document.getElementById("firstName").value;
+        let sname = document.getElementById("lastName").value;
+        let email = document.getElementById("email").value;
+        let mobile = document.getElementById('mobilePhone').value;
+        let address = document.getElementById("address1").value;
+        let city = document.getElementById("city").value;
+        let pincode = document.getElementById("pinCode").value;
+        let country = document.getElementById("Country").value;
+        let state = document.getElementById("state").value;
+
+
+        if (fname == "") {
+
+            document.getElementById("error").innerHTML = "**Enter your First Name ";
+            return false
+
+        } else if (sname == "") {
+
+            document.getElementById("error").innerHTML = "**Enter your Second Name";
+            return false
+
+        } else if (email == "") {
+
+            document.getElementById("error").innerHTML = "**Enter your Email Address";
+            return false;
+
+        } else if (email.indexOf("@") <= 0) {
+
+            document.getElementById("error").innerHTML = "*invalid emailid"
+            return false
+
+        } else if (mobile == "") {
+
+            document.getElementById("error").innerHTML = "**enter your Mobile number";
+            return false
+
+        } else if (mobile == NaN) {
+
+            document.getElementById("error").innerHTML = "**Enter your mobile number in valid format";
+            return false
+
+        } else if (mobile.length > 10) {
+
+            document.getElementById("error").innerHTML = "**Enter an valid mobile number";
+            return false;
+
+        } else if (address == "") {
+
+            document.getElementById("error").innerHTML = "**Enter your address";
+            return false
+
+        } else if (city == "") {
+
+            document.getElementById("error").innerHTML = "**enter your city name";
+            return false
+
+        } else if (pincode == "") {
+
+            document.getElementById("error").innerHTML = "**Enter your Pincode";
+            return false;
+
+        } else if (country == "") {
+
+            document.getElementById("error").innerHTML = "**enter your county Name";
+            return false;
+
+        } else if (state == "") {
+            document.getElementById("error").innerHTML = "**Enter your State name";
+            return false
+        }
+    }
+</script>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>iTunes Admin</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="../../admin/vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" href="../../admin/vendors/base/vendor.bundle.base.css">
+  <!-- endinject -->
+
+  <!-- plugin css for this page -->
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href=" ../../admin/css/style.css">
+  <!-- endinject -->
+  <link rel="stylesheet" href=" ../../admin/css/previewImg.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+  {{!-- sweet alert --}}
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+
+  {{!--
+  <script type="text/javascript" charset="utf8"
+    src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script> --}}
+
+  <link rel="stylesheet" href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+
+  <script src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js" defer></script>
+
+  {{!-- hhhhhhhhhhhhhhhhhhhh --}}
+  <title>Crop Image Before Upload using CropperJS </title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://unpkg.com/dropzone/dist/dropzone.css" />
+  <link href="https://unpkg.com/cropperjs/dist/cropper.css" rel="stylesheet" />
+  <script src="https://unpkg.com/dropzone"></script>
+  <script src="https://unpkg.com/cropperjs"></script>
+
+
+  <script type="text/javascript" src="//unpkg.com/xlsx/dist/shim.min.js"></script>
+  <script type="text/javascript" src="//unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+
+
+</head>
+
+<body>
+
+  {{#if admin}}
+  {{>admin-header}}
+  {{/if}}
+
+  {{{body}}}
+  {{#if admin}}
+  {{>admin-footer}}
+  {{/if}}
+
+
+
+
+
+
+</body>
+
+</html>

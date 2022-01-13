@@ -1,0 +1,96 @@
+<style>
+    .card {
+        width: 23rem;
+        padding: 10px;
+        border-radius: 20px;
+        background: #fff;
+        border: none;
+        height: 27rem;
+        position: relative
+    }
+
+    .container {
+        height: 100vh
+    }
+
+    body {
+        background: #eee
+    }
+
+    .mobile-text {
+        color: #989696b8;
+        font-size: 15px
+    }
+
+    .form-control {
+        margin-right: 12px
+    }
+
+    .form-control:focus {
+        color: #495057;
+        background-color: #fff;
+        border-color: #ff8880;
+        outline: 0;
+        box-shadow: none
+    }
+
+    .cursor {
+        cursor: pointer
+    }
+</style>
+
+
+<div class="d-flex justify-content-center align-items-center container ">
+    <div class="card py-5 px-3 shadow-lg">
+        <h5 class="m-0" style="text-align: center;">Mobile phone verification</h5><span class="mobile-text"
+            style="text-align: center;">Enter the code we just send on your
+            mobile phone <b class="text-danger"></b></span>
+        <div class="d-flex flex-row mt-5"><input type="text" class="form-control" autofocus="" maxlength="1"><input
+                type="text" class="form-control" maxlength="1"><input type="text" class="form-control"
+                maxlength="1"><input type="text" class="form-control" maxlength="1">
+        </div>
+        {{#if userWrongOTPErr}}
+        <p style="color: red;font-family: 'Times New Roman', Times, serif;">{{userWrongOTPErr}}
+        </p>
+        {{/if}}
+        <div class="m-3" style="text-align: center;"> <span id="timer"></span></div>
+
+        <div class="text-left col-12 col-sm-12 col-md-12 col-lg-12 ">
+            <p style="text-align: center;"> <input type="submit" class="btn mt-2 btn-sm " value="Verify OTP"></p>
+
+            <p class="" style="text-align: center;">
+                <a href="/login">« Back To Login Page</a>
+            </p>
+        </div>
+        <div class="text-center mt-2"><span class="d-block mobile-text">Don't receive the code?</span><span
+                class="font-weight-bold text-danger cursor">Resend</span></div>
+    </div>
+</div>
+
+
+<script>
+    let timerOn = true;
+    function timer(remaining) {
+        var m = Math.floor(remaining / 60);
+        var s = remaining % 60;
+
+        m = m < 10 ? '0' + m : m;
+        s = s < 10 ? '0' + s : s;
+        document.getElementById('timer').innerHTML = m + ':' + s;
+        remaining -= 1;
+        if (remaining >= 0 && timerOn) {
+            setTimeout(function () {
+                timer(remaining);
+            }, 1000);
+            return;
+        }
+        if (!timerOn) {
+            // Do validate stuff here
+            return;
+        }
+        // Do timeout stuff here
+    }
+
+    timer(120);
+
+</script>

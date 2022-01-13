@@ -1,0 +1,689 @@
+<style>
+    /* .image_area {
+		  position: relative;
+		} */
+
+    img {
+        display: block;
+        max-width: 100%;
+    }
+
+    .preview {
+        overflow: hidden;
+        width: 160px;
+        height: 160px;
+        margin: 10px;
+        border: 1px solid red;
+    }
+
+    .modal-lg {
+        max-width: 1000px !important;
+    }
+
+    .overlay {
+        position: absolute;
+        bottom: 10px;
+        left: 0;
+        right: 0;
+        background-color: rgba(255, 255, 255, 0.5);
+        overflow: hidden;
+        height: 0;
+        transition: .5s ease;
+        width: 100%;
+    }
+
+    .image_area:hover .overlay {
+        height: 50%;
+        cursor: pointer;
+    }
+
+    .text {
+        color: #333;
+        font-size: 20px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+</style>
+
+<section>
+    <div class="container-scroller">
+        <!-- partial:partials/_navbar.html -->
+        <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+                <a class="navbar-brand brand-logo mr-5" href="#"><span style="color: red;">i</span>Tunes</a>
+                <a class="navbar-brand brand-logo-mini" href="#"><span style="color: red;">i</span>Tunes</a>
+            </div>
+            <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+                <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                    <span class="ti-view-list"></span>
+                </button>
+
+                <ul class="navbar-nav navbar-nav-right">
+
+                    <li class="nav-item nav-profile dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+                            {{!-- <img src="images/faces/face28.jpg" alt="profile" /> --}}Profile
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
+                            aria-labelledby="profileDropdown">
+
+                            <a class="dropdown-item" href="/admin/logout">
+                                <i class="ti-power-off text-primary"></i>
+                                Logout
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+                    data-toggle="offcanvas">
+                    <span class="ti-view-list"></span>
+                </button>
+            </div>
+        </nav>
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+            <!-- partial:partials/_sidebar.html -->
+            <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin">
+                            <i class="ti-shield menu-icon"></i>
+                            <span class="menu-title">Dashboard</span>
+                        </a>
+                    </li>
+                    {{!-- product management start --}}
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false"
+                            aria-controls="ui-basic">
+                            <i class="ti-control-record menu-icon"></i>
+                            <span class="menu-title">Product Mangement</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="ui-basic">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="/admin/view-allProduct">View All
+                                        Products</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="/admin/add-product">Add Products</a>
+                                </li>
+                                <li class="nav-item"> <a class="nav-link" href="/admin/category">Manage
+                                        Category</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    {{!-- product management end --}}
+
+                    {{!-- Brand management start --}}
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false"
+                            aria-controls="ui-basic">
+                            <i class="ti-control-record menu-icon"></i>
+                            <span class="menu-title">Brand Mangement</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="ui-basic">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="#">View All
+                                        Brand</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="/admin/addBrand">Add New Brand</a>
+                                </li>
+                                {{!-- <li class="nav-item"> <a class="nav-link" href="/admin/category">Manage
+                                        brands</a></li> --}}
+                            </ul>
+                        </div>
+                    </li>
+                    {{!-- Brand management end --}}
+
+                    {{!-- user mangement start --}}
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#ui-basic2" aria-expanded="false"
+                            aria-controls="ui-basic">
+                            <i class="ti-control-record menu-icon"></i>
+                            <span class="menu-title">User Mangement</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="ui-basic2">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="/admin/view-allUser">All User</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="/admin/view-blockedUser">All Blocked
+                                        User</a></li>
+
+                            </ul>
+                        </div>
+                    </li>
+                    {{!-- user management ends --}}
+
+                    {{!-- offer mangement start --}}
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#ui-basic3" aria-expanded="false"
+                            aria-controls="ui-basic">
+                            <i class="ti-control-record menu-icon"></i>
+                            <span class="menu-title">Offer Mangement</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="ui-basic3">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="/admin/coupon">Coupon</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="/admin/productOffer">Product Offer</a>
+                                </li>
+                                <li class="nav-item"> <a class="nav-link" href="/admin/categoryOffer">Category Offer</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    {{!-- offer management ends --}}
+
+                    {{!-- banner mangement start --}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/banner">
+                            <i class="ti-layout-list-post menu-icon"></i>
+                            <span class="menu-title">Banner Mangement</span>
+                        </a>
+                    </li>
+                    {{!-- banner mangement ends --}}
+
+                    {{!-- reports starts --}}
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false"
+                            aria-controls="auth">
+                            <i class="ti-trello menu-icon"></i>
+                            <span class="menu-title">Reports</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="auth">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="/admin/salesReport"> Sales Report
+                                    </a></li>
+                                <li class="nav-item"> <a class="nav-link" href="/admin/productReport"> Product Report
+                                    </a></li>
+
+                            </ul>
+                        </div>
+                    </li>
+                    {{!-- reports ends --}}
+
+                    {{!-- LOGOUT START --}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/logout">
+                            <i class=" menu-icon"></i>
+                            <span class="menu-title">LOGOUT</span>
+                        </a>
+                    </li>
+                    {{!-- LOGOUT ENDS --}}
+                </ul>
+            </nav>
+
+            <!-- partial -->
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    <div class="row">
+                        <div class="col-md-12 grid-margin">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h4 class="font-weight-bold mb-0"> Add Product</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 grid-margin stretch-card">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h3 class="card-title mb-4"> Products Details</h3>
+
+                                    <div class="container">
+                                        <form method="post" action="/admin/add-product" enctype="multipart/form-data"
+                                            onsubmit="return Validation()">
+                                            <label>Product Name</label>
+
+                                            <input type="text" id="Name" name="Name" class="form-control mt-2 mb-3">
+                                            <p id="proNameErr"
+                                                style="color: red; font-family: 'Times New Roman', Times, serif"> </p>
+                                            <label>Product Discription</label>
+
+                                            <input type="text" id="Discription" name="Discription"
+                                                class="form-control mt-2 mb-3">
+                                            <label>Product Sub Discription</label>
+
+                                            <input type="text" id="subDiscription" name="subDiscription"
+                                                class="form-control mt-2 mb-3">
+                                            <p id="proDiscriptionErr"
+                                                style="color: red; font-family: 'Times New Roman', Times, serif"> </p>
+
+                                            <label>Landing Cost</label>
+
+                                            <input type="number" id="LandingCost" name="LandingCost"
+                                                class="form-control mt-2 mb-3">
+                                            <p id="proLandingCostErr"
+                                                style="color: red; font-family: 'Times New Roman', Times, serif"> </p>
+                                            <label for="">Prize</label>
+
+                                            <input type="number" id="Prize" name="Prize" class="form-control mt-2 mb-3"
+                                                maxlength="6">
+                                            {{!-- <label for="">Old Prize</label> --}}
+
+                                            {{!-- <input type="number" id="oldPrize" name="oldPrize"
+                                                class="form-control mt-2 mb-3" maxlength="6"> --}}
+                                            <p id="proPrizeErr"
+                                                style="color: red; font-family: 'Times New Roman', Times, serif"> </p>
+                                            <label for="">Quantity</label>
+
+
+                                            <input type="number" id="Quantity" name="Quantity"
+                                                class="form-control mt-2 mb-3" maxlength="3">
+                                            <p id="proQuantityErr"
+                                                style="color: red; font-family: 'Times New Roman', Times, serif"> </p>
+
+                                            <div class="row mt-5 mb-5">
+                                                <div class="col-md-5">
+                                                    <label for="Category">Select the category:</label>
+                                                    <select id="Category" name="Category">
+                                                        {{#each category}}
+                                                        <option value="{{this.Name}}">{{this.Name}}</option>
+                                                        {{/each}}
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <label for="Rom">Select the ROM:</label>
+                                                    <select id="Rom" name="Rom">
+                                                        <option value="other">other</option>
+                                                        <option value="16GB">16 GB</option>
+                                                        <option value="32GB">32 GB</option>
+                                                        <option value="64GB">64 GB</option>
+                                                        <option value="128GB">128 GB</option>
+                                                        <option value="256GB">256 GB</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label for="brandName">Select the brand:</label>
+                                                    <select id="brandName" name="brandName">
+                                                        {{#each brand}}
+                                                        <option value="{{this.brandName}}">{{this.brandName}}</option>
+                                                        {{/each}}
+                                                    </select>
+                                                </div>
+
+                                            </div>
+                                            <div class="row ">
+                                                <div class="col-12 mb-4">
+                                                    <label for="color">Product the Color:</label>
+                                                    <input type="text" id="Color" name="Color">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div id="image-box1"
+                                                        style="width: 300px; height: 300px; display: none;"></div>
+                                                    <button class="btn btn-primary mt-3" type="button"
+                                                        style="display: none;" id="crop-btn1">Crop</button>
+                                                </div>
+
+                                                <div class=" col-md-6 mt-3">
+                                                    <label for="">Image 1</label>
+                                                    <img src="" alt="" style="width: 6em;height:auto display: none;"
+                                                        id="imgview1">
+                                                    <input type="file" id="file1" class="form-control mt-1 mb-2"
+                                                        name="Image1" onchange='return fileValidation1() ' />
+                                                </div>
+                                                <div class=" col-md-6 mt-3">
+                                                    <label for="">Image 2</label>
+                                                    <img src="" alt="" style="width: 6em;height:auto display: none;"
+                                                        id="imgview2">
+                                                    <input type="file" id="file2" class="form-control mt-1 mb-1"
+                                                        name="Image2" onchange="return fileValidation2()">
+                                                </div>
+                                                <div class="col-md-6 mt-3 ">
+                                                    <label for="">Image 3</label>
+                                                    <img src="" alt="" style="width: 6em;height:auto display: none;"
+                                                        id="imgview3">
+                                                    <input type="file" id="file3" class="form-control mt-1 mb-1"
+                                                        name="Image3" onchange="return fileValidation3()">
+                                                </div>
+                                                <div class="col-md-6 mt-3">
+                                                    <label for="">Image 4</label>
+                                                    <img src="" alt="" style="width: 6em;height:auto display: none;"
+                                                        id="imgview4">
+                                                    <input type="file" id="file4" class="form-control mt-1 mb-1"
+                                                        name="Image4" onchange="return fileValidation4()">
+                                                </div>
+
+                                            </div>
+                                            <input type="submit" value="Add Product" class="btn btn-success mt-1 mb-4"
+                                                id="confirm-btn1">
+                                            <p id="proImageErr"
+                                                style="color: red; font-family: 'Times New Roman', Times, serif"> </p>
+
+
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- content-wrapper ends -->
+
+            </div>
+            <!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+
+
+    <script>
+        function Validation() {
+
+            console.log("validation function caled")
+
+            let proName = document.getElementById('Name').value
+            let proDiscription = document.getElementById('Discription').value
+            let subProDiscription = document.getElementById('subDiscription').value
+            let proLandingCost = document.getElementById('LandingCost').value
+            let proPrize = document.getElementById('Prize').value
+            let oldProPrize = document.getElementById('oldPrize').value
+            let proQuantity = document.getElementById('Quantity').value
+            let proColor = document.getElementById('Color').value
+            let image1 = document.getElementById("file1").value
+            let image2 = document.getElementById("file2").value
+            let image3 = document.getElementById("file3").value
+            let image4 = document.getElementById("file4").value
+
+            if (proName == "") {
+
+                document.getElementById('proNameErr').innerHTML = "**field must be filled"
+                return false;
+            } else if (proDiscription == "") {
+                document.getElementById('proDiscriptionErr').innerHTML = '**this field must be filled'
+                return false;
+            } else if (subProDiscription == "") {
+                document.getElementById('proDiscriptionErr').innerHTML = '**this sub discription field must be filled'
+                return false;
+            } else if (proLandingCost == "") {
+                document.getElementById('proLandingCostErr').innerHTML = '**rnter the landing cost of product'
+                return false;
+            } else if (proPrize == "") {
+                document.getElementById('proPrizeErr').innerHTML = "**this field must be filled"
+                return false;
+            }
+            //  else if (oldProPrize == "") {
+            //   document.getElementById('proPrizeErr').innerHTML = "**this old prize field must be filled"
+            // return false;
+            // } 
+            else if (proQuantity == "") {
+                document.getElementById('proQuantityErr').innerHTML = "**Enter the quantity of product"
+                return false;
+            } else if (proColor == "") {
+                document.getElementById('proImageErr').innerHTML = "**Enter Color of the product"
+                return false;
+            } else if (image1 == "") {
+                document.getElementById("proImageErr").innerHTML = "** uplode first Image"
+                return false;
+            } else if (image2 == "") {
+                document.getElementById("proImageErr").innerHTML = "** uplode secound Image"
+                return false;
+            } else if (image3 == "") {
+                document.getElementById("proImageErr").innerHTML = "** uplode third Image"
+                return false;
+            } else if (image4 == "") {
+                document.getElementById("proImageErr").innerHTML = "** uplode fourth image"
+                return false;
+            }
+
+        }
+    </script>
+
+    <script>
+        function fileValidation1() {
+            console.log("fileCrop called")
+            const imagebox = document.getElementById("image-box1")
+            const crop_btn = document.getElementById("crop-btn1")
+            var fileInput = document.getElementById("file1")
+
+
+            var filePath = fileInput.value;
+            var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+            if (!allowedExtensions.exec(filePath)) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'error...',
+                    text: 'only image file can uplode !',
+                })
+                fileInput.value = '';
+                return false;
+            } else {
+                //image preview
+                const img_data = fileInput.files[0]
+                const url = URL.createObjectURL(img_data)
+                imagebox.innerHTML = `<img src="${url}" id="image" style="width:100%;">`
+                const image = document.getElementById('image')
+                document.getElementById('image-box1').style.display = 'block'
+                document.getElementById("crop-btn1").style.display = 'block'
+                document.getElementById('confirm-btn1').style.display = "none"
+
+                const cropper = new Cropper(image, {
+                    autoCropArea: 1,
+                    viewMode: 1,
+                    scalable: false,
+                    zoomable: false,
+                    movable: false,
+                    //aspectRatio: 16 / 19,
+                    //  preview: '.preview',
+                    minCropBoxWidth: 180,
+                    minCropBoxHeight: 240,
+                })
+                crop_btn.addEventListener("click", () => {
+                    cropper.getCroppedCanvas().toBlob((blob) => {
+                        let fileInputElement = document.getElementById("file1");
+                        let file = new File([blob], img_data.name, { type: "image/*", lastModified: new Date().getTime() });
+                        let container = new DataTransfer();
+
+                        container.items.add(file);
+                        const img = container.files[0]
+                        var url = URL.createObjectURL(img)
+                        fileInputElement.files = container.files;
+                        document.getElementById("imgview1").style.display = "block"
+                        document.getElementById("imgview1").src = url
+                        document.getElementById("image-box1").style.display = "none"
+                        document.getElementById('crop-btn1').style.display = "none"
+                        document.getElementById('confirm-btn1').style.display = "block"
+                    }, "image/webp", 0.5);
+                });
+            }
+        }
+
+        function fileValidation2() {
+            console.log("filecrop2 called")
+            const imagebox = document.getElementById("image-box1")
+            const crop_btn = document.getElementById('crop-btn1')
+            var fileInput = document.getElementById("file2")
+
+            var filePath = fileInput.value;
+            var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+            if (!allowedExtensions.exec(filePath)) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'error...',
+                    text: 'only image file can uplode !',
+                })
+                fileInput.value = '';
+                return false;
+            } else {
+                const img_data = fileInput.files[0]
+                const url = URL.createObjectURL(img_data)
+                imagebox.innerHTML = `<img src="${url}" id="image" style="width:100%";>`
+                const image = document.getElementById('image')
+                document.getElementById('image-box1').style.display = 'block'
+                document.getElementById("crop-btn1").style.display = 'block'
+                document.getElementById('confirm-btn1').style.display = 'none'
+
+                const cropper = new Cropper(image, {
+                    autoCropArea: 1,
+                    viewMode: 1,
+                    scalable: false,
+                    zoomable: false,
+                    movable: false,
+                    //aspectRatio: 16 / 19,
+                    //  preview: '.preview',
+                    minCropBoxWidth: 150,
+                    minCropBoxHeight: 240,
+                })
+                crop_btn.addEventListener("click", () => {
+                    cropper.getCroppedCanvas().toBlob((blob) => {
+                        let fileInputElement = document.getElementById('file2');
+                        let file = new File([blob], img_data.name, { type: "image/*", lastModified: new Date().getTime() })
+                        let container = new DataTransfer();
+
+                        container.items.add(file);
+                        const img = container.files[0]
+                        var url = URL.createObjectURL(img)
+                        fileInputElement.files = container.files;
+                        document.getElementById("imgview2").style.display = "block"
+                        document.getElementById("imgview2").src = url
+                        document.getElementById("image-box1").style.display = "none"
+                        document.getElementById('crop-btn1').style.display = "none"
+                        document.getElementById('confirm-btn1').style.display = 'block'
+                    }, 'image/webp', 0.5);
+                })
+            }
+        }
+
+        function fileValidation3() {
+            console.log("file validation 3 called")
+            const imagebox = document.getElementById("image-box1")
+            const crop_btn = document.getElementById("crop-btn1")
+            var fileInput = document.getElementById("file3")
+
+            var filePath = fileInput.value
+            var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+            if (!allowedExtensions.exec(filePath)) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'error...',
+                    text: 'only image file can uplode !',
+                })
+                fileInput.value = ""
+                return false;
+            } else {
+                const img_data = fileInput.files[0]
+                const url = URL.createObjectURL(img_data)
+                imagebox.innerHTML = `<img src="${url}" id="image" style="width:100%;">`
+                const image = document.getElementById("image")
+                document.getElementById('image-box1').style.display = 'block'
+                document.getElementById("crop-btn1").style.display = 'block'
+                document.getElementById('confirm-btn1').style.display = "none"
+                const cropper = new Cropper(image, {
+                    autoCropArea: 1,
+                    viewMode: 1,
+                    scalable: false,
+                    zoomable: false,
+                    movable: false,
+                    // aspectRatio: 16 / 9,
+                    //  preview: '.preview',
+                    minCropBoxWidth: 180,
+                    minCropBoxHeight: 240,
+                })
+                crop_btn.addEventListener("click", () => {
+                    cropper.getCroppedCanvas().toBlob((blob) => {
+                        let fileInputElement = document.getElementById("file3");
+                        let file = new File([blob], img_data.name, { type: "image/*", lastModified: new Date().getTime() });
+                        let container = new DataTransfer();
+
+                        container.items.add(file);
+                        const img = container.files[0]
+                        var url = URL.createObjectURL(img)
+                        fileInputElement.files = container.files;
+                        document.getElementById("imgview3").style.display = "block"
+                        document.getElementById("imgview3").src = url
+                        document.getElementById("image-box1").style.display = "none"
+                        document.getElementById('crop-btn1').style.display = "none"
+                        document.getElementById('confirm-btn1').style.display = "block"
+                    }, "image/webp", 0.5);
+                });
+            }
+        }
+
+        function fileValidation4() {
+            console.log("filecrop 4 is called")
+            const imagebox = document.getElementById("image-box1")
+            const crop_btn = document.getElementById("crop-btn1")
+            var fileInput = document.getElementById("file4")
+
+            var filePath = fileInput.value
+            var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+            if (!allowedExtensions.exec(filePath)) {
+                swal.fire({
+                    icon: 'error',
+                    title: 'error...',
+                    text: 'only image file can uplode !',
+                })
+                fileInput.value = "";
+                return false;
+            } else {
+                const img_data = fileInput.files[0]
+                const url = URL.createObjectURL(img_data)
+                imagebox.innerHTML = `<img src="${url}" id="image" style="width:100%";>`
+                const image = document.getElementById("image")
+                document.getElementById('image-box1').style.display = 'block'
+                document.getElementById("crop-btn1").style.display = 'block'
+                document.getElementById('confirm-btn1').style.display = "none"
+                const cropper = new Cropper(image, {
+                    autoCropArea: 1,
+                    viewMode: 1,
+                    scalable: false,
+                    zoomable: false,
+                    movable: false,
+                    // aspectRatio: 16 / 19,
+                    //  preview: '.preview',
+                    minCropBoxWidth: 180,
+                    minCropBoxHeight: 240,
+                })
+                crop_btn.addEventListener("click", () => {
+                    cropper.getCroppedCanvas().toBlob((blob) => {
+                        let fileInputElement = document.getElementById("file4");
+                        let file = new File([blob], img_data.name, { type: "image/*", lastModified: new Date().getTime() });
+                        let container = new DataTransfer();
+
+                        container.items.add(file);
+                        const img = container.files[0]
+                        var url = URL.createObjectURL(img)
+                        fileInputElement.files = container.files;
+                        document.getElementById("imgview4").style.display = "block"
+                        document.getElementById("imgview4").src = url
+                        document.getElementById("image-box1").style.display = "none"
+                        document.getElementById('crop-btn1').style.display = "none"
+                        document.getElementById('confirm-btn1').style.display = "block"
+                    }, "image/webp", 0.5);
+                });
+            }
+        }
+
+    </script>
+
+
+    <!-- plugins:js -->
+    <script src="vendors/base/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page-->
+    <script src="vendors/chart.js/Chart.min.js"></script>
+    <!-- End plugin js for this page-->
+    <!-- inject:js -->
+    <script src="js/off-canvas.js"></script>
+    <script src="js/hoverable-collapse.js"></script>
+    <script src="js/template.js"></script>
+    <script src="js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="js/dashboard.js"></script>
+    <!-- End custom js for this page-->
+</section>
+<script src="sweetalert2.all.min.js"></script>

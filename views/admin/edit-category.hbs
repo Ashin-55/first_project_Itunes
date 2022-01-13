@@ -1,0 +1,51 @@
+<section>
+
+    <div class="container-fluid page-body-wrapper">
+         {{>adminSidebar}}
+        <div class="content-wrapper">
+            <h3 class="card-title mb-4"> Edit Category </h3>
+            <div class="row p-4 justify-content-center ">
+
+                <div class=" col-8 " style="">
+                    <div class="container bg-light p-4 rounded">
+                        <form method="post" action="/admin/edit-category/{{categoryDetail._id}}" enctype="multipart/form-data" >
+                            <label>Category Name</label>
+                            <input type="text" name="Name" id="categoryName" class="form-control mt-2 mb-3"
+                                value="{{categoryDetail.Name}}">
+                           
+                             
+
+                            <input type="submit" value="submit edited Name" class="btn btn-success btn-sm mt-4 mb-4">
+
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- plugins:js -->
+    <script src="../../admin/vendors/base/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page-->
+    <script src="../../admin/vendors/chart.js/Chart.min.js"></script>
+    <!-- End plugin js for this page-->
+    <!-- inject:js -->
+    <script src="../../admin/js/off-canvas.js"></script>
+    <script src="../../admin/js/hoverable-collapse.js"></script>
+    <script src="../../admin/js/template.js"></script>
+    <script src="../../admin/js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="../../admin/js/dashboard.js"></script>
+    <!-- End custom js for this page-->
+
+</section>
+
+<script>
+    function imgChange(){
+      
+    }
+</script>

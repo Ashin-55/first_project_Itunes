@@ -1,0 +1,121 @@
+<div class="container">
+    <!-- Body Content -->
+    <div id="page-content">
+        <!--Page Title-->
+        <div class="page section-header text-center">
+            <div class="page-title">
+                <div class="wrapper">
+                    <h1 class="page-width">Order History</h1>
+                </div>
+            </div>
+        </div>
+        <!--End Page Title-->
+        <div class="container">
+            <div class="row mb-3">
+                <a href="/orderHistory" class=" d-flex justify-content-end">
+                    back to order Page
+                </a>
+            </div>
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 main-col">
+
+                    <form action="#">
+                        <div class="wishlist-table table-content ">
+                            <table class="table table-success table-striped" id="myTable">
+                                <thead>
+                                    <tr>
+                                        <th class="product-name text-center alt-font">Product</th>
+                                        <th class="product-price text-center alt-font">Date</th>
+                                        <th class="product-price text-center alt-font"> Price</th>
+                                        <th class="product-name alt-font">Qauntity</th>
+                                        <th class="product-price text-center alt-font"> Payment Method</th>
+                                        <th class="stock-status text-center alt-font">Status</th>
+                                        <th class="stock-status text-center alt-font">Actions</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each orderDetail}}
+                                    <tr>
+                                        <td class="product-thumbnail text-center">
+                                            <div>
+                                                <img src="/product-image/{{this.orderProduct._id}}_1.png"
+                                                    style="width: 4em;height: 4em;">
+                                            </div>
+                                            <div>
+                                                <p>{{this.orderProduct.Name}}</p>
+                                            </div>
+                                        </td>
+                                        <td class="product-price text-center"><span class="amount">{{this.Date}}</span>
+                                        </td>
+                                        <td class="product-price text-center"><span
+                                                class="amount">{{this.orderProduct.Prize}}</span>
+                                        </td>
+                                        <td class="product-price text-center"><span
+                                                class="amount">{{this.Products.quantity}}</span></td>
+                                        <td class="product-price text-center"><span
+                                                class="amount">{{this.Paymentmethod}}</span></td>
+                                        <td class="product-price text-center"><span
+                                                class="amount">{{this.Status}}</span></td>
+
+
+                                        <td class="product-subtotal text-center">
+
+                                            {{!-- <a href="/orderDetails/{{this._id}}"
+                                                class="btn btn-warning btn-sm">Details</a> --}}
+                                            {{#if canceled}}
+                                            <span style="color: red;">Product Allready cancelled</span>
+                                            {{else}}
+                                            <a href="/cancelProduct/{{this._id}}"
+                                                class="btn btn-sm btn-warning">Cancel</a>
+                                            {{/if}}
+
+                                        </td>
+                                    </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="recipient-name" class="col-form-label">Recipient:</label>
+                                            <input type="text" class="form-control" id="recipient-name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="message-text" class="col-form-label">Message:</label>
+                                            <textarea class="form-control" id="message-text"></textarea>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Send message</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- End Body Content -->
+</div>
+<script>
+    $(document).ready(function () {
+        $('#myTable').DataTable();
+    });
+</script>

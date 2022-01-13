@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<!-- Mirrored from template.annimexweb.com/diva/home10-minimal.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 03 Dec 2021 15:35:41 GMT -->
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>iTunes Mobile World</title>
+    <meta name="description" content="description" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Favicon -->
+
+
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="../../user/assets/css/plugins.css" />
+    <!-- Main Style CSS -->
+    <link rel="stylesheet" href="../../user/assets/css/style.css" />
+    <link rel="stylesheet" href="../../user/assets/css/responsive.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.7.2/font/bootstrap-icons.min.css"
+        integrity="sha512-1fPmaHba3v4A7PaUsComSM4TBsrrRGs+/fv0vrzafQ+Rw+siILTiJa0NtFfvGeyY5E182SDTaF5PqP+XOHgJag=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    {{!-- cropping image --}}
+
+    <link rel="stylesheet" href="https://unpkg.com/dropzone/dist/dropzone.css" />
+    <link href="https://unpkg.com/cropperjs/dist/cropper.css" rel="stylesheet" />
+    <script src="https://unpkg.com/dropzone"></script>
+    <script src="https://unpkg.com/cropperjs"></script>
+
+
+
+
+    {{!-- owl curosil --}}
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+        integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+        integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    {{!-- sweet alert --}}
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+</head>
+
+<body class="template-index diva home10-minimal">
+    <!-- Page Loader -->
+    {{!-- <div id="pre-loader"><img src="assets/images/loader.gif" alt="Loading..." /></div> --}}
+    <!-- End Page Loader -->
+
+    <!-- Page Wrapper -->
+    <div class="pageWrapper">
+        <!-- Layout boxed -->
+        <div class="layout-boxed">
+            <!-- Search Form Drawer -->
+            <div class="search">
+                <div class="search__form">
+                    <form class="search-bar__form" action="/SearchResult">
+                        <button class="go-btn search__button" type="submit"><i class="icon an an-search"></i></button>
+                        <input class="search__input" type="search" name="q" value=""
+                            placeholder="Search entire store..." aria-label="Search" autocomplete="off" />
+                    </form>
+                    <button type="button" class="search-trigger close-btn" data-bs-toggle="tooltip"
+                        data-bs-placement="left" title="Close"><i class="icon an an-times"></i></button>
+                </div>
+            </div>
+            <!-- End Search Form Drawer -->
+
+            <link rel="stylesheet" href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+
+            <script src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js" defer></script>
+
+
+            {{>user-header}}
+
+            {{{body}}}
+
+            {{#if user}}
+            {{>user-footer}}
+            {{/if}}
+
+
+
+            <!-- Including Javascript -->
+
+            {{!-- owl curosil --}}
+            {{!--
+            <script src="../../user/assets/owlcarousel/owl.carousel.min.js"></script> --}}
+
+
+
+
+            <!-- Plugins JS -->
+            <script src="../../user/assets/js/plugins.js"></script>
+
+            <!-- Main JS -->
+            <script src="../../user/assets/js/main.js"></script>
+
+
+            {{!-- extra added code for image zooming --}}
+            <!-- Photoswipe Gallery -->
+            <script src="../../user/assets/js/vendor/photoswipe.min.js"></script>
+            <script src="../../user/assets/js/vendor/photoswipe-ui-default.min.js"></script>
+            {{!-- extra added code for image zooming --}}
+
+            <script src="../../user/assets/js/script.js"></script>
+
+
+            {{!--
+            <script src="../../user/assets/js/wishlist.js"></script> --}}
+
+            {{!-- owl carosil --}}
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+                integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+                crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+            <script type="text/javascript">
+                $('.owl-carousel').owlCarousel({
+                    loop: true,
+                    margin: 5,
+                    nav: true,
+                    dots: false,
+                    autoplay: false,
+                    center: true,
+                    responsive: {
+                        0: {
+                            items: 1
+                        },
+                        600: {
+                            items: 3
+                        },
+                        1000: {
+                            items: 5
+                        }
+                    }
+                })
+            </script>
+
+
+        </div>
+        <!-- End Page Wrapper -->
+</body>
+
+<!-- Mirrored from template.annimexweb.com/diva/home10-minimal.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 03 Dec 2021 15:35:44 GMT -->
+
+</html>

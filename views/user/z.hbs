@@ -1,0 +1,1074 @@
+{{#each productValue}}
+<td class="small--hide cart-price text-center">
+    <span class="money">{{this.total}}</span>
+</td>
+{{/each}}
+
+
+
+
+
+let proImage1 = document.getElementById('Image1').value
+let proImage2 = document.getElementById("Image2").value
+let proImage3 = document.getElementById('Image3').value
+let proImage4 = document.getElementById('Image3').value
+
+
+
+
+else if(proImage1==" "){
+document.getElementById('proImagErr').innerHTML="**First Image cant Empty"
+return false
+}else if(proImage2==" "){
+document.getElementById('proImageErr').innerHTML="**Second Image cant Empty"
+return false
+}else if(proImage3==" "){
+document.getElementById('proImageErr').innerHTML="**Third Image cant Empty "
+return false
+}else if(proImage4==" "){
+document.getElementById('proImageErr').innerHTML="**Fourth Image cant Empty"
+return false
+}
+
+
+
+
+function addToWishlist(productId){
+$.ajax({
+url:"/add-to-wishlist/"+productId,
+method:"get",
+
+success:(response)=>{
+console.log(response)
+
+if(response.status){
+
+alert("item removed from wishlist")
+}else{
+alert("item added to the wishlist")
+
+}
+}
+})
+}
+
+
+
+
+
+
+<div class="container">
+
+    <!-- Body Content -->
+    <div id="page-content">
+        <!--Page Title-->
+        <div class="page section-header text-center">
+            <div class="page-title">
+                <div class="wrapper">
+                    <h1 class="page-width">Order History</h1>
+                </div>
+            </div>
+        </div>
+        <!--End Page Title-->
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 main-col">
+
+                    <form action="#">
+                        <div class="wishlist-table table-content table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th class="product-name text-center alt-font">Product</th>
+                                        <th class="product-price text-center alt-font">Date</th>
+                                        <th class="product-price text-center alt-font"> Price</th>
+                                        <th class="product-name alt-font">Qauntity</th>
+                                        <th class="product-price text-center alt-font"> Payment Method</th>
+                                        <th class="stock-status text-center alt-font">Actions</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{!-- {{#each orderDetail}} --}}
+                                    <tr>
+                                        <td class="product-thumbnail text-center">
+                                            <div>
+                                                <img src="/product-image/{{this.orderProduct._id}}"
+                                                    style="width: 6em;height: 6em;">
+                                            </div>
+                                            <div>
+                                                <p>{{this.orderProduct.Name}}</p>
+                                            </div>
+                                        </td>
+                                        <td class="product-price text-center"><span class="amount">{{this.Date}}</span>
+                                        </td>
+                                        <td class="product-price text-center"><span
+                                                class="amount">{{this.orderProduct.Prize}}</span>
+                                        </td>
+                                        <td class="product-price text-center"><span
+                                                class="amount">{{this.Products.Quantity}}</span></td>
+                                        <td class="product-price text-center"><span
+                                                class="amount">{{this.Paymentmethod}}</span></td>
+
+
+                                        <td class="product-subtotal text-center">
+
+                                            <a href="/orderDetails/{{this._id}}"
+                                                class="btn btn-warning btn-sm">Details</a>
+                                            <button onclick="#" class="btn-warning btn-sm">Cancel</button>
+                                        </td>
+                                    </tr>
+                                    {{!-- {{/each}} --}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- End Body Content -->
+</div>
+
+
+
+
+
+
+add product
+
+
+
+<section>
+    <div class="container-scroller">
+        <!-- partial:partials/_navbar.html -->
+        <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+                <a class="navbar-brand brand-logo mr-5" href="#"><span style="color: red;">i</span>Tunes</a>
+                <a class="navbar-brand brand-logo-mini" href="#"><span style="color: red;">i</span>Tunes</a>
+            </div>
+            <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+                <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                    <span class="ti-view-list"></span>
+                </button>
+                {{!-- <ul class="navbar-nav mr-lg-2">
+                    <li class="nav-item nav-search d-none d-lg-block">
+                        <div class="input-group">
+                            <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                                <span class="input-group-text" id="search">
+                                    <i class="ti-search"></i>
+                                </span>
+                            </div>
+                            <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now"
+                                aria-label="search" aria-describedby="search">
+                        </div>
+                    </li>
+                </ul> --}}
+                <ul class="navbar-nav navbar-nav-right">
+                    {{!-- <li class="nav-item dropdown mr-1">
+                        <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center"
+                            id="messageDropdown" href="#" data-toggle="dropdown">
+                            <i class="ti-email mx-0"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
+                            aria-labelledby="messageDropdown">
+                            <p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
+                            <a class="dropdown-item">
+                                <div class="item-thumbnail">
+                                    <img src="images/faces/face4.jpg" alt="image" class="profile-pic">
+                                </div>
+                                <div class="item-content flex-grow">
+                                    <h6 class="ellipsis font-weight-normal">David Grey
+                                    </h6>
+                                    <p class="font-weight-light small-text text-muted mb-0">
+                                        The meeting is cancelled
+                                    </p>
+                                </div>
+                            </a>
+                            <a class="dropdown-item">
+                                <div class="item-thumbnail">
+                                    <img src="images/faces/face2.jpg" alt="image" class="profile-pic">
+                                </div>
+                                <div class="item-content flex-grow">
+                                    <h6 class="ellipsis font-weight-normal">Tim Cook
+                                    </h6>
+                                    <p class="font-weight-light small-text text-muted mb-0">
+                                        New product launch
+                                    </p>
+                                </div>
+                            </a>
+                            <a class="dropdown-item">
+                                <div class="item-thumbnail">
+                                    <img src="images/faces/face3.jpg" alt="image" class="profile-pic">
+                                </div>
+                                <div class="item-content flex-grow">
+                                    <h6 class="ellipsis font-weight-normal"> Johnson
+                                    </h6>
+                                    <p class="font-weight-light small-text text-muted mb-0">
+                                        Upcoming board meeting
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    </li> --}}
+                    {{!-- <li class="nav-item dropdown">
+                        <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
+                            data-toggle="dropdown">
+                            <i class="ti-bell mx-0"></i>
+                            <span class="count"></span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
+                            aria-labelledby="notificationDropdown">
+                            <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
+                            <a class="dropdown-item">
+                                <div class="item-thumbnail">
+                                    <div class="item-icon bg-success">
+                                        <i class="ti-info-alt mx-0"></i>
+                                    </div>
+                                </div>
+                                <div class="item-content">
+                                    <h6 class="font-weight-normal">Application Error</h6>
+                                    <p class="font-weight-light small-text mb-0 text-muted">
+                                        Just now
+                                    </p>
+                                </div>
+                            </a>
+                            <a class="dropdown-item">
+                                <div class="item-thumbnail">
+                                    <div class="item-icon bg-warning">
+                                        <i class="ti-settings mx-0"></i>
+                                    </div>
+                                </div>
+                                <div class="item-content">
+                                    <h6 class="font-weight-normal">Settings</h6>
+                                    <p class="font-weight-light small-text mb-0 text-muted">
+                                        Private message
+                                    </p>
+                                </div>
+                            </a>
+                            <a class="dropdown-item">
+                                <div class="item-thumbnail">
+                                    <div class="item-icon bg-info">
+                                        <i class="ti-user mx-0"></i>
+                                    </div>
+                                </div>
+                                <div class="item-content">
+                                    <h6 class="font-weight-normal">New user registration</h6>
+                                    <p class="font-weight-light small-text mb-0 text-muted">
+                                        2 days ago
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    </li> --}}
+                    <li class="nav-item nav-profile dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+                            {{!-- <img src="images/faces/face28.jpg" alt="profile" /> --}}Profile
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
+                            aria-labelledby="profileDropdown">
+                            {{!-- <a class="dropdown-item">
+                                <i class="ti-settings text-primary"></i>
+                                Settings
+                            </a> --}}
+                            <a class="dropdown-item" href="/admin/logout">
+                                <i class="ti-power-off text-primary"></i>
+                                Logout
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+                    data-toggle="offcanvas">
+                    <span class="ti-view-list"></span>
+                </button>
+            </div>
+        </nav>
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+            <!-- partial:partials/_sidebar.html -->
+            <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin">
+                            <i class="ti-shield menu-icon"></i>
+                            <span class="menu-title">Dashboard</span>
+                        </a>
+                    </li>
+                    {{!-- product management start --}}
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false"
+                            aria-controls="ui-basic">
+                            <i class="ti-control-record menu-icon"></i>
+                            <span class="menu-title">Product Mangement</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="ui-basic">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="/admin/view-allProduct">View All
+                                        Products</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="/admin/add-product">Add Products</a>
+                                </li>
+                                <li class="nav-item"> <a class="nav-link" href="/admin/category">Manage
+                                        Category</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    {{!-- product management end --}}
+
+                    {{!-- Brand management start --}}
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false"
+                            aria-controls="ui-basic">
+                            <i class="ti-control-record menu-icon"></i>
+                            <span class="menu-title">Brand Mangement</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="ui-basic">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="#">View All
+                                        Brand</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="/admin/addBrand">Add New Brand</a>
+                                </li>
+                                {{!-- <li class="nav-item"> <a class="nav-link" href="/admin/category">Manage
+                                        brands</a></li> --}}
+                            </ul>
+                        </div>
+                    </li>
+                    {{!-- Brand management end --}}
+
+                    {{!-- user mangement start --}}
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#ui-basic2" aria-expanded="false"
+                            aria-controls="ui-basic">
+                            <i class="ti-control-record menu-icon"></i>
+                            <span class="menu-title">User Mangement</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="ui-basic2">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="/admin/view-allUser">All User</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="/admin/view-blockedUser">All Blocked
+                                        User</a></li>
+
+                            </ul>
+                        </div>
+                    </li>
+                    {{!-- user management ends --}}
+
+                    {{!-- offer mangement start --}}
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#ui-basic3" aria-expanded="false"
+                            aria-controls="ui-basic">
+                            <i class="ti-control-record menu-icon"></i>
+                            <span class="menu-title">Offer Mangement</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="ui-basic3">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="/admin/coupon">Coupon</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="#">Product Offer</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="#">Category Offer</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    {{!-- offer management ends --}}
+
+                    {{!-- banner mangement start --}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/banner">
+                            <i class="ti-layout-list-post menu-icon"></i>
+                            <span class="menu-title">Banner Mangement</span>
+                        </a>
+                    </li>
+                    {{!-- banner mangement ends --}}
+
+                    {{!-- reports starts --}}
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false"
+                            aria-controls="auth">
+                            <i class="ti-trello menu-icon"></i>
+                            <span class="menu-title">Reports</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="auth">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="#"> Sales Report
+                                    </a></li>
+                                <li class="nav-item"> <a class="nav-link" href="#"> Product Report </a></li>
+
+                            </ul>
+                        </div>
+                    </li>
+                    {{!-- reports ends --}}
+
+                    {{!-- LOGOUT START --}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/logout">
+                            <i class=" menu-icon"></i>
+                            <span class="menu-title">LOGOUT</span>
+                        </a>
+                    </li>
+                    {{!-- LOGOUT ENDS --}}
+                </ul>
+            </nav>
+
+            <!-- partial -->
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    <div class="row">
+                        <div class="col-md-12 grid-margin">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h4 class="font-weight-bold mb-0"> Add Product</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{!-- <div class="row">
+                        <div class="col-md-3 grid-margin stretch-card">
+                            <div class="card">
+                                <div class="card-body">
+                                    <p class="card-title text-md-center text-xl-left">Sales</p>
+                                    <div
+                                        class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
+                                        <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">34040</h3>
+                                        <i class="ti-calendar icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
+                                    </div>
+                                    <p class="mb-0 mt-2 text-danger">0.12% <span class="text-black ml-1"><small>(30
+                                                days)</small></span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 grid-margin stretch-card">
+                            <div class="card">
+                                <div class="card-body">
+                                    <p class="card-title text-md-center text-xl-left">Revenue</p>
+                                    <div
+                                        class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
+                                        <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">47033</h3>
+                                        <i class="ti-user icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
+                                    </div>
+                                    <p class="mb-0 mt-2 text-danger">0.47% <span class="text-black ml-1"><small>(30
+                                                days)</small></span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 grid-margin stretch-card">
+                            <div class="card">
+                                <div class="card-body">
+                                    <p class="card-title text-md-center text-xl-left">Downloads</p>
+                                    <div
+                                        class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
+                                        <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">40016</h3>
+                                        <i class="ti-agenda icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
+                                    </div>
+                                    <p class="mb-0 mt-2 text-success">64.00%<span class="text-black ml-1"><small>(30
+                                                days)</small></span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 grid-margin stretch-card">
+                            <div class="card">
+                                <div class="card-body">
+                                    <p class="card-title text-md-center text-xl-left">Returns</p>
+                                    <div
+                                        class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
+                                        <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">61344</h3>
+                                        <i class="ti-layers-alt icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
+                                    </div>
+                                    <p class="mb-0 mt-2 text-success">23.00%<span class="text-black ml-1"><small>(30
+                                                days)</small></span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div> --}}
+                    {{!-- <div class="row">
+                        <div class="col-md-6 grid-margin stretch-card">
+                            <div class="card">
+                                <div class="card-body">
+                                    <p class="card-title">Sales details</p>
+                                    <p class="text-muted font-weight-light">Received overcame oh sensible so at an.
+                                        Formed do change merely to county it. Am separate contempt domestic to to oh. On
+                                        relation my so addition branched.</p>
+                                    <div id="sales-legend" class="chartjs-legend mt-4 mb-2"></div>
+                                    <canvas id="sales-chart"></canvas>
+                                </div>
+                                <div class="card border-right-0 border-left-0 border-bottom-0">
+                                    <div class="d-flex justify-content-center justify-content-md-end">
+                                        <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
+                                            <button
+                                                class="btn btn-lg btn-outline-light dropdown-toggle rounded-0 border-top-0 border-bottom-0"
+                                                type="button" id="dropdownMenuDate2" data-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="true">
+                                                Today
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-right"
+                                                aria-labelledby="dropdownMenuDate2">
+                                                <a class="dropdown-item" href="#">January - March</a>
+                                                <a class="dropdown-item" href="#">March - June</a>
+                                                <a class="dropdown-item" href="#">June - August</a>
+                                                <a class="dropdown-item" href="#">August - November</a>
+                                            </div>
+                                        </div>
+                                        <button
+                                            class="btn btn-lg btn-outline-light text-primary rounded-0 border-0 d-none d-md-block"
+                                            type="button"> View all </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 grid-margin stretch-card">
+                            <div class="card border-bottom-0">
+                                <div class="card-body pb-0">
+                                    <p class="card-title">Purchases</p>
+                                    <p class="text-muted font-weight-light">The argument in favor of using filler text
+                                        goes something like this: If you use real content in the design process, anytime
+                                        you reach a review</p>
+                                    <div class="d-flex flex-wrap mb-5">
+                                        <div class="mr-5 mt-3">
+                                            <p class="text-muted">Status</p>
+                                            <h3>362</h3>
+                                        </div>
+                                        <div class="mr-5 mt-3">
+                                            <p class="text-muted">New users</p>
+                                            <h3>187</h3>
+                                        </div>
+                                        <div class="mr-5 mt-3">
+                                            <p class="text-muted">Chats</p>
+                                            <h3>524</h3>
+                                        </div>
+                                        <div class="mt-3">
+                                            <p class="text-muted">Feedbacks</p>
+                                            <h3>509</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <canvas id="order-chart" class="w-100"></canvas>
+                            </div>
+                        </div>
+                    </div> --}}
+                    <div class="row">
+                        <div class="col-md-12 grid-margin stretch-card">
+                            <div class="card">
+                                <div class="card-body">
+                                    <p class="card-title mb-4"> Products Details</p>
+                                    {{!-- <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>User</th>
+                                                    <th>Product</th>
+                                                    <th>Sale</th>
+                                                    <th>Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Jacob</td>
+                                                    <td>Photoshop</td>
+                                                    <td class="text-danger"> 28.76% <i class="ti-arrow-down"></i></td>
+                                                    <td><label class="badge badge-danger">Pending</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Messsy</td>
+                                                    <td>Flash</td>
+                                                    <td class="text-danger"> 21.06% <i class="ti-arrow-down"></i></td>
+                                                    <td><label class="badge badge-warning">In progress</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>John</td>
+                                                    <td>Premier</td>
+                                                    <td class="text-danger"> 35.00% <i class="ti-arrow-down"></i></td>
+                                                    <td><label class="badge badge-info">Fixed</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Peter</td>
+                                                    <td>After effects</td>
+                                                    <td class="text-success"> 82.00% <i class="ti-arrow-up"></i></td>
+                                                    <td><label class="badge badge-success">Completed</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Dave</td>
+                                                    <td>53275535</td>
+                                                    <td class="text-success"> 98.05% <i class="ti-arrow-up"></i></td>
+                                                    <td><label class="badge badge-warning">In progress</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Messsy</td>
+                                                    <td>Flash</td>
+                                                    <td class="text-danger"> 21.06% <i class="ti-arrow-down"></i></td>
+                                                    <td><label class="badge badge-info">Fixed</label></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div> --}}
+                                    <div class="container">
+                                        <form method="post" action="/admin/add-product" enctype="multipart/form-data"
+                                            onsubmit="return Validation()">
+                                            <label>Product Name</label>
+
+                                            <input type="text" id="Name" name="Name" class="form-control mt-2 mb-3">
+                                            <p id="proNameErr"
+                                                style="color: red; font-family: 'Times New Roman', Times, serif"> </p>
+                                            <label>Product Discription</label>
+
+                                            <input type="text" id="Discription" name="Discription"
+                                                class="form-control mt-2 mb-3">
+                                            <label>Product Sub Discription</label>
+
+                                            <input type="text" id="subDiscription" name="subDiscription"
+                                                class="form-control mt-2 mb-3">
+                                            <p id="proDiscriptionErr"
+                                                style="color: red; font-family: 'Times New Roman', Times, serif"> </p>
+
+                                            <label>Landing Cost</label>
+
+                                            <input type="number" id="LandingCost" name="LandingCost"
+                                                class="form-control mt-2 mb-3">
+                                            <p id="proLandingCostErr"
+                                                style="color: red; font-family: 'Times New Roman', Times, serif"> </p>
+                                            <label for="">Prize</label>
+
+                                            <input type="number" id="Prize" name="Prize" class="form-control mt-2 mb-3"
+                                                maxlength="6">
+                                            <label for="">Old Prize</label>
+
+                                            <input type="number" id="oldPrize" name="oldPrize"
+                                                class="form-control mt-2 mb-3" maxlength="6">
+                                            <p id="proPrizeErr"
+                                                style="color: red; font-family: 'Times New Roman', Times, serif"> </p>
+                                            <label for="">Quantity</label>
+
+
+                                            <input type="number" id="Quantity" name="Quantity"
+                                                class="form-control mt-2 mb-3" maxlength="3">
+                                            <p id="proQuantityErr"
+                                                style="color: red; font-family: 'Times New Roman', Times, serif"> </p>
+
+                                            <div class="row mt-5 mb-5">
+                                                <div class="col-md-5">
+
+
+                                                    <label for="Category">Select the category:</label>
+
+                                                    <select id="Category" name="Category">
+                                                        {{#each category}}
+                                                        <option value="{{this.Name}}">{{this.Name}}</option>
+                                                        {{/each}}
+                                                    </select>
+
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <label for="Rom">Select the ROM:</label>
+                                                    <select id="Rom" name="Rom">
+                                                        <option value="other">other</option>
+                                                        <option value="16GB">16 GB</option>
+                                                        <option value="32GB">32 GB</option>
+                                                        <option value="64GB">64 GB</option>
+                                                        <option value="128GB">128 GB</option>
+                                                        <option value="256GB">256 GB</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label for="brandName">Select the brand:</label>
+                                                    <select id="brandName" name="brandName">
+                                                        {{#each brand}}
+                                                        <option value="{{this.brandName}}">{{this.brandName}}</option>
+                                                        {{/each}}
+                                                    </select>
+                                                </div>
+
+                                            </div>
+                                            <div class="row ">
+                                                <div class="col-12 mb-4">
+                                                    <label for="color">Product the Color:</label>
+                                                    <input type="text" id="Color" name="Color">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+
+
+                                                <div class=" col-sm-6 col-md-3">
+                                                    <label for="">Image 1</label>
+                                                    <input type="file" id="Image1" class="form-control mt-2 mb-3"
+                                                        name="Image1" style=" width: ;"
+                                                        accept="image/jpeg, image/jpg, image/png"
+                                                        onchange="validateMultipleImage('Image1'),loadFile1(event)">
+
+                                                    <div style="width:4em;height: 6em; ">
+                                                        <img id="output1" width="100%" />
+                                                    </div>
+
+
+                                                </div>
+                                                <div class=" col-sm-6 col-md-3">
+                                                    <label for="">Image 2</label>
+                                                    <input type="file" id="Image2" class="form-control mt-2 mb-3"
+                                                        name="Image2" style=" width: ;"
+                                                        accept="image/jpeg, image/jpg, image/png"
+                                                        onchange="validateMultipleImage('Image2'),loadFile2(event)">
+
+                                                    <div style="width:4em;height: 6em; ">
+                                                        <img id="output2" width="100%" />
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-sm-6 col-md-3">
+                                                    <label for="">Image 3</label>
+                                                    <input type="file" id="Image3" class="form-control mt-2 mb-3"
+                                                        name="Image3" style=" width: "
+                                                        accept="image/jpeg, image/jpg, image/png"
+                                                        onchange="validateMultipleImage('Image3'),loadFile3(event)">
+
+                                                    <div style="width:4em;height: 6em; ">
+                                                        <img id="output3" width="100%" />
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-sm-6 col-md-3">
+                                                    <label for="">Image 4</label>
+                                                    <input type="file" id="Image4" class="form-control mt-2 mb-3"
+                                                        name="Image4" style=" width: "
+                                                        accept="image/jpeg, image/jpg, image/png"
+                                                        onchange="validateMultipleImage('Image4'),loadFile4(event)">
+
+                                                    <div style="width:4em;height: 6em; ">
+                                                        <img id="output4" width="100%" />
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <p id="proImageErr"
+                                                style="color: red; font-family: 'Times New Roman', Times, serif"> </p>
+                                            <div>
+                                                <input type="submit" value="Add Product"
+                                                    class="btn btn-success mt-1 mb-4">
+                                            </div>
+
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{!-- <div class="col-md-5 grid-margin stretch-card">
+                            <div class="card">
+                                <div>
+
+                                </div>
+                            </div>
+                        </div> --}}
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 grid-margin stretch-card">
+                            <div class="card position-relative">
+                                <div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- content-wrapper ends -->
+
+            </div>
+            <!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+
+
+    <script>
+        function Validation() {
+
+            console.log("validation function caled")
+
+            let proName = document.getElementById('Name').value
+            let proDiscription = document.getElementById('Discription').value
+            let subProDiscription = document.getElementById('subDiscription').value
+            let proLandingCost = document.getElementById('LandingCost').value
+            let proPrize = document.getElementById('Prize').value
+            let oldProPrize = document.getElementById('oldPrize').value
+            let proQuantity = document.getElementById('Quantity').value
+
+            //let proCategory=document.getElementById('Category').value
+            //let proROM = document.getElementById('Rom').value
+
+            let proColor = document.getElementById('Color').value
+            let proImage1 = document.getElementById('Image1').value
+            let proImage2 = document.getElementById("Image2").value
+            let proImage3 = document.getElementById('Image3').value
+            let proImage4 = document.getElementById('Image4').value
+
+            let idxDot1 = proImage1.lastIndexOf('.') + 1;
+
+            let idxDot2 = proImage2.lastIndexOf(".") + 1;
+
+            let idxDot3 = proImage3.lastIndexOf('.') + 1;
+
+            let idxDot4 = proImage4.lastIndexOf('.') + 1;
+
+            let extFile1 = proImage1.substr(idxDot1, proImage1.length).toLowerCase();
+            let extFile2 = proImage2.substr(idxDot2, proImage2.length).toLowerCase();
+            let extFile3 = proImage3.substr(idxDot3, proImage3.length).toLowerCase();
+            let extFile4 = proImage4.substr(idxDot4, proImage4.length).toLowerCase();
+            //let idxDot2 = proImage2.lastIndexOf('.') + 1;
+
+
+            if (proName == "") {
+
+                document.getElementById('proNameErr').innerHTML = "**field must be filled"
+                return false;
+            } else if (proDiscription == "") {
+                document.getElementById('proDiscriptionErr').innerHTML = '**this field must be filled'
+                return false;
+            } else if (subProDiscription == "") {
+                document.getElementById('proDiscriptionErr').innerHTML = '**this sub discription field must be filled'
+                return false;
+            } else if (proLandingCost == "") {
+                document.getElementById('proLandingCostErr').innerHTML = '**rnter the landing cost of product'
+                return false;
+            } else if (proPrize == "") {
+                document.getElementById('proPrizeErr').innerHTML = "**this field must be filled"
+                return false;
+            } else if (oldProPrize == "") {
+                document.getElementById('proPrizeErr').innerHTML = "**this old prize field must be filled"
+                return false;
+            } else if (proQuantity == "") {
+                document.getElementById('proQuantityErr').innerHTML = "**Enter the quantity of product"
+                return false;
+            } else if (proColor == "") {
+                document.getElementById('proImageErr').innerHTML = "**Enter Color of the product"
+                return false;
+            } else if (proImage1 == "") {
+                document.getElementById('proImageErr').innerHTML = "**First Image cant Empty"
+                return false;
+            } else if (proImage2 == "") {
+                document.getElementById('proImageErr').innerHTML = "**Second Image cant Empty"
+                return false;
+            } else if (proImage3 == "") {
+                document.getElementById('proImageErr').innerHTML = "**Third Image cant Empty "
+                return false;
+            } else if (proImage4 == "") {
+                document.getElementById('proImageErr').innerHTML = "**Fourth Image cant Empty"
+                return false;
+            }
+            if (extFile1 == 'jpg' || extFile1 == 'png' || extfile1 == 'jpeg' &&
+                extFile2 == 'jpg' || extFile2 == 'png' || extfile2 == 'jpeg' &&
+                extFile3 == 'jpg' || extFile3 == 'png' || extfile3 == 'jpeg' &&
+                extFile4 == 'jpg' || extFile4 == 'png' || extfile4 == 'jpeg') {
+                return true
+
+            } else {
+                document.getElementById('proImageErr').innerHTML = "**Only .jpg, .png, and .jpeg files are allowed"
+                return false;
+            }
+        }
+    </script>
+
+    {{!-- image preview --}}
+
+
+    <script type="text/javascript">
+        function validateMultipleImage(id) {
+            var formData = new FormData();
+            var file = document.getElementById(id).files[0];
+            formData.append("Filedata", file);
+            var t = file.type.split('/').pop().toLowerCase();
+            if (t != "jpeg" && t != "jpg" && t != "png" && t != "bmp" && t != "gif") {
+
+                Swal.fire({
+                    icon: 'error',
+                    title: 'error...',
+                    text: 'Please select a valid image file!',
+                })
+                document.getElementById(id).value = '';
+                return false;
+            }
+        }
+    </script>
+
+
+    <script>
+        var loadFile1 = function (event) {
+            let output = document.getElementById('output1');
+            output.src = URL.createObjectURL(event.target.files[0]);
+            output.onload = function () {
+                URL.revokeObjectURL(output.src) // free memory
+            }
+        };
+        var loadFile2 = function (event) {
+            let output = document.getElementById('output2');
+            output.src = URL.createObjectURL(event.target.files[0]);
+            output.onload = function () {
+                URL.revokeObjectURL(output.src) // free memory
+            }
+        };
+        var loadFile3 = function (event) {
+            let output = document.getElementById('output3');
+            output.src = URL.createObjectURL(event.target.files[0]);
+            output.onload = function () {
+                URL.revokeObjectURL(output.src) // free memory
+            }
+        };
+        var loadFile4 = function (event) {
+            let output = document.getElementById('output4');
+            output.src = URL.createObjectURL(event.target.files[0]);
+            output.onload = function () {
+                URL.revokeObjectURL(output.src) // free memory
+            }
+        };
+    </script>
+
+
+
+    <!-- plugins:js -->
+    <script src="vendors/base/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page-->
+    <script src="vendors/chart.js/Chart.min.js"></script>
+    <!-- End plugin js for this page-->
+    <!-- inject:js -->
+    <script src="js/off-canvas.js"></script>
+    <script src="js/hoverable-collapse.js"></script>
+    <script src="js/template.js"></script>
+    <script src="js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="js/dashboard.js"></script>
+    <!-- End custom js for this page-->
+</section>
+<script src="sweetalert2.all.min.js"></script>
+
+
+
+
+
+
+
+
+{{!-- --}}
+
+<div class="col-lg-5 col-md-5 col-sm-12 col-12">
+    <div class="product-details-img">
+        <!-- Product Images -->
+        <div class="product-thumb">
+            <div id="gallery" class="product-dec-slider-2 product-tab-left">
+                <a data-image="/product-image/{{singleProduct._id}}_1.png"
+                    data-zoom-image="/product-image/{{singleProduct._id}}_1.png" class="slick-slide slick-cloned active"
+                    data-slick-index="-4" aria-hidden="true" tabindex="-1">
+                    <img class="blur-up lazyload" src="/product-image/{{singleProduct._id}}_1.png" alt="" style="" />
+                </a>
+                <a data-image="/product-image/{{singleProduct._id}}_2.png"
+                    data-zoom-image="/product-image/{{singleProduct._id}}_2.png" class="slick-slide slick-cloned"
+                    data-slick-index="-3" aria-hidden="true" tabindex="-1">
+                    <img class="blur-up lazyload" src="/product-image/{{singleProduct._id}}_2.png" alt="" style="" />
+                </a>
+                <a data-image="/product-image/{{singleProduct._id}}_3.png"
+                    data-zoom-image="/product-image/{{singleProduct._id}}_3.png" class="slick-slide slick-cloned"
+                    data-slick-index="-2" aria-hidden="true" tabindex="-1">
+                    <img class="blur-up lazyload" src="/product-image/{{singleProduct._id}}_3.png" alt="" style="" />
+                </a>
+                <a data-image="/product-image/{{singleProduct._id}}_4.png"
+                    data-zoom-image="/product-image/{{singleProduct._id}}_4.png" class="slick-slide slick-cloned"
+                    data-slick-index="-1" aria-hidden="true" tabindex="-1">
+                    <img class="blur-up lazyload" src="/product-image/{{singleProduct._id}}_4.png" alt="" style="" />
+                </a>
+
+
+            </div>
+        </div>
+        <div class="zoompro-wrap product-zoom-right pl-20">
+            <div class="zoompro-span">
+                <img class="blur-up lazyload zoompro" alt="" src="/product-image/{{singleProduct._id}}_1.png"
+                    style="" />
+            </div>
+            <div class="product-buttons">
+                <a href="#" class="btn " onclick="addToWishlist(event,'{{singleProduct._id}}')" data-bs-toggle="tooltip"
+                    data-bs-placement="left" title="add to wish list">
+                    <i id="{{singleProduct._id}}" class="icon an an-heart " aria-hidden="true"></i></a>
+            </div>
+        </div>
+        <div class="lightboximages">
+            <a href="/product-image/{{singleProduct._id}}_1.png" data-size="1462x2048"></a>
+            <a href="/product-image/{{singleProduct._id}}_2.png" data-size="1462x2048"></a>
+            <a href="/product-image/{{singleProduct._id}}_3.png" data-size="1462x2048"></a>
+            <a href="/product-image/{{singleProduct._id}}_4.png" data-size="1462x2048"></a>
+            <a href="/product-image/{{singleProduct._id}}_1.png" data-size="1462x2048"></a>
+        </div>
+        <!-- End Product Images -->
+        <!-- Wishlist - Share -->
+        <div class="display-table shareRow pt-4 pb-0 d-table">
+            <div class="display-table-cell text-center align-top">
+                <div class="social-sharing">
+                    <a target="_blank" href="#" class="btn btn--small btn--secondary btn--share share-facebook"
+                        data-bs-toggle="tooltip" data-bs-placement="top" title="Share on Facebook">
+                        <i class="icon an an-facebook" aria-hidden="true"></i><span class="share-title"
+                            aria-hidden="true">Facebook</span>
+                    </a>
+                    <a target="_blank" href="#" class="btn btn--small btn--secondary btn--share share-twitter"
+                        data-bs-toggle="tooltip" data-bs-placement="top" title="Tweet on Twitter">
+                        <i class="icon an an-twitter" aria-hidden="true"></i><span class="share-title"
+                            aria-hidden="true">Tweet</span>
+                    </a>
+                    <a target="_blank" href="#" class="btn btn--small btn--secondary btn--share share-google"
+                        data-bs-toggle="tooltip" data-bs-placement="top" title="Share on google+">
+                        <i class="icon an an-google-plus" aria-hidden="true"></i><span class="share-title"
+                            aria-hidden="true">Google+</span>
+                    </a>
+                    <a target="_blank" href="#" class="btn btn--small btn--secondary btn--share share-pinterest"
+                        data-bs-toggle="tooltip" data-bs-placement="top" title="Pin on Pinterest">
+                        <i class="icon an an-pinterest-p" aria-hidden="true"></i><span class="share-title"
+                            aria-hidden="true">Pin it</span>
+                    </a>
+                    <a target="_blank" href="#" class="btn btn--small btn--secondary btn--share share-email"
+                        data-bs-toggle="tooltip" data-bs-placement="top" title="Share by Email">
+                        <i class="icon an an-envelope" aria-hidden="true"></i><span class="share-title"
+                            aria-hidden="true">Email</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- End Wishlist - Share -->
+        <!-- Product Feature -->
+        <div class="safecheckout row mt-3 mb-4 pb-2">
+            <div class="item col-lg-3 mb-1 mb-sm-0">
+                <div class="icon"><i class="icon an an-truck"></i></div>
+                <div class="content">Free & fast shipping</div>
+            </div>
+            <div class="item col-lg-3 mb-1 mb-sm-0">
+                <div class="icon"><i class="icon an an-certificate"></i></div>
+                <div class="content">Secure checkout</div>
+            </div>
+            <div class="item col-lg-3">
+                <div class="icon"><i class="icon an an-thumbs-up"></i></div>
+                <div class="content">Satisfaction guarantee</div>
+            </div>
+            <div class="item col-lg-3">
+                <div class="icon"><i class="icon an an-lock"></i></div>
+                <div class="content">Privacy protected</div>
+            </div>
+        </div>
+        <!-- End Product Feature -->
+    </div>
+</div>
+
+
+function aaba(type) {
+var data = document.getElementById("myTable")
+console.log(data)
+var file = XLSX.utils.tableToBook(data, { sheet: "sheet1" })
+XLSX.write(file, { bookType: type, bookSST: true, type: 'base64' });
+XLSX.writeFile(file, 'file.' + type)
+}
+
+const exportButton = document.getElementById("exlButton");
+exportButton.addEventListener('click', () => {
+aaba('xlsx')
+})

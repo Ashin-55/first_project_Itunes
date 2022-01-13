@@ -1,0 +1,286 @@
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+<div id="carouselExampleCaptions" class="carousel slide mb-5" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+            aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+            aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+            aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="../admin/banner-image/{{allBanner.[0]._id}}_1.jpg" class="d-block w-100" alt="..."
+                style="width: 10%;">
+            <div class="carousel-caption d-none d-md-block">
+                {{!-- <h5>fghjk</h5>
+                <p>fghjk</p> --}}
+            </div>
+        </div>
+        {{#each allBanner}}
+        <div class="carousel-item">
+            <img src="../admin/banner-image/{{this._id}}_1.jpg" alt="Chicago" class="d-block w-100">
+            <div class="carousel-caption mb-5 d-none d-md-block ">
+                {{!-- <h5>{{this.Name}}</h5>
+                <p>{{this.Option}}</p> --}}
+            </div>
+        </div>
+        {{/each}}
+
+
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+
+<!-- Body Content -->
+<div id="page-content">
+    <!-- Collection Banner -->
+    <div class="collection-header">
+        <div class="collection-hero">
+            {{!-- <div class="collection-hero__image blur-up lazyload" --}} {{!--
+                style="background-image:url('assets/images/collection/women-collection-bnr.jpg');"></div> --}}
+
+            <div class="collection-hero__title-wrapper">
+                <h1 class="collection-hero__title page-width">Shop Left Sidebar</h1>
+            </div>
+        </div>
+    </div>
+    <!-- End Collection Banner -->
+    <div class="container">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-12 col-sm-12 col-md-3 col-lg-3 sidebar filterbar">
+                <div class="closeFilter d-block d-md-block d-lg-none"><i class="icon an an-times"></i></div>
+                <div class="sidebar_tags">
+                    <!-- Categories -->
+                    <div class="sidebar_widget filterBox categories filter-widget">
+                        <div class="widget-title">
+                            <h2>Filters</h2>
+                        </div>
+                        <div class="widget-content">
+                            <ul class="sidebar_categories">
+                                <li class="level1 sub-level"><a href="#;" class="site-nav">Brand</a>
+                                    <ul class="sublinks" style="display: none;">
+                                        {{#each brand}}
+                                        <li class="level2"><a href="/singleBrand/{{this.brandName}}"
+                                                class="site-nav">{{this.brandName}}</a></li>
+                                        {{/each}}
+                                    </ul>
+                                </li>
+                                <li class="level1 sub-level"><a href="#;" class="site-nav">Internal Storage</a>
+                                    <ul class="sublinks">
+                                        <li class="level2"><a href="/getMemory/256GB" class="site-nav">256</a></li>
+                                        <li class="level2"><a href="/getMemory/128GB" class="site-nav">128</a></li>
+                                        <li class="level2"><a href="/getMemory/64GB" class="site-nav">64</a></li>
+                                        <li class="level2"><a href="/getMemory/32GB" class="site-nav">32</a></li>
+                                        <li class="level2"><a href="/getMemory/16GB" class="site-nav">16</a></li>
+
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- End Categories -->
+
+                    <!-- Static Block -->
+                    <div class="sidebar_widget">
+                        <div class="widget-title">
+                            <h2>Mobile Exchange Offers</h2>
+                        </div>
+                        <div class="widget-content">
+                            <p>Get an instant discount on the phone that you have been eyeing on. Exchange your old
+                                mobile for a new one after the <span style="color: red;">i</span>Tunes experts calculate
+                                the value of your old phone,
+                                provided it is in a working condition without damage to the screen. If a phone is
+                                applicable for an exchange offer, you will see the 'Buy with Exchange' option on the
+                                product description of the phone. So, be smart, always opt for an exchange wherever
+                                possible. Terms and conditions apply..</p>
+                        </div>
+                    </div>
+                    <!-- End Static Block -->
+
+                </div>
+            </div>
+            <!-- End Sidebar -->
+
+            <!-- Main Content -->
+            <div class="col-12 col-sm-12 col-md-12 col-lg-9 main-col">
+                <div class="productList">
+                    <!-- Toolbar -->
+                    <div class="toolbar">
+                        <div class="filters-toolbar-wrapper">
+                            <div class="row">
+
+
+                                <div class="col-12 d-flex justify-content-end text-end">
+                                    <div class="filters-toolbar__item">
+                                        <label for="SortBy" class="hidden">Sort</label>
+                                        <select name="SortBy" id="SortBy"
+                                            class="filters-toolbar__input filters-toolbar__input--sort"
+                                            onchange="location = this.value;">
+                                            <option value="title-ascending" selected="selected">Sort</option>
+                                            {{#if name}}
+                                            <option value="/alphabaticalyA-Zsearch/{{name}}">Alphabetically, A-Z
+                                            </option>
+                                            <option value="/alphabaticalyZ-Asearch/{{name}}">Alphabetically, Z-A
+                                            </option>
+                                            <option value="/prizeL-Hsearch/{{name}}">Price, low to high</option>
+                                            <option value="/prizeH-Lsearch/{{name}}">Price, high to low</option>
+                                            {{else}}
+                                            <option value="/sortAtoZ">Alphabetically, A-Z</option>
+                                            <option value="/sortZtoA">Alphabetically, Z-A</option>
+                                            <option value="/sortPrizelow">Price, low to high</option>
+                                            <option value="/sortPrizehigh">Price, high to low</option>
+                                            {{/if}}
+                                        </select>
+                                        <input class="collection-header__default-sort" type="hidden" value="manual">
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Toolbar -->
+
+                    <!-- Grid Product -->
+                    <div class="grid-products grid--view-items product-three-load-more">
+
+                        <div class="row">
+                            {{#if proAvalble}}
+                            {{#each allProduct}}
+                            <div class="col-6 col-sm-4 col-md-2 col-lg-2 item">
+                                <!-- Product Image -->
+                                <div class="product-image">
+                                    <!-- Product Image -->
+                                    <a href="/productdetail/{{this._id}}">
+                                        <!-- Image -->
+                                        <img class="primary blur-up lazyload"
+                                            data-src="/product-image/{{this._id}}_1.png"
+                                            src="/product-image/{{this._id}}_1.png" alt="image" title="product"
+                                            style="height: 8rem;width: auto;" />
+                                        <!-- End Image -->
+                                        <!-- Hover Image -->
+                                        <img class="hover blur-up lazyload" data-src="/product-image/{{this._id}}_2.png"
+                                            src="/product-image/{{this._id}}_2.png" alt="image" title="product"
+                                            style="height: 8rem; width: auto;" />
+                                        <!-- End Hover Image -->
+
+                                    </a>
+                                    <!-- End Product Image -->
+
+
+
+                                    <!-- Product Button -->
+                                    <div class="button-set">
+
+                                        <div class="variants add" data-bs-toggle="tooltip" data-bs-placement="top"
+                                            title="add to cart">
+                                            <button onclick="addToCart('{{this._id}}')"><i
+                                                    class="icon an an-shopping-bag btn-lg"></i></button>
+                                        </div>
+                                        <div class="variants add" data-bs-toggle="tooltip" data-bs-placement="top"
+                                            title="add to wishlist">
+                                            <button onclick="addToWishlist(event,'{{this._id}}')"><i
+                                                    class="icon an an-heart btn-lg bg-secondary"
+                                                    id="{{this._id}}"></i></button>
+                                        </div>
+
+
+
+                                    </div>
+                                    <!-- End Product Button -->
+                                </div>
+                                <!-- End Product Image -->
+
+                                <!-- Product Details -->
+                                <div class="product-details text-center">
+                                    <!-- Product Name -->
+                                    <div class="product-name">
+                                        <a href="/productdetail/{{this._id}}">{{this.Name}}</a>
+                                    </div>
+                                    <!-- End Product Name -->
+                                    <!-- Product Price -->
+                                    <div class="product-price">
+                                        {{#if offer }}
+                                        <span class="old-price">₹ {{this.oldPrize}}</span>
+                                        {{/if}}
+                                        <span class="price">₹ {{this.Prize}}</span>
+                                    </div>
+                                    <div>
+                                        {{#if offer}}
+                                        <span style="color: green;">{{this.value}}%Off</span>
+                                        {{/if}}
+                                    </div>
+                                    <!-- End Product Price -->
+                                </div>
+                                <!-- End Product Details -->
+                            </div>
+                            {{/each}}
+                            {{else}}
+                            <div class="d-flex justify-content-center m-5 p-5">
+                                <h3>Products are outof store :( </h3>
+                            </div>
+                            {{/if}}
+                        </div>
+
+                    </div>
+                    <!-- End Grid Product -->
+                </div>
+
+                <!-- Infinit Pagination -->
+                <div class="infinitpaginOuter">
+                    <div class="infinitpagin-three">
+                        <a href="" class="btn loadMoreThree">Load More</a>
+                    </div>
+                </div>
+                <!-- End Infinit Pagination -->
+            </div>
+            <!-- End Main Content -->
+        </div>
+    </div>
+</div>
+<!-- End Body Content -->
+
+<script>
+    console.log("function called 1")
+    fetch("/find-product-in-wishlist")
+        .then((res) => {
+            console.log("function called 2")
+            res.json().then((data) => {
+                if (data) {
+                    console.log(data)
+                    for (x of data) {
+                        if (document.getElementById(x)) {
+                            document.getElementById(x).classList.add("icons", "text-danger")
+                        }
+                    }
+                }
+            })
+        })
+
+
+</script>
+<script>
+    function filterB() {
+        let data = document.getElementById("amount").value
+        console.log("the filter value is " + data)
+    }
+</script>
+
+<script src="sweetalert2.all.min.js"></script>

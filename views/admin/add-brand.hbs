@@ -1,0 +1,75 @@
+<section>
+
+    <div class="container-fluid page-body-wrapper">
+        {{>adminSidebar}}
+        <div class="content-wrapper">
+            <h3 class="card-title mb-4"> Add New Brand </h3>
+            <div class="row p-4">
+
+                <div class=" col-10">
+                    <div class="container bg-light p-4 rounded">
+                        <form method="post" action="/admin/addBrand" enctype="multipart/form-data"
+                            onsubmit="return validation()">
+                            <label>Brand Name</label>
+                            <input type="text" name="brandName" id="brandName" class="form-control mt-2 mb-3" value="">
+                            <label>Brand Discription</label>
+                            <input type="text" name="brandDiscription" id="brandDiscription"
+                                class="form-control mt-2 mb-3" value="">
+
+                            <div class="row">
+                                <div class=" col-12 mt-4">
+                                    <img src="" style="height: 6em;" id="bannerImg">
+                                    <label for="">Brand Image</label>
+                                    <input type="file" class="form-control mt-2 mb-3" name="brandImage" id="brandImage"
+                                        style=" width: 15em;" onchange="" accept="image/png,image/jpg,image/jpeg">
+                                </div>
+                            </div>
+
+                            <input type="submit" value="Add Brand" class="btn btn-success btn-sm mt-4 mb-4">
+
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- plugins:js -->
+    <script src="../../admin/vendors/base/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page-->
+    <script src="../../admin/vendors/chart.js/Chart.min.js"></script>
+    <!-- End plugin js for this page-->
+    <!-- inject:js -->
+    <script src="../../admin/js/off-canvas.js"></script>
+    <script src="../../admin/js/hoverable-collapse.js"></script>
+    <script src="../../admin/js/template.js"></script>
+    <script src="../../admin/js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="../../admin/js/dashboard.js"></script>
+    <!-- End custom js for this page-->
+
+</section>
+
+<script>
+    function validation() {
+        let brandName = document.getElementById("brandName").value
+        let brandDiscription = document.getElementById("brandDiscription").value
+        let brandImg = document.getElementById("brandImage").value
+
+        if (brandName == "") {
+            document.getElementById("brandErr").innerHTML = "**enter brand name"
+            return false
+        } else if (brandDiscription == "") {
+            document.getElementById("brandErr").innerHTML = "**enter brand discription"
+            return false
+        } else if (brandImg == "") {
+            document.getElementById("brandErr").innerHTML = "**Uplode Brand Image"
+            return false
+        }
+    }
+</script>
+<script src="sweetalert2.all.min.js"></script>

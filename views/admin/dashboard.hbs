@@ -1,0 +1,384 @@
+<section>
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+        <a class="navbar-brand brand-logo mr-5" href="/admin"><span style="color: red;">i</span>Tunes</a>
+        <a class="navbar-brand brand-logo-mini" href="/admin"><span style="color: red;">i</span>Tunes</a>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+          <span class="ti-view-list"></span>
+        </button>
+
+        <ul class="navbar-nav navbar-nav-right">
+
+          <li class="nav-item nav-profile dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+              {{!-- <img src="images/faces/face28.jpg" alt="profile" /> --}}Profile
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+              {{!-- <a class="dropdown-item">
+                <i class="ti-settings text-primary"></i>
+                Settings
+              </a> --}}
+              <a class="dropdown-item" href="/admin/logout">
+                <i class="ti-power-off text-primary"></i>
+                Logout
+              </a>
+
+            </div>
+          </li>
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+          data-toggle="offcanvas">
+          <span class="ti-view-list"></span>
+        </button>
+      </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:partials/_sidebar.html -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" href="/admin">
+              <i class="ti-shield menu-icon"></i>
+              <span class="menu-title">Dashboard</span>
+            </a>
+          </li>
+          {{!-- product management start --}}
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+              <i class="ti-control-record menu-icon"></i>
+              <span class="menu-title">Product Mangement</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/admin/view-allProduct">View All Products</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin/add-product">Add Products</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin/category">Manage Category</a></li>
+              </ul>
+            </div>
+          </li>
+          {{!-- product management end --}}
+
+
+          {{!-- Brand management start --}}
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+              <i class="ti-control-record menu-icon"></i>
+              <span class="menu-title">Brand Mangement</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="#">View All
+                    Brand</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin/addBrand">Add New Brand</a>
+                </li>
+                {{!-- <li class="nav-item"> <a class="nav-link" href="/admin/category">Manage
+                    brands</a></li> --}}
+              </ul>
+            </div>
+          </li>
+          {{!-- Brand management end --}}
+          {{!-- user mangement start --}}
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic2" aria-expanded="false" aria-controls="ui-basic">
+              <i class="ti-control-record menu-icon"></i>
+              <span class="menu-title">User Mangement</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic2">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/admin/view-allUser">All User</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin/view-blockedUser">All Blocked User</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin/orderHistory">All orders from User</a></li>
+              </ul>
+            </div>
+          </li>
+          {{!-- user management ends --}}
+
+          {{!-- offer mangement start --}}
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic3" aria-expanded="false" aria-controls="ui-basic">
+              <i class="ti-control-record menu-icon"></i>
+              <span class="menu-title">Offer Mangement</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic3">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/admin/coupon">Coupon</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin/productOffer">Product Offer</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin/categoryOffer">Category Offer</a></li>
+              </ul>
+            </div>
+          </li>
+          {{!-- offer management ends --}}
+
+          {{!-- banner mangement start --}}
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/banner">
+              <i class="ti-layout-list-post menu-icon"></i>
+              <span class="menu-title">Banner Mangement</span>
+            </a>
+          </li>
+          {{!-- banner mangement ends --}}
+
+          {{!-- reports starts --}}
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+              <i class="ti-trello menu-icon"></i>
+              <span class="menu-title">Reports</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="auth">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/admin/salesReport"> Sales Report </a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin/productReport"> Product Report </a></li>
+
+              </ul>
+            </div>
+          </li>
+          {{!-- reports ends --}}
+
+          {{!-- LOGOUT START --}}
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/logout">
+              <i class=" menu-icon"></i>
+              <span class="menu-title">LOGOUT</span>
+            </a>
+          </li>
+          {{!-- LOGOUT ENDS --}}
+        </ul>
+      </nav>
+
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 grid-margin">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <h4 class="font-weight-bold mb-0"> Dashboard</h4>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-title text-md-center text-xl-left"><b>Orders</b> </p>
+                  <div
+                    class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
+                    <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">{{totalOrders}}</h3>
+                    <i class="ti-calendar icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-title text-md-center text-xl-left"><b>Total users</b></p>
+                  <div
+                    class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
+                    <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">{{totalUser}}</h3>
+                    <i class="ti-user icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-title text-md-center text-xl-left"><b>Total Sale Value</b> </p>
+                  <div
+                    class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
+                    <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">₹{{totalSale}}</h3>
+                    <i class="ti-layers-alt icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-title text-md-center text-xl-left"><b>Cancelled Orders</b></p>
+                  <div
+                    class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
+                    <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">{{totalCanceledOrder}}</h3>
+                    <i class="ti-layers-alt icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-sm-6 ms-5 bg-white p-4" style="width: 24em;height: 25em;">
+              <canvas id="myChart2"></canvas>
+            </div>
+            <div class="col-12 col-sm-6  ms-2 bg-white p-5">
+              <canvas id="myChart"></canvas>
+            </div>
+          </div>
+
+
+          {{!-- recent order showing --}}
+          <div class="row mt-4">
+            <div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-title mb-0">Recent Orders</p>
+                  <div class="table-responsive">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th>User</th>
+                          <th>Product</th>
+                          <th>Payment Method</th>
+                          <th>Amount</th>
+                          <th>Date</th>
+                          <th>Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {{#each recentOrder}}
+                        <tr>
+                          <td>{{this.userDetail.firstName}}&nbsp;{{this.userDetail.lastName}}</td>
+                          <td>{{this.productDetail.Name}}</td>
+                          <td>{{this.Paymentmethod}}</td>
+                          <td class="text-success">{{this.productDetail.Prize}}</td>
+                          <td>{{this.Date}}</td>
+                          <td>{{this.Status}}</td>
+                        </tr>
+                        {{/each}}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <footer class="footer">
+          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">iTunes Mobile limited</span>
+          </div>
+        </footer>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+
+  <!-- plugins:js -->
+  <script src="vendors/base/vendor.bundle.base.js"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page-->
+  <script src="vendors/chart.js/Chart.min.js"></script>
+  <!-- End plugin js for this page-->
+  <!-- inject:js -->
+  <script src="js/off-canvas.js"></script>
+  <script src="js/hoverable-collapse.js"></script>
+  <script src="js/template.js"></script>
+  <script src="js/todolist.js"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src="js/dashboard.js"></script>
+  <!-- End custom js for this page-->
+</section>
+{{!-- chart js --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"
+  integrity="sha512-TW5s0IT/IppJtu76UbysrBH9Hy/5X41OTAbQuffZFU6lQ1rdcLHzpU5BzVvr/YFykoiMYZVWlr/PX1mDcfM9Qg=="
+  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="sweetalert2.all.min.js"></script>
+
+
+<script>
+  const ctx = document.getElementById('myChart').getContext('2d');
+  const myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['COD', 'Razorpay', 'Paypal'],
+      datasets: [{
+        label: "Payment method count",
+        data: [{{ cod }}, {{ razorpay }},{{ paypal }}],
+  backgroundColor: [
+    'rgba(255, 9, 132, 0.8)',
+    'rgba(54, 162, 235, 0.8)',
+    'rgba(255, 206, 86, 0.8)',
+
+  ],
+    borderColor: [
+      'rgba(255, 99, 132, 1)',
+      'rgba(54, 162, 235, 1)',
+      'rgba(255, 206, 86, 1)',
+    ],
+      borderWidth: 1
+      }]
+    },
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    },
+    plugins: {
+      title: {
+        display: true,
+          text: 'payment method'
+      },
+    },
+  }
+  });
+
+
+  const ctx2 = document.getElementById('myChart2').getContext('2d');
+  const myChart2 = new Chart(ctx2, {
+    type: 'pie',
+    data: {
+      labels: ["{{brandName.[0]}}", "{{brandName.[1]}}", "{{brandName.[2]}}"],
+      datasets: [{
+        label: '',
+        data: [{{ brandCount }}],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.7)',
+        'rgba(54, 162, 235, 0.7)',
+        'rgba(255, 206, 86, 0.7)',
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+      ],
+      borderWidth: 1
+    }]
+  },
+    options: {
+    plugins: {
+      title: {
+        display: true,
+        text: 'Top 3 Selling Brands'
+      },
+    },
+  }
+  });
+
+
+</script>

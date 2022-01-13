@@ -1,0 +1,80 @@
+<div id="shipping" class="container">
+    <div class="row" class="d-flex justify-content-center">
+        <div class="col-12 col-sm-4">
+
+        </div>
+        <div class="col-12 col-sm-4">
+            <form class="address-from mt-3 " method="post" action="/editAddress/{{details.Contact._id}}" onsubmit="">
+                <fieldset>
+                    <h2 class="login-title mb-3">Address details</h2>
+                    <div class="row">
+                        <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                            <label for="input-firstname1">First Name <span class="required-f">*</span></label>
+                            <input name="firstName" value="{{details.Contact.firstName}}" id="firstName" type="text">
+                        </div>
+                        <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                            <label for="input-lastname1">Last Name <span class="required-f">*</span></label>
+                            <input name="lastName" value="{{details.Contact.lastName}}" id="lastName" type="text">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                            <label for="input-email1">E-Mail <span class="required-f">*</span></label>
+                            <input name="email" value="{{details.Contact.email}}" id="email" type="email">
+                        </div>
+                        <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                            <label for="input-telephone1">Mobile <span class="required-f">*</span></label>
+                            <input name="mobilePhone" value="{{details.Contact.mobilePhone}}" id="mobilePhone"
+                                type="tel">
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                            <label for="input-address-11">Address <span class="required-f">*</span></label>
+                            <input name="address1" value="{{details.Contact.address1}}" id="address1" type="text">
+                        </div>
+                        <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                            <label for="input-city1">City <span class="required-f">*</span></label>
+                            <input name="city" value="{{details.Contact.city}}" id="city" type="text">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                            <label for="input-postcode1">Post Code <span class="required-f">*</span></label>
+                            <input name="pinCode" value="{{details.Contact.pinCode}}" id="pinCode" type="text">
+                        </div>
+                        <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                            <label for="input-country1">Country <span class="required-f">*</span></label>
+                            <input name="Country" value="{{details.Contact.Country}}" id="Country" type="text">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12 col-lg-12 col-xl-12 required">
+                            <label for="input-zone1"> State <span class="required-f">*</span></label>
+                            <input name="state" value="{{details.Contact.state}}" id="state" type="text">
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12 col-lg-12 col-xl-12 required">
+
+                            <input type="text" id="userid" name="userid" value="{{details.Contact.userid}}" hidden>
+                        </div>
+                        <div class="form-group col-md-12 col-lg-12 col-xl-12 required">
+
+                            <input type="text" id="_id" name="_id" value="{{details.Contact._id}}" hidden>
+                        </div>
+                    </div>
+
+                    <p style="color:red;font-family: 'Times New Roman', Times, serif;" id="error"></p>
+                    <button type="submit" class="btn mt-1"><span>submit
+                            Address</span></button>
+                </fieldset>
+            </form>
+        </div>
+
+    </div>
+
+</div>
