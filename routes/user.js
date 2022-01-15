@@ -465,10 +465,10 @@ router.get('/checkout', verifyLogin, allCategory, async (req, res) => {
     let savedAddress = await userHelpers.getSavedAddress(req.session.user._id)
     console.log(savedAddress)
     let savedAdd = false
-    if (savedAddress.length > 0) {
-      savedAdd = true
-    } else {
-      savedAdd = false
+    if(savedAddress!=undefined){
+      if (savedAddress.length > 0) {
+        savedAdd = true
+      }
     }
 
     console.log("result:" + totalAmmount)
