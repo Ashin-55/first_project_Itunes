@@ -7,6 +7,8 @@ var moment = require('moment');
 const { parse } = require('handlebars');
 
 const verifyLogin = (req, res, next) => {
+  console.log(req.session.admin)
+  console.log("haii ebey")
   if (req.session.admin) {
     next()
   } else {
