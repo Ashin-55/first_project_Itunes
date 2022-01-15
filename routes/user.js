@@ -466,14 +466,12 @@ router.get('/checkout', verifyLogin, allCategory, async (req, res) => {
     console.log(savedAddress)
     let savedAdd = false
     if (savedAddress != undefined) {
-      console, log("come to save address is not udefined")
+      console.log("come to save address is not udefined")
       if (savedAddress.length > 0) {
         savedAdd = true
       }
-    } else {
-      savedAdd = true
     }
-
+ console.log(savedAdd)
     console.log("result:" + totalAmmount)
     res.render('user/checkout', {
       'layout': 'user/layout',
