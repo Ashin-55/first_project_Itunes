@@ -280,7 +280,7 @@ router.get("/profile", verifyLogin, allCategory, async (req, res) => {
   }
   res.render("user/profile", {
     "layout": "user/layout",
-    user: req.session.user, userData, cartCount, getAddress, getOrders, orderCount, category: res.data,wishListItem
+    user: req.session.user, userData, cartCount, getAddress, getOrders, orderCount, category: res.data, wishListItem
   })
 })
 
@@ -465,10 +465,13 @@ router.get('/checkout', verifyLogin, allCategory, async (req, res) => {
     let savedAddress = await userHelpers.getSavedAddress(req.session.user._id)
     console.log(savedAddress)
     let savedAdd = false
-    if(savedAddress!=undefined){
+    if (savedAddress != undefined) {
+      console, log("come to save address is not udefined")
       if (savedAddress.length > 0) {
         savedAdd = true
       }
+    } else {
+      savedAdd = true
     }
 
     console.log("result:" + totalAmmount)
@@ -973,14 +976,14 @@ router.get("/SearchResult", allCategory, async (req, res) => {
   let brand = await userHelpers.getBrand()
   let cartCount = null
   let proAvalble = true
-  if(allProduct.length==0){
+  if (allProduct.length == 0) {
     proAvalble = false
   }
   if (req.session.user) {
     cartCount = await userHelpers.getCartCount(req.session.user._id)
 
   }
-  res.render("user/shop", { "layout": "user/layout", allProduct, allBanner, brand, cartCount, category: res.data, proAvalble,name:req.query.q })
+  res.render("user/shop", { "layout": "user/layout", allProduct, allBanner, brand, cartCount, category: res.data, proAvalble, name: req.query.q })
 
 })
 
@@ -1058,40 +1061,40 @@ router.get("/sortPrizehigh", async (req, res) => {
 
 //sorting in brandPage
 router.get('/alphabaticalyA-Z/:brandName', allCategory, cartcountFun, async (req, res) => {
- 
+
   let brand = await userHelpers.getBrand()
   userHelpers.alphabaticalyAZ(req.params.brandName).then((brandProduct) => {
     res.render("user/singlebrand", {
-      "layout": "user/layout",  brandProduct, category: res.data, user: req.session.user,
+      "layout": "user/layout", brandProduct, category: res.data, user: req.session.user,
       brandName: req.params.brandName, cartCount: res.cartCount, brand
     })
   })
 })
 router.get('/alphabaticalyZ-A/:brandName', allCategory, cartcountFun, async (req, res) => {
- 
+
   let brand = await userHelpers.getBrand()
   userHelpers.alphabaticalyZA(req.params.brandName).then((brandProduct) => {
     res.render("user/singlebrand", {
-      "layout": "user/layout",  brandProduct, category: res.data, user: req.session.user,
+      "layout": "user/layout", brandProduct, category: res.data, user: req.session.user,
       brandName: req.params.brandName, cartCount: res.cartCount, brand
     })
   })
 })
 router.get("/prizeL-H/:brandName", allCategory, cartcountFun, async (req, res) => {
- 
+
   let brand = await userHelpers.getBrand()
   userHelpers.prizeLH(req.params.brandName).then((brandProduct) => {
     res.render("user/singlebrand", {
-      "layout": "user/layout",  brandProduct, category: res.data, user: req.session.user,
+      "layout": "user/layout", brandProduct, category: res.data, user: req.session.user,
       brandName: req.params.brandName, cartCount: res.cartCount, brand
     })
   })
 })
-router.get('/prizeH-L/:brandName',allCategory, cartcountFun, async (req,res)=>{
+router.get('/prizeH-L/:brandName', allCategory, cartcountFun, async (req, res) => {
   let brand = await userHelpers.getBrand()
   userHelpers.prizeHL(req.params.brandName).then((brandProduct) => {
     res.render("user/singlebrand", {
-      "layout": "user/layout",  brandProduct, category: res.data, user: req.session.user,
+      "layout": "user/layout", brandProduct, category: res.data, user: req.session.user,
       brandName: req.params.brandName, cartCount: res.cartCount, brand
     })
   })
@@ -1107,8 +1110,8 @@ router.get('/alphabaticalyA-Zsearch/:name', allCategory, cartcountFun, async (re
   let proAvalble = true
   userHelpers.alphabaticalyAZsearch(req.params.name).then((allProduct) => {
     res.render("user/shop", {
-      "layout": "user/layout",allBanner,  allProduct, category: res.data, user: req.session.user,
-      name: req.params.name, cartCount: res.cartCount, brand,proAvalble
+      "layout": "user/layout", allBanner, allProduct, category: res.data, user: req.session.user,
+      name: req.params.name, cartCount: res.cartCount, brand, proAvalble
     })
   })
 })
@@ -1118,8 +1121,8 @@ router.get('/alphabaticalyZ-Asearch/:name', allCategory, cartcountFun, async (re
   let proAvalble = true
   userHelpers.alphabaticalyZAsearch(req.params.name).then((allProduct) => {
     res.render("user/shop", {
-      "layout": "user/layout",allBanner,  allProduct, category: res.data, user: req.session.user,
-      name: req.params.name, cartCount: res.cartCount, brand,proAvalble
+      "layout": "user/layout", allBanner, allProduct, category: res.data, user: req.session.user,
+      name: req.params.name, cartCount: res.cartCount, brand, proAvalble
     })
   })
 })
@@ -1129,19 +1132,19 @@ router.get("/prizeL-Hsearch/:name", allCategory, cartcountFun, async (req, res) 
   let proAvalble = true
   userHelpers.prizeLHsearch(req.params.name).then((allProduct) => {
     res.render("user/shop", {
-      "layout": "user/layout",allBanner,  allProduct, category: res.data, user: req.session.user,
-      name: req.params.name, cartCount: res.cartCount, brand,proAvalble
+      "layout": "user/layout", allBanner, allProduct, category: res.data, user: req.session.user,
+      name: req.params.name, cartCount: res.cartCount, brand, proAvalble
     })
   })
 })
-router.get('/prizeH-Lsearch/:name',allCategory, cartcountFun, async (req,res)=>{
+router.get('/prizeH-Lsearch/:name', allCategory, cartcountFun, async (req, res) => {
   let allBanner = await userHelpers.getBannerItems()
   let brand = await userHelpers.getBrand()
   let proAvalble = true
   userHelpers.prizeHLsearch(req.params.name).then((allProduct) => {
     res.render("user/shop", {
       "layout": "user/layout", allBanner, allProduct, category: res.data, user: req.session.user,
-      name: req.params.name, cartCount: res.cartCount, brand,proAvalble
+      name: req.params.name, cartCount: res.cartCount, brand, proAvalble
     })
   })
 })
