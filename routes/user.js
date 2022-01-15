@@ -542,7 +542,7 @@ router.post('/checkout', verifyLogin, async (req, res) => {
           },
           "redirect_urls": {
             "return_url": "https://www.itunesmobiles.xyz/payPalSuccess",
-            "cancel_url": "https://itunesmobiles.xyz/payPalcancel"
+            "cancel_url": "https://www.itunesmobiles.xyz/payPalcancel"
           },
           "transactions": [{
             "item_list": {
