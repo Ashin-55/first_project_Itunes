@@ -22,14 +22,14 @@
                 <div class="mt-3">
                   {{!-- <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="#">SIGN IN</a> --}}
                   <input type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" value="Sign in">
+                  <div>
+                    {{#if adminLoginErr}}
+                    <p style="color: red;" class="mt-2 ">{{adminLoginErr}}</p>
+                    {{/if}}
+                  </div>
                 </div>
                 <div class="my-2 d-flex justify-content-between align-items-center">
-                  <div class="form-check">
-                    <label class="form-check-label text-muted">
-                      <input type="checkbox" class="form-check-input">
-                      Keep me signed in
-                    </label>
-                 
+                               
                
                
               </form>

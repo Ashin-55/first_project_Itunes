@@ -97,28 +97,39 @@ module.exports = {
 
       let user = await db.get().collection(collection.USER_COLLECTTION).findOne({ email: loginData.email })
       let mobileLogin = await db.get().collection(collection.USER_COLLECTTION).findOne({ mobilePhone: loginData.mobilePhone })
-        ;
+      console.log(user)
+      console.log(mobileLogin)
+      console.log("welcome welcome")
       if (user) {
-        bcrypt.compare(loginData.password, user.password).then((status) => {
-          if (status) {
-            console.log("login successfull");
-            //console.log(status)
-            response.user = user
-            response.status = true
-            resolve(response)
-
-          } else {
-            console.log("Password incorrect , login Failed");
-            resolve({ status: false })
-          }
-        })
+        if (user.status) {
+          bcrypt.compare(loginData.password, user.password).then((status) => {
+            if (status) {
+              console.log("login successfull");
+              console.log(status)
+              response.user = user
+              response.status = true
+              resolve(response)
+            } else {
+              console.log("Password incorrect , login Failed");
+              resolve({ status: false })
+            }
+          })
+        } else {
+          console.log("user blocked by admin")
+          resolve({ blockuser: true })
+        }
       }
       else if (mobileLogin) {
-        console.log("login successfull with otp login");
-        //console.log(status)
-        response.user = mobileLogin
-        response.status = true
-        resolve(response)
+        if (mobileLogin.status) {
+          console.log("login successfull with otp login");
+          //console.log(status)
+          response.user = mobileLogin
+          response.status = true
+          resolve(response)
+        } else {
+          console.log("user blocked by admin")
+          resolve({ blockuser: true })
+        }
       }
       else {
         console.log("user not found Login Failed");
@@ -688,12 +699,12 @@ module.exports = {
   productRom: (data) => {
     console.log(data)
     return new Promise(async (resolve, reject) => {
-      let rom = await db.get().collection(collection.PRODUCT_COLLECTION).find({Rom:data}).toArray()
-      if(rom){
+      let rom = await db.get().collection(collection.PRODUCT_COLLECTION).find({ Rom: data }).toArray()
+      if (rom) {
 
         resolve(rom)
-      }else{
-        resolve({productNotAvalble:true})
+      } else {
+        resolve({ productNotAvalble: true })
       }
     })
   },
@@ -753,7 +764,7 @@ module.exports = {
         }
         db.get().collection(collection.WISHLIST_COLLECTION)
           .insertOne(wishlistObj).then((response) => {
-            response.productPresent = true
+            response.productPresent = false
             resolve(response)
           })
       }
@@ -1492,192 +1503,192 @@ module.exports = {
   searchProduct: (data) => {
     console.log(data)
     return new Promise(async (resolve, reject) => {
-      let output = await db.get().collection(collection.PRODUCT_COLLECTION).find({ Name: { $regex: `^${data}`,$options:'i' } }).toArray()
+      let output = await db.get().collection(collection.PRODUCT_COLLECTION).find({ Name: { $regex: `^${data}`, $options: 'i' } }).toArray()
       resolve(output)
     })
   },
 
   // sort product by alphabettalli globaly
-  sortAtZ:()=>{
-    return new Promise(async(resolve,reject)=>{
-  let output =await    db.get().collection(collection.PRODUCT_COLLECTION)
-       .aggregate([
-         {
-           $sort:{Name:1}
-         }
-       ]).toArray()
-       resolve(output)
-    })
-  },
-  sortPrizelow:()=>{
-    return new Promise(async(resolve,reject)=>{
-  let output =await    db.get().collection(collection.PRODUCT_COLLECTION)
-       .aggregate([
-         {
-           $sort:{Prize:-1}
-         }
-       ]).toArray()
-       resolve(output)
-    })
-  },
-  sortZtA:()=>{
-    return new Promise(async(resolve,reject)=>{
-  let output =await    db.get().collection(collection.PRODUCT_COLLECTION)
-       .aggregate([
-         {
-           $sort:{Name:-1}
-         }
-       ]).toArray()
-       resolve(output)
-    })
-  },
-  sortPrizelow:()=>{
-    return new Promise(async(resolve,reject)=>{
-  let output =await    db.get().collection(collection.PRODUCT_COLLECTION)
-       .aggregate([
-         {
-           $sort:{Prize:1}
-         }
-       ]).toArray()
-       resolve(output)
-    })
-  },
-  sortPrizehigh:()=>{
-    return new Promise(async(resolve,reject)=>{
-  let output =await    db.get().collection(collection.PRODUCT_COLLECTION)
-       .aggregate([
-         {
-           $sort:{Prize:-1}
-         }
-       ]).toArray()
-       resolve(output)
-    })
-  },
- 
-  //sort product in brand page
-  alphabaticalyAZ:(brand)=>{
-    return new Promise(async(resolve,reject)=>{
-      let result =  await db.get().collection(collection.PRODUCT_COLLECTION)
+  sortAtZ: () => {
+    return new Promise(async (resolve, reject) => {
+      let output = await db.get().collection(collection.PRODUCT_COLLECTION)
         .aggregate([
           {
-            $match:{brandName:brand}
-          },
-          {
-            $sort:{Name:1}
+            $sort: { Name: 1 }
           }
         ]).toArray()
-        console.log(result)
-        resolve(result)
+      resolve(output)
     })
   },
-  alphabaticalyZA:(brand)=>{
-    return new Promise(async(resolve,reject)=>{
-      let result =  await db.get().collection(collection.PRODUCT_COLLECTION)
+  sortPrizelow: () => {
+    return new Promise(async (resolve, reject) => {
+      let output = await db.get().collection(collection.PRODUCT_COLLECTION)
         .aggregate([
           {
-            $match:{brandName:brand}
-          },
-          {
-            $sort:{Name:-1}
+            $sort: { Prize: -1 }
           }
         ]).toArray()
-        console.log(result)
-        resolve(result)
+      resolve(output)
+    })
+  },
+  sortZtA: () => {
+    return new Promise(async (resolve, reject) => {
+      let output = await db.get().collection(collection.PRODUCT_COLLECTION)
+        .aggregate([
+          {
+            $sort: { Name: -1 }
+          }
+        ]).toArray()
+      resolve(output)
+    })
+  },
+  sortPrizelow: () => {
+    return new Promise(async (resolve, reject) => {
+      let output = await db.get().collection(collection.PRODUCT_COLLECTION)
+        .aggregate([
+          {
+            $sort: { Prize: 1 }
+          }
+        ]).toArray()
+      resolve(output)
+    })
+  },
+  sortPrizehigh: () => {
+    return new Promise(async (resolve, reject) => {
+      let output = await db.get().collection(collection.PRODUCT_COLLECTION)
+        .aggregate([
+          {
+            $sort: { Prize: -1 }
+          }
+        ]).toArray()
+      resolve(output)
     })
   },
 
-  prizeLH:(brand)=>{
-    return new Promise( async(resolve,reject)=>{
+  //sort product in brand page
+  alphabaticalyAZ: (brand) => {
+    return new Promise(async (resolve, reject) => {
       let result = await db.get().collection(collection.PRODUCT_COLLECTION)
         .aggregate([
           {
-            $match:{brandName:brand}
+            $match: { brandName: brand }
           },
           {
-            $sort:{Prize:1}
+            $sort: { Name: 1 }
           }
         ]).toArray()
-        console.log(result)
-        resolve(result)
+      console.log(result)
+      resolve(result)
     })
   },
-  prizeHL:(brand)=>{
-    return new Promise( async(resolve,reject)=>{
+  alphabaticalyZA: (brand) => {
+    return new Promise(async (resolve, reject) => {
       let result = await db.get().collection(collection.PRODUCT_COLLECTION)
         .aggregate([
           {
-            $match:{brandName:brand}
+            $match: { brandName: brand }
           },
           {
-            $sort:{Prize:-1}
+            $sort: { Name: -1 }
           }
         ]).toArray()
-        console.log(result)
-        resolve(result)
+      console.log(result)
+      resolve(result)
+    })
+  },
+
+  prizeLH: (brand) => {
+    return new Promise(async (resolve, reject) => {
+      let result = await db.get().collection(collection.PRODUCT_COLLECTION)
+        .aggregate([
+          {
+            $match: { brandName: brand }
+          },
+          {
+            $sort: { Prize: 1 }
+          }
+        ]).toArray()
+      console.log(result)
+      resolve(result)
+    })
+  },
+  prizeHL: (brand) => {
+    return new Promise(async (resolve, reject) => {
+      let result = await db.get().collection(collection.PRODUCT_COLLECTION)
+        .aggregate([
+          {
+            $match: { brandName: brand }
+          },
+          {
+            $sort: { Prize: -1 }
+          }
+        ]).toArray()
+      console.log(result)
+      resolve(result)
     })
   },
   // sort Product in search output
-  alphabaticalyAZsearch:(name)=>{
-    console.log("come to search input a-z "+name)
-    return new Promise(async(resolve,reject)=>{
-      let result =  await db.get().collection(collection.PRODUCT_COLLECTION)
+  alphabaticalyAZsearch: (name) => {
+    console.log("come to search input a-z " + name)
+    return new Promise(async (resolve, reject) => {
+      let result = await db.get().collection(collection.PRODUCT_COLLECTION)
         .aggregate([
           {
-            $match:{Name: { $regex: `^${name}`,$options:'i' } }
+            $match: { Name: { $regex: `^${name}`, $options: 'i' } }
           },
           {
-            $sort:{Name:1}
+            $sort: { Name: 1 }
           }
         ]).toArray()
-        console.log("below is result")
-        console.log(result)
-        resolve(result)
+      console.log("below is result")
+      console.log(result)
+      resolve(result)
     })
   },
-  alphabaticalyZAsearch:(name)=>{
-    return new Promise(async(resolve,reject)=>{
-      let result =  await db.get().collection(collection.PRODUCT_COLLECTION)
+  alphabaticalyZAsearch: (name) => {
+    return new Promise(async (resolve, reject) => {
+      let result = await db.get().collection(collection.PRODUCT_COLLECTION)
         .aggregate([
           {
-            $match:{ Name: { $regex: `^${name}`,$options:'i' } }
+            $match: { Name: { $regex: `^${name}`, $options: 'i' } }
           },
           {
-            $sort:{Name:-1}
+            $sort: { Name: -1 }
           }
         ]).toArray()
-        console.log(result)
-        resolve(result)
+      console.log(result)
+      resolve(result)
     })
   },
 
-  prizeLHsearch:(name)=>{
-    return new Promise( async(resolve,reject)=>{
+  prizeLHsearch: (name) => {
+    return new Promise(async (resolve, reject) => {
       let result = await db.get().collection(collection.PRODUCT_COLLECTION)
         .aggregate([
           {
-            $match:{Name: { $regex: `^${name}`,$options:'i' } }
+            $match: { Name: { $regex: `^${name}`, $options: 'i' } }
           },
           {
-            $sort:{Prize:1}
+            $sort: { Prize: 1 }
           }
         ]).toArray()
-        console.log(result)
-        resolve(result)
+      console.log(result)
+      resolve(result)
     })
   },
-  prizeHLsearch:(name)=>{
-    return new Promise( async(resolve,reject)=>{
+  prizeHLsearch: (name) => {
+    return new Promise(async (resolve, reject) => {
       let result = await db.get().collection(collection.PRODUCT_COLLECTION)
         .aggregate([
           {
-            $match:{Name: { $regex: `^${name}`,$options:'i' } }
+            $match: { Name: { $regex: `^${name}`, $options: 'i' } }
           },
           {
-            $sort:{Prize:-1}
+            $sort: { Prize: -1 }
           }
         ]).toArray()
-        console.log(result)
-        resolve(result)
+      console.log(result)
+      resolve(result)
     })
   }
 }

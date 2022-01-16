@@ -62,7 +62,8 @@ router.get('/login', (req, res) => {
   if (req.session.admin) {
     res.redirect('/admin/')
   } else {
-    res.render('admin/login', { 'layout': 'admin/layout' })
+    res.render('admin/login', { 'layout': 'admin/layout' ,adminLoginErr: req.session.adminLoginErr})
+    req.session.adminLoginErr=null
   }
 
 });
@@ -75,6 +76,7 @@ router.post('/login', (req, res) => {
       req.session.admin.loggedIn = true
       res.redirect('/admin')
     } else {
+      req.session.adminLoginErr = "Invalid username or password"
       res.redirect('/admin/login')
     }
   })

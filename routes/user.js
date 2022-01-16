@@ -88,10 +88,12 @@ router.get('/login', allCategory, (req, res) => {
     console.log("haiii2")
     res.render('user/login', {
       'layout': 'user/layout', 'userLogginError': req.session.userLogginError,
-      "userMobileLoginErr": req.session.userMobileLoginErr, category: res.data
+      "userMobileLoginErr": req.session.userMobileLoginErr, category: res.data,
+      "userBlockedError": req.session.userBlockedError
     })
     req.session.userLogginError = null
     req.session.userMobileLoginErr = null
+    req.session.userBlockedError = null 
   }
 
 })
@@ -103,9 +105,12 @@ router.post('/login', (req, res) => {
       req.session.user = response.user;
       req.session.user.loggedIn = true;
       res.redirect('/')
-    } else {
+    } else if(response.blockuser){
+      req.session.userBlockedError = "can't login , admin Blocked you :("
+      res.redirect('/login')
+    }else {
       //ivalid message passing
-      req.session.userLogginError = "Invalid Email id or Password"
+      req.session.userLogginError = "Invalid Email id or Password  :("
       res.redirect('/login')
     }
   })
@@ -920,8 +925,8 @@ router.get("/singleBrand/:brandname", allCategory, cartcountFun, async (req, res
 })
 
 // add new Address
-router.get("/addNewAddress", verifyLogin, (req, res) => {
-  res.render("user/add-newAddress", { "layout": "user/layout", user: req.session.user })
+router.get("/addNewAddress", verifyLogin,cartcountFun, (req, res) => {
+  res.render("user/add-newAddress", { "layout": "user/layout", user: req.session.user,cartCount: res.cartCount })
 })
 //add new address
 router.post("/addNewAddress", verifyLogin, (req, res) => {

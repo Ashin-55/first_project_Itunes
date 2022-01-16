@@ -1,5 +1,5 @@
 <section class="page-template diva">
-    
+
     <!-- Page Loader -->
     <div id="pre-loader"><img src="../../user/assets/images/loader.gif" alt="Loading..." /></div>
     <!-- End Page Loader -->
@@ -62,6 +62,10 @@
                                             <p style="color: red; font-family: 'Times New Roman', Times, serif;">
                                                 {{userMobileLoginErr}}</p>
                                             {{/if}}
+                                            {{#if userBlockedError}}
+                                            <p style="color: red; font-family: 'Times New Roman', Times, serif;">
+                                                {{userBlockedError}}</p>
+                                            {{/if}}
                                             <label for="CustomerEmail">Email <span class="required">*</span></label>
                                             <input type="email" name="email" placeholder="" id="CustomerEmail"
                                                 autofocus />
@@ -80,8 +84,9 @@
                                     <div class="text-left col-12 col-sm-12 col-md-12 col-lg-12">
                                         <input type="submit" class="btn mb-3" value="Log In">
                                         <p class="mb-4">
-                                            {{!-- <a href="/forgot-password">Forgot your password?</a> &nbsp; | &nbsp; --}}
-                                            
+                                            {{!-- <a href="/forgot-password">Forgot your password?</a> &nbsp; | &nbsp;
+                                            --}}
+
                                             <a href="/signup" id="customer_register_link">Create account</a>
                                             &nbsp; | &nbsp;
                                             <a href="/loginWithMobile" id="customer_register_link">Create account using
