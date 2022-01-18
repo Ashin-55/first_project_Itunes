@@ -674,8 +674,6 @@ router.get("/payPalSuccess", verifyLogin, (req, res) => {
         let cartCount = null
         cartCount = await userHelpers.getCartCount(req.session.user._id)
         let allBanner = await userHelpers.getBannerItems()
-        //let orderDetails = await userHelpers.orderDetail(req.session.user._id)
-        //let userDetail = await userHelpers.getUserDetails(req.session.user)
         req.session.placeOrderData = null
         res.render('user/success', { "layout": "user/layout", user: req.session.user, allBanner, cartCount, orderDetails, orderDate, orderAmount, grandTotal, userDetail })
       })
@@ -684,18 +682,9 @@ router.get("/payPalSuccess", verifyLogin, (req, res) => {
   });
 })
 router.get("/payPalcancel", async (req, res) => {
-
-  //  let id = req.session.user._id
-  //  let val = req.session.total
-  //  let placeOrderData = req.session.placeOrderData
-  //  let products = await userHelpers.getCartProducts(id)
-  //  let totalPrize = await userHelpers.getTotalAmount(id)
-  //  userHelpers.placeOrder(placeOrderData,products,totalPrize).then((insertedId)=>{
-  //    user.userHelpers.changePaymentStatus(insertedId).then()
-  //  })
-
   res.redirect("/checkout")
 })
+
 router.post("/verify-payment", (req, res) => {
   console.log("insidie verify payment")
   console.log(req.body)
